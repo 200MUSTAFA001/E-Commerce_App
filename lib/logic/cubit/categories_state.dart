@@ -1,0 +1,16 @@
+part of 'categories_cubit.dart';
+
+@immutable
+abstract class CategoriesState {}
+
+class CategoriesInitial extends CategoriesState {}
+
+class CategoriesLoaded extends CategoriesState {
+  final List<String>? categories;
+
+  CategoriesLoaded(this.categories);
+}
+
+class CategoriesLoading extends CategoriesState {}
+
+class CategoriesLoadError extends CategoriesState {}
