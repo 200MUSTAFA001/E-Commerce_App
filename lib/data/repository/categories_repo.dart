@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:api_app/data/models/categories_model.dart';
-import 'package:api_app/data/services/store_web_services.dart';
+import 'package:api_app/data/services/fake_store_web_service.dart';
 
 class CategoriesRepo {
   final CategoryService categoryService;

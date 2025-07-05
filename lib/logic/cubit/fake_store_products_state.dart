@@ -1,4 +1,4 @@
-part of 'products_cubit.dart';
+part of 'fake_store_products_cubit.dart';
 
 @immutable
 abstract class ProductsState {}
