@@ -35,10 +35,10 @@ class FakeStoreItemsGrid extends StatelessWidget {
         ),
         itemBuilder: (context, index) => Banner(
           message: "${productsOnSale(fakeProducts)![index].discount}",
-          textStyle: TextStyle(fontSize: 16, color: Colors.white),
+          textStyle: const TextStyle(fontSize: 16, color: Colors.white),
           color: Colors.red,
           location: BannerLocation.topEnd,
-          shadow: BoxShadow(
+          shadow: const BoxShadow(
             color: Colors.black,
             blurRadius: 20,
             spreadRadius: 200,
