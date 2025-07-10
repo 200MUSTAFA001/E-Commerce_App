@@ -1,17 +1,27 @@
 import 'dart:convert';
 
-import 'package:api_app/data/models/product_model.dart';
-import 'package:api_app/data/services/fake_store_web_service.dart';
+import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/data/services/web_services.dart';
 
 class ProductsRepo {
-  final ProductService productService;
+  final GetLimitedProductsService getLimitedProductsService;
+  final GetAllProductsService getAllProductsService;
 
-  ProductsRepo(this.productService);
+  ProductsRepo(this.getLimitedProductsService, this.getAllProductsService);
 
-  Future<List<Product>> getProductsByCategory(String category) async {
-    final response = await productService.getProductsByCategory(category);
+  Future<List<Product>> getLimitedProductsByCategory(String category) async {
+    final response =
+        await getLimitedProductsService.getProductsByCategory(category);
     final jsonString = json.encode(response);
-    final result = productsFromJson(jsonString);
+    final result = productsModelFromJson(jsonString);
+    return result.products;
+  }
+
+  Future<List<Product>> getAllProducts(String category) async {
+    final response =
+        await getAllProductsService.getProductsByCategory(category);
+    final jsonString = json.encode(response);
+    final result = productsModelFromJson(jsonString);
     return result.products;
   }
 }

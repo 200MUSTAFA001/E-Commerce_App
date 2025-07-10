@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,15 @@ class ProductCard extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.138,
             width: MediaQuery.of(context).size.width * 1,
-            child: const Placeholder(),
+            child: CachedNetworkImage(
+              imageUrl: productImage,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress)),
+              errorWidget: (context, url, error) =>
+                  const Center(child: Icon(Icons.error)),
+            ),
           ),
           const SizedBox(
             height: 8,
@@ -53,9 +62,10 @@ class ProductCard extends StatelessWidget {
           Text(
             productName,
             style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                overflow: TextOverflow.clip),
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              overflow: TextOverflow.clip,
+            ),
             maxLines: 1,
           ),
           Text(

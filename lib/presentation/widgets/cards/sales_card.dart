@@ -1,12 +1,16 @@
+import 'package:api_app/presentation/screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SaleCardData {
+  final List<String> cardCategories;
   final String cardName;
   final String cardImage;
   final Color buttonColor;
   final Color cardNameColor;
 
   SaleCardData({
+    required this.cardCategories,
     required this.cardName,
     required this.cardImage,
     required this.buttonColor,
@@ -37,9 +41,9 @@ class SaleCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.75,
+        width: MediaQuery.of(context).size.width * 0.8,
         padding: const EdgeInsets.all(20),
-        margin: const EdgeInsets.only(right: 10, left: 20),
+        margin: const EdgeInsets.only(right: 20, left: 10),
         decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(cardImage),
@@ -51,24 +55,23 @@ class SaleCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 10,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20, left: 10),
-              child: Text(
-                cardName,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: cardNameColor,
-                ),
-                maxLines: 2,
-              ),
-            ),
+            Text(
+              cardName,
+              style: GoogleFonts.oswald(
+                  fontSize: 22, color: cardNameColor, letterSpacing: 1),
+              maxLines: 2,
+            ).onlyPadding(right: 100, left: 10, top: 0, bottom: 0),
             ElevatedButton(
               onPressed: elevatedButtonOnPressed,
-              style: ElevatedButton.styleFrom(backgroundColor: buttonColor),
-              child: Text(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: buttonColor,
+              ),
+              child: const Text(
                 "Get Now",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
               ),
             )
           ],

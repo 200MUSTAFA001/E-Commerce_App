@@ -36,23 +36,23 @@
 //           mainAxisAlignment: MainAxisAlignment.center,
 //           crossAxisAlignment: CrossAxisAlignment.center,
 //           children: [
-//             // SizedBox(
-//             //   height: 20,
-//             // ),
-//             // BlocBuilder<ProductsCubit, ProductsState>(
-//             //   builder: (context, state) {
-//             //     if (state is ProductsLoaded) {
-//             //       fakeProducts = (state).products;
-//             //       return FakeStoreItemsGrid(
-//             //         fakeProducts: fakeProducts ?? [],
-//             //       );
-//             //     } else {
-//             //       return const Center(
-//             //         child: CircularProgressIndicator(),
-//             //       );
-//             //     }
-//             //   },
-//             // ),
+//             SizedBox(
+//               height: 20,
+//             ),
+//             BlocBuilder<ProductsCubit, ProductsState>(
+//               builder: (context, state) {
+//                 if (state is ProductsLoaded) {
+//                   fakeProducts = (state).products;
+//                   return FakeStoreItemsGrid(
+//                     fakeProducts: fakeProducts ?? [],
+//                   );
+//                 } else {
+//                   return const Center(
+//                     child: CircularProgressIndicator(),
+//                   );
+//                 }
+//               },
+//             ),
 //             BlocBuilder<PlatziProductsCubit, PlatziProductsState>(
 //               builder: (context, state) {
 //                 if (state is PlatziProductsLoaded) {

@@ -1,17 +1,18 @@
 import 'dart:convert';
 
-import 'package:api_app/data/models/categories_model.dart';
-import 'package:api_app/data/services/fake_store_web_service.dart';
+import 'package:api_app/data/services/web_services.dart';
+
+import '../models/categories_model.dart';
 
 class CategoriesRepo {
-  final CategoryService categoryService;
+  final GetCategoriesService getCategoriesService;
 
-  CategoriesRepo(this.categoryService);
+  CategoriesRepo(this.getCategoriesService);
 
-  Future<List<String>?> getAllCategories() async {
-    final response = await categoryService.getAllCategories();
+  Future<List<String>> getAllCategories() async {
+    final response = await getCategoriesService.getCategories();
     final jsonString = json.encode(response);
-    final result = categoriesFromJson(jsonString);
-    return result.categories;
+    final result = categoriesModelFromJson(jsonString);
+    return result;
   }
 }

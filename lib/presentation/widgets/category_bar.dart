@@ -1,21 +1,46 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CategoryBar extends StatefulWidget {
+  const CategoryBar({super.key, required this.onCategorySelected});
+
   @override
   _CategoryBarState createState() => _CategoryBarState();
+
+  final void Function(String category) onCategorySelected;
 }
 
 class _CategoryBarState extends State<CategoryBar> {
   int selectedIndex = 0;
+  String selectedCategory = "";
 
   final List<IconData> icons = [
-    CupertinoIcons.game_controller_solid,
-    Icons.checkroom,
-    Icons.shopping_bag,
-    Icons.directions_run,
-    Icons.fitness_center,
+    FontAwesomeIcons.shirt,
+    FontAwesomeIcons.laptop,
+    FontAwesomeIcons.couch,
+    FontAwesomeIcons.utensils,
+    FontAwesomeIcons.mobile,
+    FontAwesomeIcons.spa,
   ];
+
+  String category(int index) {
+    switch (index) {
+      case 0:
+        return "mens-shirts";
+      case 1:
+        return "laptops";
+      case 2:
+        return "furniture";
+      case 3:
+        return "kitchen-accessories";
+      case 4:
+        return "smartphones";
+      case 5:
+        return "beauty";
+      default:
+        return "mens-shirts";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +53,11 @@ class _CategoryBarState extends State<CategoryBar> {
           bool isSelected = index == selectedIndex;
           return GestureDetector(
             onTap: () {
-              setState(() => selectedIndex = index);
+              setState(() {
+                selectedIndex = index;
+                selectedCategory = category(index);
+                widget.onCategorySelected(selectedCategory);
+              });
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 20),

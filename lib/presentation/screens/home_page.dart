@@ -1,9 +1,14 @@
+import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/logic/cubit/limited_products_cubit.dart';
+import 'package:api_app/presentation/widgets/lists/products_by_category_grid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/category_bar.dart';
 import '../widgets/custom_drawer.dart';
-import '../widgets/sales_card.dart';
+import '../widgets/lists/sales_card_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,32 +18,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<SaleCardData> saleCards = [
-    SaleCardData(
-      cardName: "Fashion Sale - Up to 50% Off",
-      cardImage: "assets/cardpics/fashion.jpg",
-      buttonColor: Colors.orange.shade700,
-      cardNameColor: Colors.blue.shade900,
-    ),
-    SaleCardData(
-      cardName: "Appliances Sale - Up to 50% Off",
-      cardImage: "assets/cardpics/appliances.png",
-      buttonColor: Colors.deepOrange.shade900,
-      cardNameColor: Colors.white,
-    ),
-    SaleCardData(
-      cardName: "Electronics Sale - Up to 40% Off",
-      cardImage: "assets/cardpics/gaming1.png",
-      buttonColor: Colors.green.shade700,
-      cardNameColor: Colors.white,
-    ),
-    SaleCardData(
-      cardName: "Furniture Sale - Up to 30% Off",
-      cardImage: "assets/cardpics/furniture2.png",
-      buttonColor: Colors.blue.shade900,
-      cardNameColor: Colors.white,
-    ),
-  ];
+  String selectedCategory = "mens-shirts";
+
+  List<Product>? products;
+
+  @override
+  void initState() {
+    super.initState();
+    products = BlocProvider.of<LimitedProductsCubit>(context)
+        .getLimitedProducts(selectedCategory);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +37,7 @@ class _HomePageState extends State<HomePage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            backgroundColor: Colors.white,
             actions: [
               IconButton(
                 onPressed: () {},
@@ -58,101 +48,87 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: ListTile(
               title: Text(
-                "Hello Fola",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                "Hello Mustafa",
+                style: GoogleFonts.fjallaOne(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1,
                 ),
               ),
-              subtitle: Text("Let's start Shopping! "),
-            ),
+              subtitle: Text(
+                "Let's start Shopping!",
+                style: GoogleFonts.shareTech(
+                    fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+            ).onlyPadding(right: 0, left: 0, top: 0, bottom: 6),
           ),
+          SaleCardsList(),
           SliverToBoxAdapter(
-              child: Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width * 1,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: saleCards.length,
-                itemBuilder: (context, index) => SaleCard(
-                  elevatedButtonOnPressed: () {},
-                  onTap: () {},
-                  cardName: saleCards[index].cardName,
-                  cardImage: saleCards[index].cardImage,
-                  buttonColor: saleCards[index].buttonColor,
-                  cardNameColor: saleCards[index].cardNameColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Top Categories",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(onPressed: () {}, child: const Text("See All"))
+                  ],
                 ),
-              ),
-            ),
-          )),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 22, left: 16, right: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Top Categories",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      TextButton(onPressed: () {}, child: const Text("See All"))
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CategoryBar(),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
-            ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CategoryBar(
+                  onCategorySelected: (String category) {
+                    selectedCategory = category;
+                    products = BlocProvider.of<LimitedProductsCubit>(context)
+                        .getLimitedProducts(category);
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                )
+              ],
+            ).onlyPadding(right: 16, left: 16, top: 20, bottom: 10),
           ),
-          // ProductsByCategoryGrid(
-          //   fakeStoreProducts: [
-          //     // Product(
-          //     //     id: 0,
-          //     //     title: "title",
-          //     //     image: "image",
-          //     //     price: 0,
-          //     //     description: "description",
-          //     //     brand: "brand",
-          //     //     model: "model",
-          //     //     color: "color",
-          //     //     category: "category")
-          //   ],
-          //   platziProducts: [
-          //     // PlatziProduct(
-          //     //     id: 0,
-          //     //     title: "titssle",
-          //     //     slug: "slug",
-          //     //     price: 1,
-          //     //     description: "description",
-          //     //     category: Category(
-          //     //         id: 0,
-          //     //         name: "name",
-          //     //         slug: "slug",
-          //     //         image: "image",
-          //     //         creationAt: DateTime(2000),
-          //     //         updatedAt: DateTime(2000)),
-          //     //     images: [],
-          //     //     creationAt: DateTime(2000),
-          //     //     updatedAt: DateTime(2000))
-          //   ],
-          // )
+          BlocBuilder<LimitedProductsCubit, LimitedProductsState>(
+            builder: (context, state) {
+              if (state is LimitedProductsLoaded) {
+                products = state.products;
+                return ProductsByCategoryGrid(
+                  products: products ?? [],
+                );
+              } else {
+                return const SliverToBoxAdapter(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            },
+          ),
         ],
       ),
     );
+  }
+}
+
+extension OnlyPaddingRL on Widget {
+  Widget onlyPadding(
+      {required double right,
+      required double left,
+      required double top,
+      required double bottom}) {
+    return Padding(
+        padding:
+            EdgeInsets.only(right: right, left: left, top: top, bottom: bottom),
+        child: this);
   }
 }

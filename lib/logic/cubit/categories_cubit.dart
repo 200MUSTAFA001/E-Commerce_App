@@ -14,7 +14,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   List<String> getCategories() {
     categoriesRepo.getAllCategories().then((categories) {
       emit(CategoriesLoaded(categories));
-      this.categories = categories ?? [];
+      this.categories = categories;
     });
     return categories;
   }

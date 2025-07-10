@@ -6,7 +6,7 @@ abstract class CategoriesState {}
 class CategoriesInitial extends CategoriesState {}
 
 class CategoriesLoaded extends CategoriesState {
-  final List<String>? categories;
+  final List<String> categories;
 
   CategoriesLoaded(this.categories);
 }
