@@ -1,14 +1,17 @@
+import 'package:api_app/app_router.dart';
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/logic/cubit/limited_products_cubit.dart';
-import 'package:api_app/presentation/widgets/lists/products_by_category_grid.dart';
+import 'package:api_app/presentation/widgets/extensions.dart';
+import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../widgets/cards/welcome_user_tile.dart';
 import '../widgets/category_bar.dart';
 import '../widgets/custom_drawer.dart';
-import '../widgets/lists/sales_card_list.dart';
+import '../widgets/lists/sale_cards_list.dart';
+import '../widgets/lists/shimmer_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    products = BlocProvider.of<LimitedProductsCubit>(context)
+    BlocProvider.of<LimitedProductsCubit>(context)
         .getLimitedProducts(selectedCategory);
   }
 
@@ -48,23 +51,7 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          SliverToBoxAdapter(
-            child: ListTile(
-              title: Text(
-                "Hello Mustafa",
-                style: GoogleFonts.fjallaOne(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1,
-                ),
-              ),
-              subtitle: Text(
-                "Let's start Shopping!",
-                style: GoogleFonts.shareTech(
-                    fontSize: 18, fontWeight: FontWeight.w500),
-              ),
-            ).onlyPadding(right: 0, left: 0, top: 0, bottom: 6),
-          ),
+          const WelcomeUserTile(),
           SaleCardsList(),
           SliverToBoxAdapter(
             child: Column(
@@ -79,7 +66,12 @@ class _HomePageState extends State<HomePage> {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    TextButton(onPressed: () {}, child: const Text("See All"))
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, AppRouter.allCategoriesPage);
+                        },
+                        child: const Text("See All"))
                   ],
                 ),
                 const SizedBox(
@@ -102,14 +94,12 @@ class _HomePageState extends State<HomePage> {
             builder: (context, state) {
               if (state is LimitedProductsLoaded) {
                 products = state.products;
-                return ProductsByCategoryGrid(
+                return ProductsByCategoryList(
                   products: products ?? [],
                 );
               } else {
-                return const SliverToBoxAdapter(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                return const ShimmerList(
+                  cardsCount: 4,
                 );
               }
             },
@@ -117,18 +107,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-}
-
-extension OnlyPaddingRL on Widget {
-  Widget onlyPadding(
-      {required double right,
-      required double left,
-      required double top,
-      required double bottom}) {
-    return Padding(
-        padding:
-            EdgeInsets.only(right: right, left: left, top: top, bottom: bottom),
-        child: this);
   }
 }

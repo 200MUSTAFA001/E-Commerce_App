@@ -60,6 +60,7 @@ class Product {
   final Meta meta;
   final List<String> images;
   final String thumbnail;
+  bool isFavorite;
 
   Product({
     required this.id,
@@ -83,6 +84,7 @@ class Product {
     required this.meta,
     required this.images,
     required this.thumbnail,
+    required this.isFavorite,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -108,6 +110,7 @@ class Product {
         meta: Meta.fromJson(json["meta"]),
         images: List<String>.from(json["images"].map((x) => x)),
         thumbnail: json["thumbnail"],
+        isFavorite: json["isFavorite"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -132,6 +135,7 @@ class Product {
         "meta": meta.toJson(),
         "images": List<dynamic>.from(images.map((x) => x)),
         "thumbnail": thumbnail,
+        "isFavorite": isFavorite
       };
 }
 

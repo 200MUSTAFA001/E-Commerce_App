@@ -1,4 +1,4 @@
-import 'package:api_app/data/repository/categories_repo.dart';
+import 'package:api_app/tempFiles/repos/categories_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -14,7 +14,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   List<String> getCategories() {
     categoriesRepo.getAllCategories().then((categories) {
       emit(CategoriesLoaded(categories));
-      this.categories = categories;
+      this.categories = categories ?? [];
     });
     return categories;
   }

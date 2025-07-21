@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:api_app/data/models/platzi_Product.dart';
-import 'package:api_app/data/services/platzi_store_web_service.dart';
+import 'package:api_app/tempFiles/services/platzi_store_web_service.dart';
 
 class PlatziRepo {
   final PlatziService platziService;

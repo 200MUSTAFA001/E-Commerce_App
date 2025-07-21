@@ -1,8 +1,8 @@
 import 'package:api_app/data/models/platzi_Product.dart';
-import 'package:api_app/presentation/widgets/item_card.dart';
+import 'package:api_app/presentation/widgets/cards/item_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/product_model.dart';
+import 'models/product_model.dart';
 
 List<Product>? productsOnSale(List<Product> products) {
   List<Product> productsOnSale = [];

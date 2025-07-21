@@ -1,4 +1,5 @@
-import 'package:api_app/presentation/screens/home_page.dart';
+import 'package:api_app/app_router.dart';
+import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../cards/sales_card.dart';
@@ -64,12 +65,12 @@ class SaleCardsList extends StatelessWidget {
         itemBuilder: (context, index) => SaleCard(
           elevatedButtonOnPressed: () {
             final arguments = saleCards[index].cardCategories;
-            Navigator.pushNamed(context, "/ProductsOnSalePage",
+            Navigator.pushNamed(context, AppRouter.productsOnSalePage,
                 arguments: arguments);
           },
           onTap: () {
             final arguments = saleCards[index].cardCategories;
-            Navigator.pushNamed(context, "/ProductsOnSalePage",
+            Navigator.pushNamed(context, AppRouter.productsOnSalePage,
                 arguments: arguments);
           },
           cardName: saleCards[index].cardName,

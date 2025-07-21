@@ -41,7 +41,7 @@ class Product {
   final String description;
   final String brand;
   final String model;
-  final String color;
+  final String? color;
   final String category;
   final int? discount;
   final bool? popular;
@@ -55,7 +55,7 @@ class Product {
     required this.description,
     required this.brand,
     required this.model,
-    required this.color,
+    this.color,
     required this.category,
     this.discount,
     this.popular,
