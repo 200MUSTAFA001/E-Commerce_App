@@ -45,11 +45,12 @@ class SaleCard extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.only(right: 20, left: 10),
         decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(cardImage),
-              fit: BoxFit.fill,
-            ),
-            borderRadius: BorderRadius.circular(20)),
+          image: DecorationImage(
+            image: AssetImage(cardImage),
+            fit: BoxFit.fill,
+          ),
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +61,7 @@ class SaleCard extends StatelessWidget {
               style: GoogleFonts.oswald(
                   fontSize: 22, color: cardNameColor, letterSpacing: 1),
               maxLines: 2,
-            ).onlyPadding(right: 100, left: 10, top: 0, bottom: 0),
+            ).onlyPadding(right: 150, left: 10, top: 0, bottom: 0),
             ElevatedButton(
               onPressed: elevatedButtonOnPressed,
               style: ElevatedButton.styleFrom(

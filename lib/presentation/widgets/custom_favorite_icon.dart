@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomFavoriteIcon extends StatefulWidget {
-  const CustomFavoriteIcon({super.key});
+  const CustomFavoriteIcon({super.key, required this.onTap});
+
+  final void Function() onTap;
 
   @override
   State<CustomFavoriteIcon> createState() => _CustomFavoriteIconState();
@@ -14,11 +16,13 @@ class _CustomFavoriteIconState extends State<CustomFavoriteIcon> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        setState(() {
-          isFavorite = !isFavorite;
-        });
-      },
+      onPressed: widget.onTap
+      //     () {
+      //   setState(() {
+      //     isFavorite = !isFavorite;
+      //   });
+      // }
+      ,
       icon: isFavorite
           ? const Icon(
               CupertinoIcons.heart_fill,

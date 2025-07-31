@@ -14,7 +14,7 @@ class SliverReviewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
+    return SliverList.separated(
       itemCount: reviews.length,
       itemBuilder: (context, index) => ReviewCard(
         reviewerName: reviews[index].reviewerName,
@@ -22,7 +22,12 @@ class SliverReviewList extends StatelessWidget {
         reviewerRating: reviews[index].rating,
         reviewerComment: reviews[index].comment,
         reviewerCommentDate: reviews[index].date,
-      ).onlyPadding(right: 6, left: 6, top: 0, bottom: 0),
+      ).onlyPadding(right: 10, left: 10, top: 10, bottom: 12),
+      separatorBuilder: (context, index) => const Divider(
+        thickness: 3,
+        indent: 80,
+        endIndent: 80,
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:api_app/app_router.dart';
 import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/logic/cubit/limited_products_cubit.dart';
+import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,27 +23,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String selectedCategory = "mens-shirts";
 
-  List<Product>? products;
+  List<Product> products = [];
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<LimitedProductsCubit>(context)
-        .getLimitedProducts(selectedCategory);
+    BlocProvider.of<ProductsCubit>(context)
+        .getProductsByCategory(selectedCategory);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: CustomDrawer(context),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRouter.cartPage);
+                },
                 icon: const Icon(CupertinoIcons.search),
               ),
               const SizedBox(
@@ -80,8 +82,8 @@ class _HomePageState extends State<HomePage> {
                 CategoryBar(
                   onCategorySelected: (String category) {
                     selectedCategory = category;
-                    products = BlocProvider.of<LimitedProductsCubit>(context)
-                        .getLimitedProducts(category);
+                    BlocProvider.of<ProductsCubit>(context)
+                        .getProductsByCategory(category);
                   },
                 ),
                 const SizedBox(
@@ -90,12 +92,13 @@ class _HomePageState extends State<HomePage> {
               ],
             ).onlyPadding(right: 16, left: 16, top: 20, bottom: 10),
           ),
-          BlocBuilder<LimitedProductsCubit, LimitedProductsState>(
+          BlocBuilder<ProductsCubit, ProductsState>(
             builder: (context, state) {
-              if (state is LimitedProductsLoaded) {
+              if (state is ProductsLoaded) {
                 products = state.products;
                 return ProductsByCategoryList(
-                  products: products ?? [],
+                  itemCount: 4,
+                  products: products,
                 );
               } else {
                 return const ShimmerList(
@@ -103,6 +106,21 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             },
+          ),
+          SliverToBoxAdapter(
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppRouter.productsByCategoryPage,
+                    arguments: selectedCategory);
+              },
+              child: const Text(
+                "Show More",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.deepOrangeAccent,
+                ),
+              ),
+            ).onlyPadding(right: 0, left: 0, top: 8, bottom: 16),
           ),
         ],
       ),

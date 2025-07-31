@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({
-    super.key,
-    required this.productPrice,
-  });
+  const AddToCartButton(
+      {super.key, required this.productPrice, required this.onTap});
 
   final String productPrice;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.deepOrangeAccent,
         foregroundColor: Colors.white,

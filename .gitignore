@@ -12,7 +12,7 @@
 .swiftpm/
 migrate_working_dir/
 # Temporary files
-/lib/tempFiles
+tempFiles/
 
 # IntelliJ related
 *.iml

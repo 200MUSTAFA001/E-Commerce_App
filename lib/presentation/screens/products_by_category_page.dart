@@ -1,4 +1,4 @@
-import 'package:api_app/logic/cubit/all_products_cubit.dart';
+import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
 import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
@@ -18,22 +18,26 @@ class _ProductsByCategoryPageState extends State<ProductsByCategoryPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<AllProductsCubit>(context).getAllProducts(widget.category);
+    BlocProvider.of<ProductsCubit>(context)
+        .getProductsByCategory(widget.category);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AllProductsCubit, AllProductsState>(
+      body: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
-          if (state is AllProductsLoaded) {
+          if (state is ProductsLoaded) {
             final products = state.products;
             return CustomScrollView(
               slivers: [
                 const SliverAppBar(
                   elevation: 0,
                 ),
-                ProductsByCategoryList(products: products),
+                ProductsByCategoryList(
+                  products: products,
+                  itemCount: products.length,
+                ),
               ],
             ).onlyPadding(right: 2, left: 0, top: 0, bottom: 0);
           } else {

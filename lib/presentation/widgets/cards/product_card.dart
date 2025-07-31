@@ -81,12 +81,12 @@ class ProductCard extends StatelessWidget {
             FittedBox(
               fit: BoxFit.contain,
               child: Row(
-                spacing: 10,
+                spacing: 6,
                 children: [
                   Text(
-                    r"$ " "$productPrice",
+                    r"$" "$productPrice",
                     style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w900),
+                        fontSize: 18, fontWeight: FontWeight.w800),
                   ),
                   Text(
                     r"$"
@@ -94,14 +94,14 @@ class ProductCard extends StatelessWidget {
                     style: const TextStyle(
                         decoration: TextDecoration.lineThrough,
                         color: Colors.grey,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "$productPriceDiscount% OFF",
+                    "${productPriceDiscount.round()}% OFF",
                     style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
                       color: Colors.orange.shade800,
                     ),
                   ),

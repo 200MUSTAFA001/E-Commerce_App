@@ -4,49 +4,42 @@ import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/cubit/all_products_cubit.dart';
+import '../../logic/cubit/products_cubit.dart';
 
 class ProductsOnSalePage extends StatefulWidget {
-  ProductsOnSalePage({super.key, required this.categories});
+  const ProductsOnSalePage({super.key, required this.categories});
 
-  List<String>? categories;
+  final List<String> categories;
 
   @override
   State<ProductsOnSalePage> createState() => _ProductsOnSalePageState();
 }
 
 class _ProductsOnSalePageState extends State<ProductsOnSalePage> {
-  // late AllProductsCubit cubit;
-
   @override
   void initState() {
     super.initState();
-    // cubit = context.read<AllProductsCubit>();
-    // cubit.getProductsBySeveralCategories(widget.categories ?? []);
-    BlocProvider.of<AllProductsCubit>(context)
-        .getProductsBySeveralCategories(widget.categories ?? []);
+    BlocProvider.of<ProductsCubit>(context)
+        .getProductsBySeveralCategories(widget.categories);
   }
-
-  // @override
-  // void dispose() {
-  //   cubit.close();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AllProductsCubit, AllProductsState>(
+      body: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
-          if (state is AllProductsLoaded) {
+          if (state is ProductsLoaded) {
             final products = state.products;
             return CustomScrollView(
               slivers: [
                 const SliverAppBar(elevation: 0),
-                ProductsByCategoryList(products: products),
+                ProductsByCategoryList(
+                  products: products,
+                  itemCount: products.length,
+                ),
               ],
             ).onlyPadding(right: 2, left: 0, top: 0, bottom: 0);
-          } else if (state is AllProductsLoading) {
+          } else if (state is ProductsLoading) {
             return const Center(
               child: CustomScrollView(
                 slivers: [
