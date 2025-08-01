@@ -1,4 +1,5 @@
 import 'package:api_app/data/models/products_model.dart';
+import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -6,6 +7,17 @@ part 'cart_state.dart';
 
 class CartCubit extends HydratedCubit<CartState> {
   CartCubit() : super(CartLoaded(cartProducts: const []));
+
+  bool changeCartIconBool(Product product) {
+    final cartProducts = (state as CartLoaded).cartProducts;
+    final cartProductsTitles =
+        cartProducts.map((product) => product.title).toList();
+    if (cartProductsTitles.contains(product.title)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   void addProduct(Product product, int quantity) {
     final cartProducts = (state as CartLoaded).cartProducts;
@@ -22,6 +34,25 @@ class CartCubit extends HydratedCubit<CartState> {
         .where((product) => product.id != removedProduct.id)
         .toList();
     emit(CartLoaded(cartProducts: updatedList));
+  }
+
+  void clearCart() {
+    final cartProducts = (state as CartLoaded).cartProducts;
+    cartProducts.clear();
+    final updatedList = cartProducts;
+    emit(CartLoaded(cartProducts: updatedList));
+  }
+
+  String getProductsPrices() {
+    final cartProducts = (state as CartLoaded).cartProducts;
+    if (cartProducts.isNotEmpty) {
+      final cartProductsPrices =
+          cartProducts.map((product) => product.price).toList();
+      final productsPrices = cartProductsPrices.sum();
+      return productsPrices.toStringAsFixed(2);
+    } else {
+      return "0";
+    }
   }
 
   void updateQuantity(int productId, int productQuantity) {

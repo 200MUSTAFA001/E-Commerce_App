@@ -8,12 +8,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/add_to_cart_button.dart';
-import '../widgets/custom_counter.dart';
-import '../widgets/custom_favorite_icon.dart';
-import '../widgets/custom_rating_bar.dart';
+import '../widgets/custom_widgets/add_to_cart_button.dart';
+import '../widgets/custom_widgets/custom_counter.dart';
+import '../widgets/custom_widgets/custom_favorite_icon.dart';
+import '../widgets/custom_widgets/custom_rating_bar.dart';
+import '../widgets/custom_widgets/product_images.dart';
 import '../widgets/lists/sliver_review_list.dart';
-import '../widgets/product_images.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   ProductDetailsPage({super.key, required this.product});

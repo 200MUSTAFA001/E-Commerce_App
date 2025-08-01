@@ -12,10 +12,12 @@ class ProductCard extends StatelessWidget {
     required this.productPrice,
     required this.productImage,
     required this.productPriceDiscount,
-    required this.onTap,
+    required this.favoriteIconOnTap,
     required this.productRating,
     required this.isFavoriteIcon,
     required this.gestureOnTap,
+    required this.cartIconOnTap,
+    required this.cartIcon,
   });
 
   final String productName;
@@ -23,9 +25,11 @@ class ProductCard extends StatelessWidget {
   final String productImage;
   final double productPriceDiscount;
   final double productRating;
-  final void Function() onTap;
+  final void Function() favoriteIconOnTap;
+  final void Function() cartIconOnTap;
   final Widget isFavoriteIcon;
   final void Function() gestureOnTap;
+  final Widget cartIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +49,22 @@ class ProductCard extends StatelessWidget {
                 child: GridTile(
                   header: Container(
                     alignment: Alignment.topLeft,
-                    child: IconButton(
-                      onPressed: onTap,
-                      icon: isFavoriteIcon,
-                      style: IconButton.styleFrom(
-                          backgroundColor: Colors.grey.shade200),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: favoriteIconOnTap,
+                          icon: isFavoriteIcon,
+                          style: IconButton.styleFrom(
+                            backgroundColor: Colors.grey.shade200,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: cartIconOnTap,
+                          icon: cartIcon,
+                        ),
+                      ],
                     ),
                   ),
                   child: CachedNetworkImage(

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app_router.dart';
 import '../../../data/models/products_model.dart';
 import '../../../logic/cubit/cart_cubit.dart';
-import '../quantity_counter.dart';
+import '../custom_widgets/quantity_counter.dart';
 
 class CartProductCard extends StatelessWidget {
   const CartProductCard({super.key, required this.product});

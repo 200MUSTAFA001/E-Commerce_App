@@ -2,7 +2,9 @@ import 'package:api_app/logic/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/cards/cart_product_card.dart';
+import '../widgets/custom_widgets/checkout_bottom_navigation_bar.dart';
+import 'empty_cart_screen.dart';
+import 'filled_cart_screen.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -10,49 +12,15 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const CheckoutBottomNavigationBar(),
       backgroundColor: Colors.white,
       body: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
           if (state is CartLoaded) {
             final cartProducts = state.cartProducts;
             return cartProducts.isNotEmpty
-                ? CustomScrollView(
-                    slivers: [
-                      const SliverAppBar(
-                        title: Text("My cart"),
-                        centerTitle: true,
-                        pinned: true,
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.all(16),
-                        sliver: SliverList.builder(
-                          itemCount: cartProducts.length,
-                          itemBuilder: (context, index) => CartProductCard(
-                            product: cartProducts[index],
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                : const CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                        title: Text("My cart"),
-                        centerTitle: true,
-                        pinned: true,
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                      ),
-                      SliverFillRemaining(
-                        hasScrollBody: false,
-                        child: Center(
-                          child: Text("No Products"),
-                        ),
-                      ),
-                    ],
-                  );
+                ? FilledCartScreen(cartProducts: cartProducts)
+                : const EmptyCartScreen();
           } else {
             return const SizedBox();
           }

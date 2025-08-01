@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/cards/welcome_user_tile.dart';
-import '../widgets/category_bar.dart';
-import '../widgets/custom_drawer.dart';
+import '../widgets/custom_widgets/category_bar.dart';
+import '../widgets/custom_widgets/custom_drawer.dart';
 import '../widgets/lists/sale_cards_list.dart';
 import '../widgets/lists/shimmer_list.dart';
 
