@@ -1,40 +1,43 @@
 import 'dart:math';
 
+import 'package:api_app/data/models/products_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProductCard extends StatelessWidget {
+import '../../../app_router.dart';
+import '../../../logic/cubit/cart_cubit.dart';
+
+class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
-    required this.productName,
-    required this.productPrice,
-    required this.productImage,
-    required this.productPriceDiscount,
+    required this.product,
     required this.favoriteIconOnTap,
-    required this.productRating,
     required this.isFavoriteIcon,
-    required this.gestureOnTap,
-    required this.cartIconOnTap,
-    required this.cartIcon,
   });
 
-  final String productName;
-  final double productPrice;
-  final String productImage;
-  final double productPriceDiscount;
-  final double productRating;
+  final Product product;
   final void Function() favoriteIconOnTap;
-  final void Function() cartIconOnTap;
   final Widget isFavoriteIcon;
-  final void Function() gestureOnTap;
-  final Widget cartIcon;
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: gestureOnTap,
+      onTap: () {
+        final arguments = widget.product;
+        Navigator.pushNamed(
+          context,
+          AppRouter.productDetailsPage,
+          arguments: arguments,
+        );
+      },
       child: Container(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -54,21 +57,40 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: favoriteIconOnTap,
-                          icon: isFavoriteIcon,
+                          onPressed: widget.favoriteIconOnTap,
+                          icon: widget.isFavoriteIcon,
                           style: IconButton.styleFrom(
                             backgroundColor: Colors.grey.shade200,
                           ),
                         ),
                         IconButton(
-                          onPressed: cartIconOnTap,
-                          icon: cartIcon,
+                          onPressed: () {
+                            if (context
+                                    .read<CartCubit>()
+                                    .isProductExistBool(widget.product) ==
+                                false) {
+                              setState(() {
+                                context
+                                    .read<CartCubit>()
+                                    .addProduct(widget.product, 1);
+                              });
+                            } else {
+                              setState(() {
+                                context
+                                    .read<CartCubit>()
+                                    .removeProduct(widget.product);
+                              });
+                            }
+                          },
+                          icon: cartIcon(context
+                              .read<CartCubit>()
+                              .isProductExistBool(widget.product)),
                         ),
                       ],
                     ),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: productImage,
+                    imageUrl: widget.product.thumbnail,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => const Center(
                       child: CupertinoActivityIndicator(
@@ -84,7 +106,7 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Text(
-              productName,
+              widget.product.title,
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -99,13 +121,13 @@ class ProductCard extends StatelessWidget {
                 spacing: 6,
                 children: [
                   Text(
-                    r"$" "$productPrice",
+                    r"$" "${widget.product.price}",
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.w800),
                   ),
                   Text(
                     r"$"
-                    "${priceBeforeDiscount(productPrice, productPriceDiscount)}",
+                    "${priceBeforeDiscount(widget.product.price, widget.product.discountPercentage)}",
                     style: const TextStyle(
                         decoration: TextDecoration.lineThrough,
                         color: Colors.grey,
@@ -113,7 +135,7 @@ class ProductCard extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "${productPriceDiscount.round()}% OFF",
+                    "${widget.product.discountPercentage.round()}% OFF",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -131,7 +153,7 @@ class ProductCard extends StatelessWidget {
                   color: Colors.orange,
                 ),
                 Text(
-                  productRating.toStringAsFixed(1),
+                  widget.product.rating.toStringAsFixed(1),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -153,6 +175,33 @@ int priceBeforeDiscount(double price, double discount) {
   return originalPrice;
 }
 
+//
+Widget cartIcon(bool productExist) {
+  if (productExist) {
+    return const Icon(
+      FontAwesomeIcons.cartArrowDown,
+      color: Colors.deepOrangeAccent,
+    );
+  } else {
+    return const Icon(
+      FontAwesomeIcons.cartPlus,
+      color: Colors.black54,
+    );
+  }
+}
+
+//
+Widget isFavoriteIcon(bool isFavorite) {
+  if (isFavorite) {
+    return const Icon(
+      CupertinoIcons.heart_fill,
+      color: Colors.red,
+    );
+  } else {
+    return const Icon(CupertinoIcons.suit_heart);
+  }
+}
+//
 // class ProductCard extends StatefulWidget {
 //   const ProductCard({
 //     super.key,

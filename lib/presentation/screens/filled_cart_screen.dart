@@ -3,7 +3,7 @@ import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/products_model.dart';
+import '../../data/models/cart_item_model.dart';
 import '../widgets/cards/cart_product_card.dart';
 
 class FilledCartScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class FilledCartScreen extends StatelessWidget {
     required this.cartProducts,
   });
 
-  final List<Product> cartProducts;
+  final List<CartItem> cartProducts;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class FilledCartScreen extends StatelessWidget {
           sliver: SliverList.builder(
             itemCount: cartProducts.length,
             itemBuilder: (context, index) => CartProductCard(
-              product: cartProducts[index],
+              product: cartProducts[index].product,
             ),
           ),
         ),

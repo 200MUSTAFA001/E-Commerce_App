@@ -4,7 +4,7 @@ part of 'cart_cubit.dart';
 abstract class CartState {}
 
 final class CartLoaded extends CartState {
-  final List<Product> cartProducts;
+  final List<CartItem> cartProducts;
 
   CartLoaded({required this.cartProducts});
 }

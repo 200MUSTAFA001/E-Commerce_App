@@ -15,6 +15,8 @@ class CartProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int productQuantity =
+        context.read<CartCubit>().getCartItem(product.id).productQuantity;
     return Card(
       color: Colors.grey.shade100,
       elevation: 0,
@@ -91,27 +93,19 @@ class CartProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 QuantityCounter(
-                  productQuantity: product.productQuantity,
+                  productQuantity: productQuantity,
                   onIncrement: () {
-                    if (product.productQuantity < 20) {
-                      context.read<CartCubit>().updateQuantity(
-                          product.id, product.productQuantity++);
-                    } else {
-                      context.read<CartCubit>().updateQuantity(
-                            product.id,
-                            (product.productQuantity = 20),
-                          );
+                    if (productQuantity < 20) {
+                      context
+                          .read<CartCubit>()
+                          .updateQuantity(product.id, productQuantity + 1);
                     }
                   },
                   onDecrement: () {
-                    if (product.productQuantity > 1) {
-                      context.read<CartCubit>().updateQuantity(
-                          product.id, product.productQuantity--);
-                    } else {
-                      context.read<CartCubit>().updateQuantity(
-                            product.id,
-                            (product.productQuantity = 1),
-                          );
+                    if (productQuantity > 1) {
+                      context
+                          .read<CartCubit>()
+                          .updateQuantity(product.id, productQuantity - 1);
                     }
                   },
                 )

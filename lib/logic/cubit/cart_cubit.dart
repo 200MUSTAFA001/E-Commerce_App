@@ -3,16 +3,18 @@ import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
+import '../../data/models/cart_item_model.dart';
+
 part 'cart_state.dart';
 
 class CartCubit extends HydratedCubit<CartState> {
   CartCubit() : super(CartLoaded(cartProducts: const []));
 
-  bool changeCartIconBool(Product product) {
+  bool isProductExistBool(Product product) {
     final cartProducts = (state as CartLoaded).cartProducts;
     final cartProductsTitles =
-        cartProducts.map((product) => product.title).toList();
-    if (cartProductsTitles.contains(product.title)) {
+        cartProducts.map((product) => product.product.id).toList();
+    if (cartProductsTitles.contains(product.id)) {
       return true;
     } else {
       return false;
@@ -21,17 +23,17 @@ class CartCubit extends HydratedCubit<CartState> {
 
   void addProduct(Product product, int quantity) {
     final cartProducts = (state as CartLoaded).cartProducts;
-    final updatedList = [
-      ...cartProducts,
-      product.copyWith(productQuantity: quantity)
-    ];
+
+    final updatedList = List<CartItem>.from(cartProducts);
+    updatedList.add(CartItem(product: product, productQuantity: quantity));
+
     emit(CartLoaded(cartProducts: updatedList));
   }
 
   void removeProduct(Product removedProduct) {
     final cartProducts = (state as CartLoaded).cartProducts;
     final updatedList = cartProducts
-        .where((product) => product.id != removedProduct.id)
+        .where((product) => product.product.id != removedProduct.id)
         .toList();
     emit(CartLoaded(cartProducts: updatedList));
   }
@@ -46,31 +48,45 @@ class CartCubit extends HydratedCubit<CartState> {
   String getProductsPrices() {
     final cartProducts = (state as CartLoaded).cartProducts;
     if (cartProducts.isNotEmpty) {
-      final cartProductsPrices =
-          cartProducts.map((product) => product.price).toList();
-      final productsPrices = cartProductsPrices.sum();
-      return productsPrices.toStringAsFixed(2);
+      final productsPrices = cartProducts
+          .map((product) {
+            final productsPrices =
+                product.productQuantity * product.product.price;
+            return productsPrices;
+          })
+          .toList()
+          .sum()
+          .toStringAsFixed(2);
+
+      return productsPrices;
     } else {
       return "0";
     }
   }
 
+  CartItem getCartItem(int cartItemID) {
+    final cartProducts = (state as CartLoaded).cartProducts;
+    final cartItem =
+        cartProducts.firstWhere((product) => product.product.id == cartItemID);
+    return cartItem;
+  }
+
   void updateQuantity(int productId, int productQuantity) {
     final cartProducts = (state as CartLoaded).cartProducts;
-    cartProducts.map((product) {
-      if (product.id == productId) {
+    final updatedList = cartProducts.map((product) {
+      if (product.product.id == productId) {
         return product.copyWith(productQuantity: productQuantity);
       }
       return product;
     }).toList();
-    emit(CartLoaded(cartProducts: cartProducts));
+    emit(CartLoaded(cartProducts: updatedList));
   }
 
   @override
   CartState? fromJson(Map<String, dynamic> json) {
     final jsonList = json["cartList"] as List;
     final cartList =
-        jsonList.map((product) => Product.fromJson(product)).toList();
+        jsonList.map((product) => CartItem.fromJson(product)).toList();
     return CartLoaded(cartProducts: cartList);
   }
 
@@ -82,15 +98,3 @@ class CartCubit extends HydratedCubit<CartState> {
     };
   }
 }
-
-// @override
-// List<Product> fromJson(Map<String, dynamic> json) {
-//   final jsonCartProducts = json["products"] as List<dynamic>;
-//   return jsonCartProducts
-//       .map((product) => Product.fromJson(product))
-//       .toList();
-// }
-//
-// @override
-// Map<String, dynamic>? toJson(List<Product> state) =>
-//     {"products": state.map((value) => value.toJson()).toList()};

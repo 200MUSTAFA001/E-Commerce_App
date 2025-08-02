@@ -61,7 +61,7 @@ class Product {
   final List<String> images;
   final String thumbnail;
   bool isFavorite;
-  int productQuantity;
+  // int productQuantity;
 
   Product({
     required this.id,
@@ -86,7 +86,7 @@ class Product {
     required this.images,
     required this.thumbnail,
     required this.isFavorite,
-    this.productQuantity = 1,
+    // this.productQuantity = 1,
   });
 
   Product copyWith({
@@ -112,37 +112,33 @@ class Product {
     List<String>? images,
     String? thumbnail,
     bool? isFavorite,
-    int? productQuantity,
+    // int? productQuantity,
   }) =>
       Product(
-          id: id ?? this.id,
-          title: title ?? this.title,
-          description: description ?? this.description,
-          category: category ?? this.category,
-          price: price ?? this.price,
-          discountPercentage: discountPercentage ?? this.discountPercentage,
-          rating: rating ?? this.rating,
-          stock: stock ?? this.stock,
-          tags: tags ?? this.tags,
-          sku: sku ?? this.sku,
-          weight: weight ?? this.weight,
-          dimensions: dimensions ?? this.dimensions,
-          warrantyInformation: warrantyInformation ?? this.warrantyInformation,
-          shippingInformation: shippingInformation ?? this.shippingInformation,
-          availabilityStatus: availabilityStatus ?? this.availabilityStatus,
-          reviews: reviews ?? this.reviews,
-          returnPolicy: returnPolicy ?? this.returnPolicy,
-          minimumOrderQuantity:
-              minimumOrderQuantity ?? this.minimumOrderQuantity,
-          meta: meta ?? this.meta,
-          images: images ?? this.images,
-          thumbnail: thumbnail ?? this.thumbnail,
-          isFavorite: isFavorite ?? this.isFavorite,
-          productQuantity: productQuantity ?? this.productQuantity
-          // (productQuantity == null || productQuantity == 0)
-          //     ? this.productQuantity
-          //     : productQuantity,
-          );
+        id: id ?? this.id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        category: category ?? this.category,
+        price: price ?? this.price,
+        discountPercentage: discountPercentage ?? this.discountPercentage,
+        rating: rating ?? this.rating,
+        stock: stock ?? this.stock,
+        tags: tags ?? this.tags,
+        sku: sku ?? this.sku,
+        weight: weight ?? this.weight,
+        dimensions: dimensions ?? this.dimensions,
+        warrantyInformation: warrantyInformation ?? this.warrantyInformation,
+        shippingInformation: shippingInformation ?? this.shippingInformation,
+        availabilityStatus: availabilityStatus ?? this.availabilityStatus,
+        reviews: reviews ?? this.reviews,
+        returnPolicy: returnPolicy ?? this.returnPolicy,
+        minimumOrderQuantity: minimumOrderQuantity ?? this.minimumOrderQuantity,
+        meta: meta ?? this.meta,
+        images: images ?? this.images,
+        thumbnail: thumbnail ?? this.thumbnail,
+        isFavorite: isFavorite ?? this.isFavorite,
+        // productQuantity: productQuantity ?? this.productQuantity,
+      );
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -193,7 +189,7 @@ class Product {
         "images": List<dynamic>.from(images.map((x) => x)),
         "thumbnail": thumbnail,
         "isFavorite": isFavorite,
-        "productQuantity": productQuantity,
+        // "productQuantity": productQuantity,
       };
 }
 
