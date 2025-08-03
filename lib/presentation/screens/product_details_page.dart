@@ -50,7 +50,7 @@ class ProductDetailsPage extends StatelessWidget {
             expandedHeight: MediaQuery.sizeOf(context).height * 0.5,
             actions: [
               CustomFavoriteIcon(
-                onTap: () {},
+                product: product,
               ),
               const SizedBox(
                 width: 16,

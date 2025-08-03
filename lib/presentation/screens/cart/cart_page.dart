@@ -2,7 +2,7 @@ import 'package:api_app/logic/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/custom_widgets/checkout_bottom_navigation_bar.dart';
+import '../../widgets/custom_widgets/checkout_bottom_navigation_bar.dart';
 import 'empty_cart_screen.dart';
 import 'filled_cart_screen.dart';
 

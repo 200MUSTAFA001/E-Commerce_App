@@ -60,7 +60,7 @@ class Product {
   final Meta meta;
   final List<String> images;
   final String thumbnail;
-  bool isFavorite;
+  // bool isFavorite;
   // int productQuantity;
 
   Product({
@@ -85,7 +85,7 @@ class Product {
     required this.meta,
     required this.images,
     required this.thumbnail,
-    required this.isFavorite,
+    // required this.isFavorite,
     // this.productQuantity = 1,
   });
 
@@ -111,7 +111,7 @@ class Product {
     Meta? meta,
     List<String>? images,
     String? thumbnail,
-    bool? isFavorite,
+    // bool? isFavorite,
     // int? productQuantity,
   }) =>
       Product(
@@ -136,7 +136,7 @@ class Product {
         meta: meta ?? this.meta,
         images: images ?? this.images,
         thumbnail: thumbnail ?? this.thumbnail,
-        isFavorite: isFavorite ?? this.isFavorite,
+        // isFavorite: isFavorite ?? this.isFavorite,
         // productQuantity: productQuantity ?? this.productQuantity,
       );
 
@@ -163,7 +163,7 @@ class Product {
         meta: Meta.fromJson(json["meta"]),
         images: List<String>.from(json["images"].map((x) => x)),
         thumbnail: json["thumbnail"],
-        isFavorite: json["isFavorite"] ?? false,
+        // isFavorite: json["isFavorite"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -188,7 +188,7 @@ class Product {
         "meta": meta.toJson(),
         "images": List<dynamic>.from(images.map((x) => x)),
         "thumbnail": thumbnail,
-        "isFavorite": isFavorite,
+        // "isFavorite": isFavorite,
         // "productQuantity": productQuantity,
       };
 }

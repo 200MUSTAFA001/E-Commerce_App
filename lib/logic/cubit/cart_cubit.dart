@@ -10,15 +10,20 @@ part 'cart_state.dart';
 class CartCubit extends HydratedCubit<CartState> {
   CartCubit() : super(CartLoaded(cartProducts: const []));
 
-  bool isProductExistBool(Product product) {
+  bool isProductExist(Product product) {
     final cartProducts = (state as CartLoaded).cartProducts;
-    final cartProductsTitles =
+    final cartProductsIDs =
         cartProducts.map((product) => product.product.id).toList();
-    if (cartProductsTitles.contains(product.id)) {
-      return true;
-    } else {
-      return false;
-    }
+
+    final isProductExistBool =
+        cartProductsIDs.contains(product.id) ? true : false;
+
+    return isProductExistBool;
+    // if (cartProductsTitles.contains(product.id)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   void addProduct(Product product, int quantity) {
@@ -84,9 +89,9 @@ class CartCubit extends HydratedCubit<CartState> {
 
   @override
   CartState? fromJson(Map<String, dynamic> json) {
-    final jsonList = json["cartList"] as List;
+    final cartJsonList = json["cartList"] as List;
     final cartList =
-        jsonList.map((product) => CartItem.fromJson(product)).toList();
+        cartJsonList.map((product) => CartItem.fromJson(product)).toList();
     return CartLoaded(cartProducts: cartList);
   }
 

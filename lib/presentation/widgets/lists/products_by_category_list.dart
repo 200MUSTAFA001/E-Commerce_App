@@ -30,13 +30,13 @@ class _ProductsByCategoryListState extends State<ProductsByCategoryList> {
         childAspectRatio: 6 / 9,
       ),
       itemBuilder: (context, index) => ProductCard(
-        isFavoriteIcon: isFavoriteIcon(widget.products[index].isFavorite),
-        favoriteIconOnTap: () {
-          setState(() {
-            widget.products[index].isFavorite =
-                !widget.products[index].isFavorite;
-          });
-        },
+        // isFavoriteIcon: isFavoriteIcon(widget.products[index].isFavorite),
+        // favoriteIconOnTap: () {
+        //   setState(() {
+        //     widget.products[index].isFavorite =
+        //         !widget.products[index].isFavorite;
+        //   });
+        // },
         product: widget.products[index],
       ),
     );

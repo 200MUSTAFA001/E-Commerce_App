@@ -3,7 +3,6 @@ import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,18 +34,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(context),
-      // backgroundColor: Colors.white,
+      drawer: CustomDrawer(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            // backgroundColor: Colors.white,
+            title: const Text(
+              "Home",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            ),
             actions: [
               IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRouter.cartPage);
+                  // Navigator.pushNamed(context, AppRouter.cartPage);
+                  Navigator.pushNamed(context, AppRouter.favoritesPage);
                 },
-                icon: const Icon(CupertinoIcons.search),
+                icon: const Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 32,
+                ),
               ),
               const SizedBox(
                 width: 10,

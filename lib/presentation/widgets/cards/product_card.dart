@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/logic/cubit/favorites_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,13 @@ class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.product,
-    required this.favoriteIconOnTap,
-    required this.isFavoriteIcon,
+    // required this.favoriteIconOnTap,
+    // required this.isFavoriteIcon,
   });
 
   final Product product;
-  final void Function() favoriteIconOnTap;
-  final Widget isFavoriteIcon;
+  // final void Function() favoriteIconOnTap;
+  // final Widget isFavoriteIcon;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -57,8 +58,27 @@ class _ProductCardState extends State<ProductCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: widget.favoriteIconOnTap,
-                          icon: widget.isFavoriteIcon,
+                          onPressed: () {
+                            if (context
+                                    .read<FavoritesCubit>()
+                                    .isProductExist(widget.product.id) ==
+                                false) {
+                              setState(() {
+                                context
+                                    .read<FavoritesCubit>()
+                                    .addProduct(widget.product);
+                              });
+                            } else {
+                              setState(() {
+                                context
+                                    .read<FavoritesCubit>()
+                                    .removeProduct(widget.product);
+                              });
+                            }
+                          },
+                          icon: isFavoriteIcon(context
+                              .read<FavoritesCubit>()
+                              .isProductExist(widget.product.id)),
                           style: IconButton.styleFrom(
                             backgroundColor: Colors.grey.shade200,
                           ),
@@ -67,7 +87,7 @@ class _ProductCardState extends State<ProductCard> {
                           onPressed: () {
                             if (context
                                     .read<CartCubit>()
-                                    .isProductExistBool(widget.product) ==
+                                    .isProductExist(widget.product) ==
                                 false) {
                               setState(() {
                                 context
@@ -84,7 +104,7 @@ class _ProductCardState extends State<ProductCard> {
                           },
                           icon: cartIcon(context
                               .read<CartCubit>()
-                              .isProductExistBool(widget.product)),
+                              .isProductExist(widget.product)),
                         ),
                       ],
                     ),

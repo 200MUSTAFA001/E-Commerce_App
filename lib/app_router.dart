@@ -2,7 +2,8 @@ import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/data/services/web_services.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/screens/all_categories_page.dart';
-import 'package:api_app/presentation/screens/cart_page.dart';
+import 'package:api_app/presentation/screens/cart/cart_page.dart';
+import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
 import 'package:api_app/presentation/screens/home_page.dart';
 import 'package:api_app/presentation/screens/product_details_page.dart';
 import 'package:api_app/presentation/screens/products_by_category_page.dart';
@@ -19,6 +20,7 @@ class AppRouter {
   static const String productsOnSalePage = "/productsOnSalePage";
   static const String productsByCategoryPage = "/productsByCategoryPage";
   static const String cartPage = "/cartPage";
+  static const String favoritesPage = "/favoritesPage";
   //
   late ProductsRepo productsRepo;
   late ProductsCubit productsCubit;
@@ -68,7 +70,11 @@ class AppRouter {
         );
       case cartPage:
         return MaterialPageRoute(
-          builder: (_) => CartPage(),
+          builder: (_) => const CartPage(),
+        );
+      case favoritesPage:
+        return MaterialPageRoute(
+          builder: (_) => const FavoritesPage(),
         );
       default:
         MaterialPageRoute(
