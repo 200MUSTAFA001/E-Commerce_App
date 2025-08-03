@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton(
-      {super.key, required this.productPrice, required this.onTap});
+  const AddToCartButton({
+    super.key,
+    required this.productPrice,
+    required this.onTap,
+  });
 
   final String productPrice;
   final void Function() onTap;

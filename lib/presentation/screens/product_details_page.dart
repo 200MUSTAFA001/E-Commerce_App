@@ -1,14 +1,12 @@
 import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/logic/cubit/cart_cubit.dart';
 import 'package:api_app/presentation/widgets/cards/product_card.dart';
 import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/custom_widgets/add_to_cart_button.dart';
+import '../widgets/buttons/product_details_page_cart_button.dart';
 import '../widgets/custom_widgets/custom_counter.dart';
 import '../widgets/custom_widgets/custom_favorite_icon.dart';
 import '../widgets/custom_widgets/custom_rating_bar.dart';
@@ -27,11 +25,10 @@ class ProductDetailsPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: ValueListenableBuilder<int>(
         valueListenable: productPriceOnQuantity,
-        builder: (context, value, _) => AddToCartButton(
+        builder: (context, value, _) => ProductDetailsPageCartButton(
+          product: product,
           productPrice: (product.price * value).toStringAsFixed(2),
-          onTap: () {
-            context.read<CartCubit>().addProduct(product, value);
-          },
+          productQuantity: value,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -1,3 +1,4 @@
+import 'package:api_app/app_router.dart';
 import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, AppRouter.allCategoriesPage);
             },
           ),
           ListTile(
@@ -49,7 +50,7 @@ class CustomDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, AppRouter.cartPage);
             },
           ),
           ListTile(
@@ -62,7 +63,7 @@ class CustomDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, AppRouter.favoritesPage);
             },
           ),
         ],
