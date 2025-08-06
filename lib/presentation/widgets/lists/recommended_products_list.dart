@@ -1,0 +1,46 @@
+import 'package:api_app/presentation/widgets/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../logic/cubit/products_cubit.dart';
+import '../cards/product_card.dart';
+
+class RecommendedProductsList extends StatelessWidget {
+  const RecommendedProductsList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductsCubit, ProductsState>(
+      builder: (context, state) {
+        if (state is ProductsLoaded) {
+          final recommendedProducts = state.recommendedProducts;
+          return SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Text(
+                  "Recommended for you",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ).onlyPadding(right: 0, left: 16, top: 10, bottom: 0),
+                SizedBox(
+                  height: context.screenWidth * 0.7,
+                  width: context.screenHeight * 1,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: recommendedProducts.length,
+                    itemBuilder: (context, index) => ProductCard(
+                      product: recommendedProducts[index],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const SliverToBoxAdapter();
+        }
+      },
+    );
+  }
+}

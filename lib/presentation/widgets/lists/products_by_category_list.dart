@@ -3,7 +3,7 @@ import 'package:api_app/presentation/widgets/cards/product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProductsByCategoryList extends StatefulWidget {
+class ProductsByCategoryList extends StatelessWidget {
   const ProductsByCategoryList({
     super.key,
     required this.products,
@@ -15,14 +15,9 @@ class ProductsByCategoryList extends StatefulWidget {
   final int itemCount;
 
   @override
-  State<ProductsByCategoryList> createState() => _ProductsByCategoryListState();
-}
-
-class _ProductsByCategoryListState extends State<ProductsByCategoryList> {
-  @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
-      itemCount: widget.itemCount,
+      itemCount: itemCount,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 4,
@@ -30,14 +25,7 @@ class _ProductsByCategoryListState extends State<ProductsByCategoryList> {
         childAspectRatio: 6 / 9,
       ),
       itemBuilder: (context, index) => ProductCard(
-        // isFavoriteIcon: isFavoriteIcon(widget.products[index].isFavorite),
-        // favoriteIconOnTap: () {
-        //   setState(() {
-        //     widget.products[index].isFavorite =
-        //         !widget.products[index].isFavorite;
-        //   });
-        // },
-        product: widget.products[index],
+        product: products[index],
       ),
     );
   }

@@ -7,8 +7,9 @@ class ProductsInitial extends ProductsState {}
 
 class ProductsLoaded extends ProductsState {
   final List<Product> products;
+  final List<Product> recommendedProducts;
 
-  ProductsLoaded(this.products);
+  ProductsLoaded(this.products, this.recommendedProducts);
 }
 
 class ProductsLoading extends ProductsState {}

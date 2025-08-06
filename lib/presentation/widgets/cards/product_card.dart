@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/logic/cubit/favorites_cubit.dart';
+import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,9 @@ class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.product,
-    // required this.favoriteIconOnTap,
-    // required this.isFavoriteIcon,
   });
 
   final Product product;
-  // final void Function() favoriteIconOnTap;
-  // final Widget isFavoriteIcon;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -49,7 +46,7 @@ class _ProductCardState extends State<ProductCard> {
               borderRadius: BorderRadius.circular(15),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.2,
-                width: double.infinity,
+                width: context.screenWidth * 0.5,
                 child: GridTile(
                   header: Container(
                     alignment: Alignment.topLeft,

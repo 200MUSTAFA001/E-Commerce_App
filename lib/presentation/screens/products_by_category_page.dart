@@ -19,7 +19,7 @@ class _ProductsByCategoryPageState extends State<ProductsByCategoryPage> {
   void initState() {
     super.initState();
     BlocProvider.of<ProductsCubit>(context)
-        .getProductsByCategory(widget.category);
+        .getProductsByCategory(widget.category, widget.category);
   }
 
   @override

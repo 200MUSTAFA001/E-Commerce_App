@@ -1,16 +1,15 @@
 import 'package:api_app/app_router.dart';
-import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/widgets/extensions.dart';
-import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/cards/welcome_user_tile.dart';
 import '../widgets/custom_widgets/category_bar.dart';
 import '../widgets/custom_widgets/custom_drawer.dart';
+import '../widgets/lists/products_list.dart';
+import '../widgets/lists/recommended_products_list.dart';
 import '../widgets/lists/sale_cards_list.dart';
-import '../widgets/lists/shimmer_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,14 +20,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String selectedCategory = "mens-shirts";
-
-  List<Product> products = [];
+  String recommendedListCategory = "mens-watches";
 
   @override
   void initState() {
     super.initState();
     BlocProvider.of<ProductsCubit>(context)
-        .getProductsByCategory(selectedCategory);
+        .getProductsByCategory(selectedCategory, recommendedListCategory);
   }
 
   @override
@@ -74,11 +72,12 @@ class _HomePageState extends State<HomePage> {
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, AppRouter.allCategoriesPage);
-                        },
-                        child: const Text("See All"))
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, AppRouter.allCategoriesPage);
+                      },
+                      child: const Text("See All"),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -88,7 +87,8 @@ class _HomePageState extends State<HomePage> {
                   onCategorySelected: (String category) {
                     selectedCategory = category;
                     BlocProvider.of<ProductsCubit>(context)
-                        .getProductsByCategory(category);
+                        .getProductsByCategory(
+                            category, recommendedListCategory);
                   },
                 ),
                 const SizedBox(
@@ -97,36 +97,32 @@ class _HomePageState extends State<HomePage> {
               ],
             ).onlyPadding(right: 16, left: 16, top: 20, bottom: 10),
           ),
-          BlocBuilder<ProductsCubit, ProductsState>(
-            builder: (context, state) {
-              if (state is ProductsLoaded) {
-                products = state.products;
-                return ProductsByCategoryList(
-                  itemCount: 4,
-                  products: products,
-                );
-              } else {
-                return const ShimmerList(
-                  cardsCount: 4,
-                );
-              }
-            },
-          ),
+          const ProductsList(),
           SliverToBoxAdapter(
-            child: TextButton(
+            child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppRouter.productsByCategoryPage,
-                    arguments: selectedCategory);
+                Navigator.pushNamed(
+                  context,
+                  AppRouter.productsByCategoryPage,
+                  arguments: selectedCategory,
+                );
               },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepOrangeAccent),
               child: const Text(
                 "Show More",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.deepOrangeAccent,
+                  color: Colors.white,
                 ),
               ),
-            ).onlyPadding(right: 0, left: 0, top: 8, bottom: 16),
+            ).onlyPadding(right: 120, left: 120, top: 14, bottom: 24),
           ),
+          SliverToBoxAdapter(
+            child: Image.asset("assets/cardpics/bagsCard.jpg")
+                .allPadding(padding: 8),
+          ),
+          const RecommendedProductsList(),
         ],
       ),
     );

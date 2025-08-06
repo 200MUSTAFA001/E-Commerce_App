@@ -1,0 +1,29 @@
+import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
+import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../logic/cubit/products_cubit.dart';
+
+class ProductsList extends StatelessWidget {
+  const ProductsList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductsCubit, ProductsState>(
+      builder: (context, state) {
+        if (state is ProductsLoaded) {
+          final products = state.products;
+          return ProductsByCategoryList(
+            itemCount: 4,
+            products: products,
+          );
+        } else {
+          return const ShimmerList(
+            cardsCount: 4,
+          );
+        }
+      },
+    );
+  }
+}
