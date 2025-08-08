@@ -7,9 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/cards/welcome_user_tile.dart';
 import '../widgets/custom_widgets/category_bar.dart';
 import '../widgets/custom_widgets/custom_drawer.dart';
+import '../widgets/custom_widgets/offer_banner.dart';
 import '../widgets/lists/products_list.dart';
 import '../widgets/lists/recommended_products_list.dart';
 import '../widgets/lists/sale_cards_list.dart';
+import '../widgets/lists/sublist_products.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,18 +22,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String selectedCategory = "mens-shirts";
-  String recommendedListCategory = "mens-watches";
+  final String recommendedListCategory = "sunglasses";
+  final String subListCategory = "mens-shoes";
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProductsCubit>(context)
-        .getProductsByCategory(selectedCategory, recommendedListCategory);
+    BlocProvider.of<ProductsCubit>(context).getSeveralListForHomePage(
+      selectedCategory,
+      recommendedListCategory,
+      subListCategory,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Todo : bottomNavigationBar
       drawer: const CustomDrawer(),
       body: CustomScrollView(
         slivers: [
@@ -87,8 +94,8 @@ class _HomePageState extends State<HomePage> {
                   onCategorySelected: (String category) {
                     selectedCategory = category;
                     BlocProvider.of<ProductsCubit>(context)
-                        .getProductsByCategory(
-                            category, recommendedListCategory);
+                        .getSeveralListForHomePage(
+                            category, recommendedListCategory, subListCategory);
                   },
                 ),
                 const SizedBox(
@@ -99,30 +106,38 @@ class _HomePageState extends State<HomePage> {
           ),
           const ProductsList(),
           SliverToBoxAdapter(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRouter.productsByCategoryPage,
-                  arguments: selectedCategory,
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepOrangeAccent),
-              child: const Text(
-                "Show More",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRouter.productsByCategoryPage,
+                    arguments: selectedCategory,
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepOrangeAccent),
+                child: const Text(
+                  "Show More",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ).onlyPadding(right: 120, left: 120, top: 14, bottom: 24),
-          ),
-          SliverToBoxAdapter(
-            child: Image.asset("assets/cardpics/bagsCard.jpg")
-                .allPadding(padding: 8),
+            ).onlyPadding(right: 0, left: 10, top: 0, bottom: 24),
           ),
           const RecommendedProductsList(),
+          const OfferBanner(
+            bannerImage: "assets/cardpics/bagsCard.jpg",
+            category: "womens-bags",
+          ),
+          const SublistProducts(),
+          const OfferBanner(
+            bannerImage: "assets/cardpics/watchsCard.jpg",
+            category: "mens-watches",
+          ),
         ],
       ),
     );

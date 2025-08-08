@@ -42,83 +42,80 @@ class _ProductCardState extends State<ProductCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-                width: context.screenWidth * 0.5,
-                child: GridTile(
-                  header: Container(
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            if (context
-                                    .read<FavoritesCubit>()
-                                    .isProductExist(widget.product.id) ==
-                                false) {
-                              setState(() {
-                                context
-                                    .read<FavoritesCubit>()
-                                    .addProduct(widget.product);
-                              });
-                            } else {
-                              setState(() {
-                                context
-                                    .read<FavoritesCubit>()
-                                    .removeProduct(widget.product);
-                              });
-                            }
-                          },
-                          icon: isFavoriteIcon(context
-                              .read<FavoritesCubit>()
-                              .isProductExist(widget.product.id)),
-                          style: IconButton.styleFrom(
-                            backgroundColor: Colors.grey.shade200,
-                          ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: context.screenWidth * 0.5,
+              child: GridTile(
+                header: Container(
+                  alignment: Alignment.topLeft,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          if (context
+                                  .read<FavoritesCubit>()
+                                  .isProductExist(widget.product.id) ==
+                              false) {
+                            setState(() {
+                              context
+                                  .read<FavoritesCubit>()
+                                  .addProduct(widget.product);
+                            });
+                          } else {
+                            setState(() {
+                              context
+                                  .read<FavoritesCubit>()
+                                  .removeProduct(widget.product);
+                            });
+                          }
+                        },
+                        icon: isFavoriteIcon(context
+                            .read<FavoritesCubit>()
+                            .isProductExist(widget.product.id)),
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.grey.shade200,
                         ),
-                        IconButton(
-                          onPressed: () {
-                            if (context
-                                    .read<CartCubit>()
-                                    .isProductExist(widget.product) ==
-                                false) {
-                              setState(() {
-                                context
-                                    .read<CartCubit>()
-                                    .addProduct(widget.product, 1);
-                              });
-                            } else {
-                              setState(() {
-                                context
-                                    .read<CartCubit>()
-                                    .removeProduct(widget.product);
-                              });
-                            }
-                          },
-                          icon: cartIcon(context
-                              .read<CartCubit>()
-                              .isProductExist(widget.product)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: widget.product.thumbnail,
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => const Center(
-                      child: CupertinoActivityIndicator(
-                        color: Colors.orange,
                       ),
-                    ),
-                    errorWidget: (context, url, error) => const Center(
-                      child: Icon(Icons.error),
-                    ),
-                    fit: BoxFit.contain,
+                      IconButton(
+                        onPressed: () {
+                          if (context
+                                  .read<CartCubit>()
+                                  .isProductExist(widget.product) ==
+                              false) {
+                            setState(() {
+                              context
+                                  .read<CartCubit>()
+                                  .addProduct(widget.product, 1);
+                            });
+                          } else {
+                            setState(() {
+                              context
+                                  .read<CartCubit>()
+                                  .removeProduct(widget.product);
+                            });
+                          }
+                        },
+                        icon: cartIcon(context
+                            .read<CartCubit>()
+                            .isProductExist(widget.product)),
+                      ),
+                    ],
                   ),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: widget.product.thumbnail,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      const Center(
+                    child: CupertinoActivityIndicator(
+                      color: Colors.orange,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Center(
+                    child: Icon(Icons.error),
+                  ),
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -155,7 +152,7 @@ class _ProductCardState extends State<ProductCard> {
                     "${widget.product.discountPercentage.round()}% OFF",
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.bold,
                       color: Colors.orange.shade800,
                     ),
                   ),
@@ -163,10 +160,10 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ),
             Row(
-              spacing: 10,
+              spacing: 8,
               children: [
                 const Icon(
-                  FontAwesomeIcons.solidStar,
+                  CupertinoIcons.star_circle_fill,
                   color: Colors.orange,
                 ),
                 Text(

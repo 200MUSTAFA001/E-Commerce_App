@@ -12,14 +12,35 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   final ProductsRepo productsRepo;
 
-  Future<List<Product>> getProductsByCategory(
-      String category, String recommendedCategory) async {
+  Future<List<Product>> getProductsByCategory(String category) async {
     final List<Product> products = [];
     await productsRepo.getProductsByCategory(category).then((products) async {
+      emit(ProductsLoaded(products));
+    });
+    return products;
+  }
+
+  Future<List<Product>> getSeveralListForHomePage(
+    String category,
+    String recommendedCategory,
+    String sublistCategory,
+  ) async {
+    final List<Product> products = [];
+    await productsRepo.getProductsByCategory(category).then((products) async {
+      //
       final recommendedProducts = await ProductsRepo(GetProductsService())
           .getProductsByCategory(recommendedCategory);
-      emit(ProductsLoaded(products, recommendedProducts));
+      //
+      final sublistProducts = await ProductsRepo(GetProductsService())
+          .getProductsByCategory(sublistCategory);
+      //
+      emit(SeveralListsForHomePageLoaded(
+        products,
+        recommendedProducts,
+        sublistProducts,
+      ));
     });
+    //
     return products;
   }
 
@@ -34,12 +55,11 @@ class ProductsCubit extends Cubit<ProductsState> {
     emit(ProductsLoading());
 
     final List<Product> allProducts = [];
-    final List<Product> recommendedProducts = [];
 
     for (var category in categories) {
       final products = await productsRepo.getProductsByCategory(category);
       allProducts.addAll(products);
     }
-    emit(ProductsLoaded(allProducts, recommendedProducts));
+    emit(ProductsLoaded(allProducts));
   }
 }

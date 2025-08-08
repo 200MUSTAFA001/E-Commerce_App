@@ -12,7 +12,7 @@ class ProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoaded) {
+        if (state is SeveralListsForHomePageLoaded) {
           final products = state.products;
           return ProductsByCategoryList(
             itemCount: 4,
