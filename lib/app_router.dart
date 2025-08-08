@@ -5,6 +5,7 @@ import 'package:api_app/presentation/screens/all_categories_page.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
 import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
 import 'package:api_app/presentation/screens/home_page.dart';
+import 'package:api_app/presentation/screens/main_page.dart';
 import 'package:api_app/presentation/screens/product_details_page.dart';
 import 'package:api_app/presentation/screens/products_by_category_page.dart';
 import 'package:api_app/presentation/screens/products_on_sale_page.dart';
@@ -34,10 +35,7 @@ class AppRouter {
     switch (settings.name) {
       case homePage:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => productsCubit,
-            child: const HomePage(),
-          ),
+          builder: (_) => const MainPage(),
         );
       case productDetailsPage:
         final product = settings.arguments as Product;
