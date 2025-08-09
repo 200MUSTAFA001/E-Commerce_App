@@ -1,6 +1,6 @@
 import 'package:api_app/app_router.dart';
+import 'package:api_app/extensions.dart';
 import 'package:api_app/presentation/widgets/cards/category_card.dart';
-import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

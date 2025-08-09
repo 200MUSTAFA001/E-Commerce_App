@@ -1,6 +1,6 @@
 import 'package:api_app/app_router.dart';
+import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
-import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -137,6 +137,11 @@ class _HomePageState extends State<HomePage> {
           const OfferBanner(
             bannerImage: "assets/cardpics/watchsCard.jpg",
             category: "mens-watches",
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: context.screenHeight * 0.1,
+            ),
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/products_model.dart';
 import '../../../logic/cubit/cart_cubit.dart';
+import '../custom_widgets/custom_snack_bar.dart';
 import 'add_to_cart_button.dart';
 import 'cart_added_button.dart';
 
@@ -49,6 +50,7 @@ class _ProductDetailsPageCartButtonState
                     .read<CartCubit>()
                     .addProduct(widget.product, widget.productQuantity);
               });
+              showSnackBar(context);
             },
           );
   }

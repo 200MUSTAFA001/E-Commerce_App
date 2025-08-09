@@ -1,15 +1,15 @@
 import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/extensions.dart';
 import 'package:api_app/presentation/widgets/cards/product_card.dart';
-import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/buttons/product_details_page_cart_button.dart';
-import '../widgets/custom_widgets/custom_counter.dart';
-import '../widgets/custom_widgets/custom_favorite_icon.dart';
+import '../widgets/custom_buttons/product_details_page_cart_button.dart';
 import '../widgets/custom_widgets/custom_rating_bar.dart';
+import '../widgets/custom_widgets/details_page_counter.dart';
+import '../widgets/custom_widgets/favorite_icon.dart';
 import '../widgets/custom_widgets/product_images.dart';
 import '../widgets/lists/sliver_review_list.dart';
 
@@ -46,7 +46,7 @@ class ProductDetailsPage extends StatelessWidget {
             flexibleSpace: ProductImages(images: product.images),
             expandedHeight: MediaQuery.sizeOf(context).height * 0.5,
             actions: [
-              CustomFavoriteIcon(
+              FavoriteIcon(
                 product: product,
               ),
               const SizedBox(
@@ -72,7 +72,7 @@ class ProductDetailsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomRatingBar(rating: product.rating),
-                    CustomCounter(
+                    DetailsPageCounter(
                       quantity: (quantity) {
                         productPriceOnQuantity.value = quantity;
                       },

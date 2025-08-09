@@ -7,12 +7,15 @@ import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
 import 'package:api_app/presentation/screens/home_page.dart';
 import 'package:api_app/presentation/screens/main_page.dart';
 import 'package:api_app/presentation/screens/product_details_page.dart';
+import 'package:api_app/presentation/screens/product_image_Interactive_viewer.dart';
 import 'package:api_app/presentation/screens/products_by_category_page.dart';
 import 'package:api_app/presentation/screens/products_on_sale_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'data/repository/products_repo.dart';
+
+// Todo : use GoRouter for navigation
 
 class AppRouter {
   static const String homePage = "/";
@@ -22,6 +25,8 @@ class AppRouter {
   static const String productsByCategoryPage = "/productsByCategoryPage";
   static const String cartPage = "/cartPage";
   static const String favoritesPage = "/favoritesPage";
+  static const String productImageInteractiveViewer =
+      "/productImageInteractiveViewer";
   //
   late ProductsRepo productsRepo;
   late ProductsCubit productsCubit;
@@ -73,6 +78,12 @@ class AppRouter {
       case favoritesPage:
         return MaterialPageRoute(
           builder: (_) => const FavoritesPage(),
+        );
+      case productImageInteractiveViewer:
+        final productImage = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) =>
+              ProductImageInteractiveViewer(productImage: productImage),
         );
       default:
         MaterialPageRoute(

@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/favorites_cubit.dart';
-import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

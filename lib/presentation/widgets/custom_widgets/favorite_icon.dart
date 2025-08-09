@@ -4,16 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomFavoriteIcon extends StatefulWidget {
-  const CustomFavoriteIcon({super.key, required this.product});
+class FavoriteIcon extends StatefulWidget {
+  const FavoriteIcon({super.key, required this.product});
 
   final Product product;
 
   @override
-  State<CustomFavoriteIcon> createState() => _CustomFavoriteIconState();
+  State<FavoriteIcon> createState() => _FavoriteIconState();
 }
 
-class _CustomFavoriteIconState extends State<CustomFavoriteIcon> {
+class _FavoriteIconState extends State<FavoriteIcon> {
   @override
   Widget build(BuildContext context) {
     final isFavorite =

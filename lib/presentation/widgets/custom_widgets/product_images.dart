@@ -1,3 +1,4 @@
+import 'package:api_app/app_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,29 @@ class ProductImages extends StatelessWidget {
         background: PageView.builder(
           controller: pageController,
           itemCount: images.length,
-          itemBuilder: (context, index) => CachedNetworkImage(
-            imageUrl: images[index],
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                const Center(
-              child: CupertinoActivityIndicator(
-                radius: 24,
-                color: Colors.deepOrange,
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                AppRouter.productImageInteractiveViewer,
+                arguments: images[index],
+              );
+            },
+            child: Hero(
+              tag: "00",
+              child: CachedNetworkImage(
+                imageUrl: images[index],
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    const Center(
+                  child: CupertinoActivityIndicator(
+                    radius: 24,
+                    color: Colors.deepOrange,
+                  ),
+                ),
+                errorWidget: (context, url, error) =>
+                    const Center(child: Icon(Icons.error)),
               ),
             ),
-            errorWidget: (context, url, error) =>
-                const Center(child: Icon(Icons.error)),
           ),
         ),
         title: SmoothPageIndicator(

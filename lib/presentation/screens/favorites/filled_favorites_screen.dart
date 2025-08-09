@@ -1,3 +1,4 @@
+import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/favorites_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,6 @@ class FilledFavoritesScreen extends StatelessWidget {
               Text("My Favorites"),
             ],
           ),
-          // centerTitle: true,
           pinned: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -57,7 +57,12 @@ class FilledFavoritesScreen extends StatelessWidget {
           itemBuilder: (context, index) => ProductCard(
             product: favoritesList[index],
           ),
-        )
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: context.screenHeight * 0.1,
+          ),
+        ),
       ],
     );
   }

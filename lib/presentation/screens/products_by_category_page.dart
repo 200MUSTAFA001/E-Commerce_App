@@ -1,5 +1,5 @@
+import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
-import 'package:api_app/presentation/widgets/extensions.dart';
 import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
 import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
 import 'package:flutter/material.dart';
