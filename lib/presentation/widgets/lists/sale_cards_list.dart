@@ -62,7 +62,7 @@ class SaleCardsList extends StatelessWidget {
         spacing: 16,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: context.height * 0.25,
             child: PageView.builder(
               controller: pageController,
               itemCount: saleCards.length,

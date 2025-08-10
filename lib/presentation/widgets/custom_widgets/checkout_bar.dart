@@ -10,7 +10,7 @@ class CheckoutBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.23,
+      height: context.height * 0.23,
       child: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
           final cartProductsPrices =
@@ -40,8 +40,8 @@ class CheckoutBar extends StatelessWidget {
                 ],
               ).onlyPadding(right: 26, left: 26, top: 0, bottom: 8),
               SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.07,
-                width: MediaQuery.sizeOf(context).width * 0.9,
+                height: context.height * 0.07,
+                width: context.width * 0.9,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(

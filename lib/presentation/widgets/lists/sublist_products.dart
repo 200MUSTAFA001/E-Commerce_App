@@ -25,8 +25,8 @@ class SublistProducts extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ).onlyPadding(right: 0, left: 16, top: 10, bottom: 0),
                 SizedBox(
-                  height: context.screenWidth * 0.7,
-                  width: context.screenHeight * 1,
+                  height: context.width * 0.7,
+                  width: context.height * 1,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: sublistProducts.length,

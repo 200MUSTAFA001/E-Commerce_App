@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../../app_router.dart';
 import '../../../logic/cubit/cart_cubit.dart';
@@ -26,8 +27,16 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  final randomInt = Random().nextInt(22);
+
   @override
   Widget build(BuildContext context) {
+    //
+    final isFavorite =
+        context.read<FavoritesCubit>().isProductExist(widget.product.id);
+    final isInCart = context.read<CartCubit>().isProductExist(widget.product);
+    final randomBool = widget.product.title.length >= randomInt;
+    //
     return GestureDetector(
       onTap: () {
         final product = widget.product;
@@ -40,8 +49,8 @@ class _ProductCardState extends State<ProductCard> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: context.screenWidth * 0.5,
+              height: context.height * 0.2,
+              width: context.width * 0.5,
               child: GridTile(
                 header: Container(
                   alignment: Alignment.topLeft,
@@ -49,38 +58,34 @@ class _ProductCardState extends State<ProductCard> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      randomBool == true
+                          ? IconButton(
+                              onPressed: () {
+                                if (!isFavorite) {
+                                  setState(() {
+                                    context
+                                        .read<FavoritesCubit>()
+                                        .addProduct(widget.product);
+                                  });
+                                } else {
+                                  setState(() {
+                                    context
+                                        .read<FavoritesCubit>()
+                                        .removeProduct(widget.product);
+                                  });
+                                }
+                              },
+                              icon: isFavoriteIcon(isFavorite),
+                              style: IconButton.styleFrom(
+                                backgroundColor: Colors.grey.shade200,
+                              ),
+                            )
+                          : const SlideCountdown(
+                              duration: Duration(hours: 12),
+                            ),
                       IconButton(
                         onPressed: () {
-                          if (context
-                                  .read<FavoritesCubit>()
-                                  .isProductExist(widget.product.id) ==
-                              false) {
-                            setState(() {
-                              context
-                                  .read<FavoritesCubit>()
-                                  .addProduct(widget.product);
-                            });
-                          } else {
-                            setState(() {
-                              context
-                                  .read<FavoritesCubit>()
-                                  .removeProduct(widget.product);
-                            });
-                          }
-                        },
-                        icon: isFavoriteIcon(context
-                            .read<FavoritesCubit>()
-                            .isProductExist(widget.product.id)),
-                        style: IconButton.styleFrom(
-                          backgroundColor: Colors.grey.shade200,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          if (context
-                                  .read<CartCubit>()
-                                  .isProductExist(widget.product) ==
-                              false) {
+                          if (isInCart == false) {
                             setState(() {
                               context
                                   .read<CartCubit>()
@@ -94,9 +99,7 @@ class _ProductCardState extends State<ProductCard> {
                             });
                           }
                         },
-                        icon: cartIcon(context
-                            .read<CartCubit>()
-                            .isProductExist(widget.product)),
+                        icon: cartIcon(isInCart),
                       ),
                     ],
                   ),

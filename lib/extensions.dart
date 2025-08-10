@@ -27,9 +27,9 @@ extension PaddingExtension on Widget {
 }
 
 extension MediaQueryExtension on BuildContext {
-  double get screenWidth => MediaQuery.of(this).size.width;
+  double get width => MediaQuery.of(this).size.width;
 
-  double get screenHeight => MediaQuery.of(this).size.height;
+  double get height => MediaQuery.of(this).size.height;
 
   double get statusBarHeight => MediaQuery.of(this).padding.top;
 

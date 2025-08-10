@@ -44,7 +44,7 @@ class ProductDetailsPage extends StatelessWidget {
                 },
                 icon: const Icon(CupertinoIcons.back)),
             flexibleSpace: ProductImages(images: product.images),
-            expandedHeight: MediaQuery.sizeOf(context).height * 0.5,
+            expandedHeight: context.height * 0.5,
             actions: [
               FavoriteIcon(
                 product: product,
@@ -195,7 +195,7 @@ class ProductDetailsPage extends StatelessWidget {
           SliverReviewList(reviews: product.reviews),
           SliverToBoxAdapter(
             child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.15,
+              height: context.height * 0.15,
             ),
           ),
         ],

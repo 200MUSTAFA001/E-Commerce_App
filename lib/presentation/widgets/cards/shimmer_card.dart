@@ -1,3 +1,4 @@
+import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
 
 class ShimmerCard extends StatelessWidget {
@@ -14,7 +15,7 @@ class ShimmerCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: context.height * 0.2,
             width: double.infinity,
             child: GridTile(
               header: Container(

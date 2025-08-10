@@ -60,7 +60,7 @@ class FilledFavoritesScreen extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: context.screenHeight * 0.1,
+            height: context.height * 0.1,
           ),
         ),
       ],

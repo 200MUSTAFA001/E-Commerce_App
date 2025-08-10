@@ -41,7 +41,7 @@ class SaleCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: context.width * 0.8,
         padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.only(right: 20, left: 10),
         decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
 
 class CartAddedButton extends StatelessWidget {
@@ -15,8 +16,8 @@ class CartAddedButton extends StatelessWidget {
           foregroundColor: Colors.white),
       onPressed: onPressed,
       child: SizedBox(
-        width: MediaQuery.sizeOf(context).width * 0.75,
-        height: MediaQuery.sizeOf(context).height * 0.07,
+        width: context.width * 0.75,
+        height: context.height * 0.07,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,

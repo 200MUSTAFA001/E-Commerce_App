@@ -25,8 +25,8 @@ class CategoryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width * 0.2,
+              height: context.height * 0.1,
+              width: context.width * 0.2,
               child: categoryImage,
             ),
             Text(
