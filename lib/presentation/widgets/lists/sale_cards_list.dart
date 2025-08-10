@@ -1,14 +1,13 @@
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../cards/sales_card.dart';
 
 class SaleCardsList extends StatelessWidget {
-  SaleCardsList({
-    super.key,
-  });
+  SaleCardsList({super.key});
 
   final List<SaleCardData> saleCards = [
     SaleCardData(
@@ -74,36 +73,14 @@ class SaleCardsList extends StatelessWidget {
                 cardNameColor: saleCards[index].cardNameColor,
                 onTap: () {
                   final arguments = saleCards[index].cardCategories;
-                  Navigator.pushNamed(context, AppRouter.productsOnSalePage,
-                      arguments: arguments);
+                  context.push(AppRouter.productsOnSalePage, extra: arguments);
                 },
                 elevatedButtonOnPressed: () {
                   final arguments = saleCards[index].cardCategories;
-                  Navigator.pushNamed(context, AppRouter.productsOnSalePage,
-                      arguments: arguments);
+                  context.push(AppRouter.productsOnSalePage, extra: arguments);
                 },
               ),
             ),
-            // ListView.builder(
-            //   scrollDirection: Axis.horizontal,
-            //   itemCount: saleCards.length,
-            //   itemBuilder: (context, index) => SaleCard(
-            //     elevatedButtonOnPressed: () {
-            //       final arguments = saleCards[index].cardCategories;
-            //       Navigator.pushNamed(context, AppRouter.productsOnSalePage,
-            //           arguments: arguments);
-            //     },
-            //     onTap: () {
-            //       final arguments = saleCards[index].cardCategories;
-            //       Navigator.pushNamed(context, AppRouter.productsOnSalePage,
-            //           arguments: arguments);
-            //     },
-            //     cardName: saleCards[index].cardName,
-            //     cardImage: saleCards[index].cardImage,
-            //     buttonColor: saleCards[index].buttonColor,
-            //     cardNameColor: saleCards[index].cardNameColor,
-            //   ),
-            // ),
           ).onlyPadding(right: 0, left: 0, top: 16, bottom: 0),
           SmoothPageIndicator(
             controller: pageController,
@@ -122,3 +99,24 @@ class SaleCardsList extends StatelessWidget {
     );
   }
 }
+
+// ListView.builder(
+//   scrollDirection: Axis.horizontal,
+//   itemCount: saleCards.length,
+//   itemBuilder: (context, index) => SaleCard(
+//     elevatedButtonOnPressed: () {
+//       final arguments = saleCards[index].cardCategories;
+//       Navigator.pushNamed(context, AppRouter.productsOnSalePage,
+//           arguments: arguments);
+//     },
+//     onTap: () {
+//       final arguments = saleCards[index].cardCategories;
+//       Navigator.pushNamed(context, AppRouter.productsOnSalePage,
+//           arguments: arguments);
+//     },
+//     cardName: saleCards[index].cardName,
+//     cardImage: saleCards[index].cardImage,
+//     buttonColor: saleCards[index].buttonColor,
+//     cardNameColor: saleCards[index].cardNameColor,
+//   ),
+// ),

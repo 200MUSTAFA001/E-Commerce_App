@@ -2,6 +2,7 @@ import 'package:api_app/app_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductImages extends StatelessWidget {
@@ -31,11 +32,8 @@ class ProductImages extends StatelessWidget {
           itemCount: images.length,
           itemBuilder: (context, index) => GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                AppRouter.productImageInteractiveViewer,
-                arguments: images[index],
-              );
+              context.push(AppRouter.productImageInteractiveViewer,
+                  extra: images[index]);
             },
             child: Hero(
               tag: "00",

@@ -3,6 +3,7 @@ import 'package:api_app/extensions.dart';
 import 'package:api_app/presentation/widgets/cards/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoriesGrid extends StatelessWidget {
   CategoriesGrid({super.key});
@@ -132,11 +133,8 @@ class CategoriesGrid extends StatelessWidget {
         categoryName: categories[index].categoryName,
         categoryImage: categories[index].categoryImage,
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            AppRouter.productsByCategoryPage,
-            arguments: categories[index].categoryName,
-          );
+          context.push(AppRouter.productsByCategoryPage,
+              extra: categories[index].categoryName);
         },
       ),
     ).onlyPadding(right: 6, left: 6, top: 0, bottom: 0);

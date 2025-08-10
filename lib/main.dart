@@ -18,15 +18,13 @@ Future<void> main() async {
       (await getApplicationDocumentsDirectory()).path,
     ),
   );
-  runApp(MyApp(
-    appRouter: AppRouter(),
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.appRouter});
+  MyApp({super.key});
 
-  final AppRouter appRouter;
+  final routerConfig = AppRouter().router;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +33,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => CartCubit()),
         BlocProvider(create: (_) => FavoritesCubit()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         scaffoldMessengerKey: scaffoldMessengerKey,
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: appRouter.generateRoute,
+        routerConfig: routerConfig,
       ),
     );
   }

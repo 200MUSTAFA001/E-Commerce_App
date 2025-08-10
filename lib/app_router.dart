@@ -1,21 +1,18 @@
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/data/services/web_services.dart';
-import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/screens/all_categories_page.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
 import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
-import 'package:api_app/presentation/screens/home_page.dart';
 import 'package:api_app/presentation/screens/main_page.dart';
 import 'package:api_app/presentation/screens/product_details_page.dart';
 import 'package:api_app/presentation/screens/product_image_Interactive_viewer.dart';
 import 'package:api_app/presentation/screens/products_by_category_page.dart';
 import 'package:api_app/presentation/screens/products_on_sale_page.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import 'data/models/products_model.dart';
 import 'data/repository/products_repo.dart';
-
-// Todo : use GoRouter for navigation
+import 'data/services/web_services.dart';
+import 'logic/cubit/products_cubit.dart';
 
 class AppRouter {
   static const String homePage = "/";
@@ -28,67 +25,50 @@ class AppRouter {
   static const String productImageInteractiveViewer =
       "/productImageInteractiveViewer";
   //
-  late ProductsRepo productsRepo;
-  late ProductsCubit productsCubit;
+  //
+  final GoRouter router = GoRouter(
+    routes: [
+      GoRoute(path: homePage, builder: (context, state) => const MainPage()),
+      GoRoute(
+          path: productDetailsPage,
+          builder: (context, state) {
+            final product = state.extra as Product;
+            return ProductDetailsPage(product: product);
+          }),
+      GoRoute(
+          path: allCategoriesPage,
+          builder: (context, state) => const AllCategoriesPage()),
+      GoRoute(
+          path: productsOnSalePage,
+          builder: (context, state) {
+            final categories = state.extra as List<String>;
 
-  AppRouter() {
-    productsRepo = ProductsRepo(GetProductsService());
-    productsCubit = ProductsCubit(productsRepo);
-  }
-
-  Route? generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case homePage:
-        return MaterialPageRoute(
-          builder: (_) => const MainPage(),
-        );
-      case productDetailsPage:
-        final product = settings.arguments as Product;
-        return MaterialPageRoute(
-          builder: (_) => ProductDetailsPage(product: product),
-        );
-      case allCategoriesPage:
-        return MaterialPageRoute(
-          builder: (_) => const AllCategoriesPage(),
-        );
-      case productsOnSalePage:
-        final categories = settings.arguments as List<String>;
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ProductsCubit(productsRepo),
-            child: ProductsOnSalePage(
-              categories: categories,
-            ),
-          ),
-        );
-      case productsByCategoryPage:
-        final category = settings.arguments as String;
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ProductsCubit(productsRepo),
-            child: ProductsByCategoryPage(
-              category: category,
-            ),
-          ),
-        );
-      case cartPage:
-        return MaterialPageRoute(
-          builder: (_) => const CartPage(),
-        );
-      case favoritesPage:
-        return MaterialPageRoute(
-          builder: (_) => const FavoritesPage(),
-        );
-      case productImageInteractiveViewer:
-        final productImage = settings.arguments as String;
-        return MaterialPageRoute(
-          builder: (_) =>
-              ProductImageInteractiveViewer(productImage: productImage),
-        );
-      default:
-        MaterialPageRoute(
-          builder: (_) => const HomePage(),
-        );
-    }
-  }
+            return BlocProvider(
+              create: (context) =>
+                  ProductsCubit(ProductsRepo(GetProductsService())),
+              child: ProductsOnSalePage(categories: categories),
+            );
+          }),
+      GoRoute(
+          path: productsByCategoryPage,
+          builder: (context, state) {
+            final category = state.extra as String;
+            return BlocProvider(
+              create: (context) =>
+                  ProductsCubit(ProductsRepo(GetProductsService())),
+              child: ProductsByCategoryPage(category: category),
+            );
+          }),
+      GoRoute(path: cartPage, builder: (context, state) => const CartPage()),
+      GoRoute(
+          path: favoritesPage,
+          builder: (context, state) => const FavoritesPage()),
+      GoRoute(
+          path: productImageInteractiveViewer,
+          builder: (context, state) {
+            final productImage = state.extra as String;
+            return ProductImageInteractiveViewer(productImage: productImage);
+          }),
+    ],
+  );
 }

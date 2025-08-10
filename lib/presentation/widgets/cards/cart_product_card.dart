@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app_router.dart';
 import '../../../data/models/products_model.dart';
@@ -30,11 +31,7 @@ class CartProductCard extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRouter.productDetailsPage,
-                  arguments: product,
-                );
+                context.push(AppRouter.productDetailsPage, extra: product);
               },
               child: SizedBox(
                 width: 100,
@@ -58,11 +55,7 @@ class CartProductCard extends StatelessWidget {
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRouter.productDetailsPage,
-                    arguments: product,
-                  );
+                  context.push(AppRouter.productDetailsPage, extra: product);
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

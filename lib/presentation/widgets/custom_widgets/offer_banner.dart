@@ -1,5 +1,6 @@
 import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app_router.dart';
 
@@ -14,11 +15,7 @@ class OfferBanner extends StatelessWidget {
     return SliverToBoxAdapter(
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            AppRouter.productsByCategoryPage,
-            arguments: category,
-          );
+          context.push(AppRouter.productsByCategoryPage, extra: category);
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(50),

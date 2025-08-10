@@ -3,6 +3,7 @@ import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/cards/welcome_user_tile.dart';
 import '../widgets/custom_widgets/category_bar.dart';
@@ -38,7 +39,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Todo : bottomNavigationBar
       drawer: const CustomDrawer(),
       body: CustomScrollView(
         slivers: [
@@ -50,8 +50,7 @@ class _HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, AppRouter.cartPage);
-                  Navigator.pushNamed(context, AppRouter.favoritesPage);
+                  context.push(AppRouter.cartPage);
                 },
                 icon: const Icon(
                   Icons.shopping_bag_outlined,
@@ -80,8 +79,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, AppRouter.allCategoriesPage);
+                        context.push(AppRouter.allCategoriesPage);
                       },
                       child: const Text("See All"),
                     ),
@@ -110,10 +108,9 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.centerLeft,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
+                  context.push(
                     AppRouter.productsByCategoryPage,
-                    arguments: selectedCategory,
+                    extra: selectedCategory,
                   );
                 },
                 style: ElevatedButton.styleFrom(

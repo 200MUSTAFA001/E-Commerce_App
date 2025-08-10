@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app_router.dart';
 import '../../../logic/cubit/cart_cubit.dart';
@@ -29,12 +30,8 @@ class _ProductCardState extends State<ProductCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final arguments = widget.product;
-        Navigator.pushNamed(
-          context,
-          AppRouter.productDetailsPage,
-          arguments: arguments,
-        );
+        final product = widget.product;
+        context.push(AppRouter.productDetailsPage, extra: product);
       },
       child: Container(
         padding: const EdgeInsets.all(10),
