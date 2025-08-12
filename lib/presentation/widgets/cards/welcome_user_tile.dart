@@ -14,7 +14,7 @@ class WelcomeUserTile extends StatelessWidget {
       child: ListTile(
         title: TypeWriter.text(
           "Hello Mustafa",
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 100),
           style: GoogleFonts.fjallaOne(
             fontSize: 26,
             fontWeight: FontWeight.w500,
@@ -23,7 +23,7 @@ class WelcomeUserTile extends StatelessWidget {
         ),
         subtitle: TypeWriter.text(
           "Let's start Shopping!",
-          duration: const Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 150),
           style:
               GoogleFonts.shareTech(fontSize: 18, fontWeight: FontWeight.w500),
           repeat: true,

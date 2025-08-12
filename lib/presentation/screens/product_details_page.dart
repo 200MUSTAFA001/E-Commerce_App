@@ -36,6 +36,7 @@ class ProductDetailsPage extends StatelessWidget {
         slivers: [
           SliverAppBar(
             elevation: 0,
+            pinned: true,
             leading: IconButton(
                 style:
                     IconButton.styleFrom(backgroundColor: Colors.grey.shade300),
