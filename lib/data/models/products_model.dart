@@ -60,8 +60,6 @@ class Product {
   final Meta meta;
   final List<String> images;
   final String thumbnail;
-  // bool isFavorite;
-  // int productQuantity;
 
   Product({
     required this.id,
@@ -85,8 +83,6 @@ class Product {
     required this.meta,
     required this.images,
     required this.thumbnail,
-    // required this.isFavorite,
-    // this.productQuantity = 1,
   });
 
   Product copyWith({
@@ -111,8 +107,6 @@ class Product {
     Meta? meta,
     List<String>? images,
     String? thumbnail,
-    // bool? isFavorite,
-    // int? productQuantity,
   }) =>
       Product(
         id: id ?? this.id,
@@ -136,8 +130,6 @@ class Product {
         meta: meta ?? this.meta,
         images: images ?? this.images,
         thumbnail: thumbnail ?? this.thumbnail,
-        // isFavorite: isFavorite ?? this.isFavorite,
-        // productQuantity: productQuantity ?? this.productQuantity,
       );
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -163,7 +155,6 @@ class Product {
         meta: Meta.fromJson(json["meta"]),
         images: List<String>.from(json["images"].map((x) => x)),
         thumbnail: json["thumbnail"],
-        // isFavorite: json["isFavorite"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -188,8 +179,6 @@ class Product {
         "meta": meta.toJson(),
         "images": List<dynamic>.from(images.map((x) => x)),
         "thumbnail": thumbnail,
-        // "isFavorite": isFavorite,
-        // "productQuantity": productQuantity,
       };
 }
 

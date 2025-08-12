@@ -19,11 +19,6 @@ class CartCubit extends HydratedCubit<CartState> {
         cartProductsIDs.contains(product.id) ? true : false;
 
     return isProductExistBool;
-    // if (cartProductsTitles.contains(product.id)) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
   }
 
   void addProduct(Product product, int quantity) {

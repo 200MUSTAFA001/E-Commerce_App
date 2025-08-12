@@ -24,7 +24,7 @@ class CartProductCard extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -34,8 +34,8 @@ class CartProductCard extends StatelessWidget {
                 context.push(AppRouter.productDetailsPage, extra: product);
               },
               child: SizedBox(
-                width: 100,
-                height: 80,
+                width: 120,
+                height: 120,
                 child: CachedNetworkImage(
                   imageUrl: product.thumbnail,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
@@ -47,7 +47,7 @@ class CartProductCard extends StatelessWidget {
                   errorWidget: (context, url, error) => const Center(
                     child: Icon(Icons.error),
                   ),
-                  fit: BoxFit.contain,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -63,6 +63,8 @@ class CartProductCard extends StatelessWidget {
                     Text(
                       product.title,
                       style: const TextStyle(fontSize: 16),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -77,14 +79,14 @@ class CartProductCard extends StatelessWidget {
               ),
             ),
             Column(
+              spacing: 24,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.remove, color: Colors.red),
+                  icon: const Icon(CupertinoIcons.trash, color: Colors.red),
                   onPressed: () {
                     context.read<CartCubit>().removeProduct(product);
                   },
                 ),
-                const SizedBox(height: 6),
                 CartPageCounter(
                   productQuantity: productQuantity,
                   onIncrement: () {

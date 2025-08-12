@@ -1,5 +1,9 @@
+import 'package:api_app/app_router.dart';
+import 'package:api_app/extensions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../data/models/products_model.dart';
 import '../../../logic/cubit/cart_cubit.dart';
@@ -30,28 +34,53 @@ class _ProductDetailsPageCartButtonState
   Widget build(BuildContext context) {
     final isProductInCart =
         context.read<CartCubit>().isProductExist(widget.product);
-    return isProductInCart == true
-        ? CartAddedButton(
-            onPressed: () {
-              setState(() {
-                isProductInCart == true
-                    ? context.read<CartCubit>().removeProduct(widget.product)
-                    : context
+    return Row(
+      children: [
+        isProductInCart == true
+            ? CartAddedButton(
+                onPressed: () {
+                  setState(() {
+                    isProductInCart == true
+                        ? context
+                            .read<CartCubit>()
+                            .removeProduct(widget.product)
+                        : context
+                            .read<CartCubit>()
+                            .addProduct(widget.product, widget.productQuantity);
+                  });
+                },
+              )
+            : AddToCartButton(
+                productPrice: widget.productPrice,
+                onTap: () {
+                  setState(() {
+                    context
                         .read<CartCubit>()
                         .addProduct(widget.product, widget.productQuantity);
-              });
-            },
-          )
-        : AddToCartButton(
-            productPrice: widget.productPrice,
-            onTap: () {
-              setState(() {
-                context
-                    .read<CartCubit>()
-                    .addProduct(widget.product, widget.productQuantity);
-              });
-              showSnackBar(context);
-            },
-          );
+                  });
+                  showSnackBar(context);
+                },
+              ),
+        ElevatedButton(
+          onPressed: () {
+            context.push(AppRouter.cartPage);
+          },
+          style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            backgroundColor: Colors.indigo,
+          ),
+          child: SizedBox(
+            width: context.width * 0.2,
+            height: context.height * 0.07,
+            child: const Icon(
+              CupertinoIcons.cart,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

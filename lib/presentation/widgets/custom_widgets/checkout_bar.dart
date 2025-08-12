@@ -10,7 +10,7 @@ class CheckoutBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.height * 0.23,
+      height: context.height * 0.16,
       child: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
           final cartProductsPrices =
@@ -59,9 +59,6 @@ class CheckoutBar extends StatelessWidget {
               ).allPadding(padding: 16),
             ],
           );
-          //   CheckoutBar(
-          //   cartProductsPrices: cartProductsPrices,
-          // );
         },
       ),
     ).onlyPadding(right: 0, left: 0, top: 10, bottom: 0);

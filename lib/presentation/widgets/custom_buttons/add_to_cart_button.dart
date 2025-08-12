@@ -13,15 +13,16 @@ class AddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.deepOrangeAccent,
-        foregroundColor: Colors.white,
-      ),
-      child: SizedBox(
-        width: context.width * 0.75,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: context.width * 0.6,
         height: context.height * 0.07,
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        decoration: BoxDecoration(
+          color: Colors.deepOrangeAccent,
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,20 +30,22 @@ class AddToCartButton extends StatelessWidget {
             const Text(
               "Add To Cart",
               style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
             ),
             Text(
               r"$" "$productPrice",
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                color: Colors.white,
               ),
             ),
           ],
         ),
       ),
-    );
+    ).onlyPadding(right: 10, left: 10, top: 0, bottom: 0);
   }
 }

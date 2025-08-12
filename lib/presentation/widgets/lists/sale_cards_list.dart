@@ -99,24 +99,3 @@ class SaleCardsList extends StatelessWidget {
     );
   }
 }
-
-// ListView.builder(
-//   scrollDirection: Axis.horizontal,
-//   itemCount: saleCards.length,
-//   itemBuilder: (context, index) => SaleCard(
-//     elevatedButtonOnPressed: () {
-//       final arguments = saleCards[index].cardCategories;
-//       Navigator.pushNamed(context, AppRouter.productsOnSalePage,
-//           arguments: arguments);
-//     },
-//     onTap: () {
-//       final arguments = saleCards[index].cardCategories;
-//       Navigator.pushNamed(context, AppRouter.productsOnSalePage,
-//           arguments: arguments);
-//     },
-//     cardName: saleCards[index].cardName,
-//     cardImage: saleCards[index].cardImage,
-//     buttonColor: saleCards[index].buttonColor,
-//     cardNameColor: saleCards[index].cardNameColor,
-//   ),
-// ),

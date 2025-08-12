@@ -14,11 +14,6 @@ class FavoritesCubit extends HydratedCubit<FavoritesState> {
     final isProductExistBool = productIDs.contains(productID) ? true : false;
 
     return isProductExistBool;
-    // if(productIDs.contains(productID)){
-    //   return true;
-    // }else{
-    //   return false;
-    // }
   }
 
   void addProduct(Product product) {

@@ -29,7 +29,7 @@ void showSnackBar(BuildContext context) {
           ),
         ],
       ),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
     ),
   );
 }

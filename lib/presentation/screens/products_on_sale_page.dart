@@ -60,19 +60,18 @@ class _ProductsOnSalePageState extends State<ProductsOnSalePage> {
     );
   }
 }
-//
-//
-//
-// class SD extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final paint = Paint()
-//       ..color = Colors.white
-//       ..style = PaintingStyle.stroke
-//       ..blendMode = BlendMode.clear;
-//     final path = Path();
-//   }
-//
-//   @override
-//   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-// }
+/*
+class SD extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.stroke
+      ..blendMode = BlendMode.clear;
+    final path = Path();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+*/

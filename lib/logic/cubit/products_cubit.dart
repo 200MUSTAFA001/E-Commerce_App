@@ -44,13 +44,6 @@ class ProductsCubit extends Cubit<ProductsState> {
     return products;
   }
 
-  // Future<List<Product>> getRecommendedProducts(String category) async {
-  //   final recommendedProducts = await ProductsRepo(GetProductsService())
-  //       .getProductsByCategory(category);
-  //   emit(RecommendedProductsLoaded(recommendedProducts));
-  //   return recommendedProducts;
-  // }
-
   Future<void> getProductsBySeveralCategories(List<String> categories) async {
     emit(ProductsLoading());
 
