@@ -23,7 +23,7 @@ class SublistProducts extends StatelessWidget {
                 const Text(
                   "Hot Selling Footwear",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ).onlyPadding(right: 0, left: 16, top: 10, bottom: 0),
+                ).onlyPadding(left: 16, top: 10),
                 SizedBox(
                   height: context.width * 0.7,
                   width: context.height * 1,

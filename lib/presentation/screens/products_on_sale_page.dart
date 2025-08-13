@@ -38,7 +38,7 @@ class _ProductsOnSalePageState extends State<ProductsOnSalePage> {
                   itemCount: products.length,
                 ),
               ],
-            ).onlyPadding(right: 2, left: 0, top: 0, bottom: 0);
+            ).onlyPadding(right: 2);
           } else if (state is ProductsLoading) {
             return const Center(
               child: CustomScrollView(

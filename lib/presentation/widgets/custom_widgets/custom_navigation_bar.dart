@@ -15,7 +15,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SnakeNavigationBar.color(
-      elevation: 20,
+      elevation: 6,
       currentIndex: currentIndex,
       onTap: onTap,
       behaviour: SnakeBarBehaviour.floating,

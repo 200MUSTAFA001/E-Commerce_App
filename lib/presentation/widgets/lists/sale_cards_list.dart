@@ -81,7 +81,7 @@ class SaleCardsList extends StatelessWidget {
                 },
               ),
             ),
-          ).onlyPadding(right: 0, left: 0, top: 16, bottom: 0),
+          ).onlyPadding(top: 16),
           SmoothPageIndicator(
             controller: pageController,
             count: saleCards.length,

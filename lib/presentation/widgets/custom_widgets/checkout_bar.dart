@@ -38,7 +38,7 @@ class CheckoutBar extends StatelessWidget {
                     ),
                   ),
                 ],
-              ).onlyPadding(right: 26, left: 26, top: 0, bottom: 8),
+              ).onlyPadding(right: 26, left: 26, bottom: 8),
               SizedBox(
                 height: context.height * 0.07,
                 width: context.width * 0.9,
@@ -61,6 +61,6 @@ class CheckoutBar extends StatelessWidget {
           );
         },
       ),
-    ).onlyPadding(right: 0, left: 0, top: 10, bottom: 0);
+    ).onlyPadding(top: 10);
   }
 }

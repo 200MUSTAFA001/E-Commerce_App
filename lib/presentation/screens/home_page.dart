@@ -1,6 +1,7 @@
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -43,22 +44,39 @@ class _HomePageState extends State<HomePage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: const Text(
-              "Home",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-            ),
+            toolbarHeight: context.height * 0.1,
+            pinned: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            // title: const Text(
+            //   "Home",
+            //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            // ),
             actions: [
-              IconButton(
-                onPressed: () {
-                  context.push(AppRouter.cartPage);
-                },
-                icon: const Icon(
-                  Icons.shopping_bag_outlined,
-                  size: 32,
+              Hero(
+                tag: "searchBarTag",
+                child: SizedBox(
+                  width: context.width * 0.9,
+                  height: context.height * 0.07,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.push(AppRouter.searchPage);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 20),
+                      margin: const EdgeInsets.only(left: 10, right: 10),
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.grey.shade300),
+                      child: const Icon(
+                        CupertinoIcons.search,
+                        color: Colors.black45,
+                        size: 28,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 10,
               )
             ],
           ),
@@ -123,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            ).onlyPadding(right: 0, left: 10, top: 0, bottom: 24),
+            ).onlyPadding(left: 10, bottom: 24),
           ),
           const RecommendedProductsList(),
           const OfferBanner(

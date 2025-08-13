@@ -34,7 +34,7 @@ class CategoryCard extends StatelessWidget {
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
               maxLines: 2,
-            ).onlyPadding(right: 0, left: 0, top: 10, bottom: 5),
+            ).onlyPadding(top: 10, bottom: 5),
           ],
         ),
       ),

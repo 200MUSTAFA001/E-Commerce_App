@@ -23,12 +23,12 @@ class WelcomeUserTile extends StatelessWidget {
         ),
         subtitle: TypeWriter.text(
           "Let's start Shopping!",
-          duration: const Duration(milliseconds: 150),
+          duration: const Duration(milliseconds: 100),
           style:
               GoogleFonts.shareTech(fontSize: 18, fontWeight: FontWeight.w500),
           repeat: true,
         ),
-      ).onlyPadding(right: 0, left: 0, top: 0, bottom: 6),
+      ).onlyPadding(bottom: 6),
     );
   }
 }

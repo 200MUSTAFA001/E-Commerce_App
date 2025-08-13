@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 extension PaddingExtension on Widget {
   Widget onlyPadding({
-    required double right,
-    required double left,
-    required double top,
-    required double bottom,
+    double right = 0,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
   }) {
     return Padding(
       padding: EdgeInsets.only(

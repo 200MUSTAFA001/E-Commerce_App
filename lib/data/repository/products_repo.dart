@@ -9,8 +9,8 @@ class ProductsRepo {
   ProductsRepo(this.getProductsService);
 
   Future<List<Product>> getProductsByCategory(String category) async {
-    final response = await getProductsService.getProducts(category);
-    final jsonString = json.encode(response);
+    final serviceResponse = await getProductsService.getProducts(category);
+    final jsonString = json.encode(serviceResponse);
     final result = productsModelFromJson(jsonString);
     return result.products;
   }

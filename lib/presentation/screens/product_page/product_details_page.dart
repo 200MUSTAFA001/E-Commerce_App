@@ -6,12 +6,12 @@ import 'package:api_app/presentation/widgets/cards/product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/custom_buttons/product_details_page_cart_button.dart';
-import '../widgets/custom_widgets/custom_rating_bar.dart';
-import '../widgets/custom_widgets/details_page_counter.dart';
-import '../widgets/custom_widgets/favorite_icon.dart';
-import '../widgets/custom_widgets/product_images.dart';
-import '../widgets/lists/sliver_review_list.dart';
+import '../../widgets/custom_buttons/product_details_page_cart_button.dart';
+import '../../widgets/custom_widgets/custom_rating_bar.dart';
+import '../../widgets/custom_widgets/details_page_counter.dart';
+import '../../widgets/custom_widgets/favorite_icon.dart';
+import '../../widgets/custom_widgets/product_images.dart';
+import '../../widgets/lists/sliver_review_list.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   ProductDetailsPage({super.key, required this.product});
@@ -191,7 +191,7 @@ class ProductDetailsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
                 ),
               ],
-            ).onlyPadding(right: 10, left: 16, top: 20, bottom: 0),
+            ).onlyPadding(right: 10, left: 16, top: 20),
           ),
           SliverReviewList(reviews: product.reviews),
           SliverToBoxAdapter(

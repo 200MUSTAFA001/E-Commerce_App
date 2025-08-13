@@ -68,7 +68,7 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
         ],
-      ).onlyPadding(right: 0, left: 0, top: 40, bottom: 0),
+      ).onlyPadding(top: 40),
     );
   }
 }
