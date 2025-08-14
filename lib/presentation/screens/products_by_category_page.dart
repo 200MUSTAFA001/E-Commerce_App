@@ -1,4 +1,3 @@
-import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
 import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
@@ -25,30 +24,25 @@ class _ProductsByCategoryPageState extends State<ProductsByCategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<ProductsCubit, ProductsState>(
-        builder: (context, state) {
-          if (state is ProductsLoaded) {
-            final products = state.products;
-            return CustomScrollView(
-              slivers: [
-                const SliverAppBar(
-                  elevation: 0,
-                ),
-                ProductsByCategoryList(
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            elevation: 0,
+          ),
+          BlocBuilder<ProductsCubit, ProductsState>(
+            builder: (context, state) {
+              if (state is ProductsLoaded) {
+                final products = state.products;
+                return ProductsGrid(
                   products: products,
                   itemCount: products.length,
-                ),
-              ],
-            ).onlyPadding(right: 2);
-          } else {
-            return const CustomScrollView(
-              slivers: [
-                SliverAppBar(),
-                ShimmerList(cardsCount: 8),
-              ],
-            );
-          }
-        },
+                );
+              } else {
+                return const ShimmerList(cardsCount: 8);
+              }
+            },
+          ),
+        ],
       ),
     );
   }

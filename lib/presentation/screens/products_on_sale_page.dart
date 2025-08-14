@@ -33,7 +33,7 @@ class _ProductsOnSalePageState extends State<ProductsOnSalePage> {
             return CustomScrollView(
               slivers: [
                 const SliverAppBar(elevation: 0),
-                ProductsByCategoryList(
+                ProductsGrid(
                   products: products,
                   itemCount: products.length,
                 ),

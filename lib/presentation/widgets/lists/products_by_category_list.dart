@@ -3,8 +3,8 @@ import 'package:api_app/presentation/widgets/cards/product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProductsByCategoryList extends StatelessWidget {
-  const ProductsByCategoryList({
+class ProductsGrid extends StatelessWidget {
+  const ProductsGrid({
     super.key,
     required this.products,
     required this.itemCount,

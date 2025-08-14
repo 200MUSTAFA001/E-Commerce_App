@@ -1,3 +1,4 @@
+import 'package:api_app/logic/cubit/search_cubit.dart';
 import 'package:api_app/presentation/screens/all_categories_page.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
 import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
@@ -26,6 +27,7 @@ class AppRouter {
   static const String productImageInteractiveViewer =
       "/productImageInteractiveViewer";
   static const String searchPage = "/searchPage";
+
   //
   //
   final GoRouter router = GoRouter(
@@ -71,7 +73,13 @@ class AppRouter {
             final productImage = state.extra as String;
             return ProductImageInteractiveViewer(productImage: productImage);
           }),
-      GoRoute(path: searchPage, builder: (context, state) => SearchPage()),
+      GoRoute(
+        path: searchPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => SearchCubit(),
+          child: const SearchPage(),
+        ),
+      ),
     ],
   );
 }

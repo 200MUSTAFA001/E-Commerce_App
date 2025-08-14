@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/data/services/web_services.dart';
 
-class ProductsSearchRepo {
-  final SearchForProductService searchForProductService;
+class SearchRepo {
+  final ProductsSearchService searchForProductService;
 
-  ProductsSearchRepo(this.searchForProductService);
+  SearchRepo(this.searchForProductService);
 
   Future<List<Product>> getSearchedProductsList(String product) async {
     final serviceResponse =

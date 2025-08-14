@@ -4,17 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 class WelcomeUserTile extends StatelessWidget {
-  const WelcomeUserTile({
-    super.key,
-  });
+  const WelcomeUserTile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: ListTile(
-        title: TypeWriter.text(
+        title: Text(
           "Hello Mustafa",
-          duration: const Duration(milliseconds: 100),
           style: GoogleFonts.fjallaOne(
             fontSize: 26,
             fontWeight: FontWeight.w500,

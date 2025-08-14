@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/cards/welcome_user_tile.dart';
+import '../widgets/custom_buttons/show_more_home_page_button.dart';
 import '../widgets/custom_widgets/category_bar.dart';
 import '../widgets/custom_widgets/custom_drawer.dart';
 import '../widgets/custom_widgets/offer_banner.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: const CustomDrawer(),
       body: CustomScrollView(
         slivers: [
@@ -48,36 +50,17 @@ class _HomePageState extends State<HomePage> {
             pinned: true,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            // title: const Text(
-            //   "Home",
-            //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-            // ),
             actions: [
               Hero(
                 tag: "searchBarTag",
-                child: SizedBox(
-                  width: context.width * 0.9,
-                  height: context.height * 0.07,
-                  child: GestureDetector(
-                    onTap: () {
-                      context.push(AppRouter.searchPage);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      margin: const EdgeInsets.only(left: 10, right: 10),
-                      alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey.shade300),
-                      child: const Icon(
-                        CupertinoIcons.search,
-                        color: Colors.black45,
-                        size: 28,
-                      ),
-                    ),
-                  ),
+                child: IconButton(
+                  onPressed: () {
+                    context.push(AppRouter.searchPage);
+                  },
+                  icon: const Icon(CupertinoIcons.search, size: 28),
                 ),
-              )
+              ),
+              const SizedBox(width: 6)
             ],
           ),
           const WelcomeUserTile(),
@@ -99,13 +82,15 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         context.push(AppRouter.allCategoriesPage);
                       },
-                      child: const Text("See All"),
+                      child: const Text(
+                        "See All",
+                        style: TextStyle(
+                            color: Colors.deepOrangeAccent, fontSize: 18),
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 CategoryBar(
                   onCategorySelected: (String category) {
                     selectedCategory = category;
@@ -114,34 +99,18 @@ class _HomePageState extends State<HomePage> {
                             category, recommendedListCategory, subListCategory);
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                )
+                const SizedBox(height: 20),
               ],
             ).onlyPadding(right: 16, left: 16, top: 20, bottom: 10),
           ),
           const ProductsList(),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: ElevatedButton(
-                onPressed: () {
-                  context.push(
-                    AppRouter.productsByCategoryPage,
-                    extra: selectedCategory,
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrangeAccent),
-                child: const Text(
-                  "Show More",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ).onlyPadding(left: 10, bottom: 24),
+          ShowMoreHomePageButton(
+            onPressed: () {
+              context.push(
+                AppRouter.productsByCategoryPage,
+                extra: selectedCategory,
+              );
+            },
           ),
           const RecommendedProductsList(),
           const OfferBanner(

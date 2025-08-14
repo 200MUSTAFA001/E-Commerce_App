@@ -40,13 +40,7 @@ class _ProductDetailsPageCartButtonState
             ? CartAddedButton(
                 onPressed: () {
                   setState(() {
-                    isProductInCart == true
-                        ? context
-                            .read<CartCubit>()
-                            .removeProduct(widget.product)
-                        : context
-                            .read<CartCubit>()
-                            .addProduct(widget.product, widget.productQuantity);
+                    context.read<CartCubit>().removeProduct(widget.product);
                   });
                 },
               )

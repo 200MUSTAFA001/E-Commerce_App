@@ -17,7 +17,7 @@ class GetProductsService {
   }
 }
 
-class SearchForProductService {
+class ProductsSearchService {
   Future<Map<String, dynamic>> searchForProduct(String productName) async {
     final String url = "https://dummyjson.com/products/search?q=$productName";
     final response = await dio.get(url);

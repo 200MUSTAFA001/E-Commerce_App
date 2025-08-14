@@ -14,7 +14,7 @@ class ProductsList extends StatelessWidget {
       builder: (context, state) {
         if (state is SeveralListsForHomePageLoaded) {
           final products = state.products;
-          return ProductsByCategoryList(
+          return ProductsGrid(
             itemCount: 4,
             products: products,
           );
