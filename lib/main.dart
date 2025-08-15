@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:api_app/logic/cubit/cart_cubit.dart';
-import 'package:api_app/logic/cubit/favorites_cubit.dart';
+import 'package:api_app/logic/cubit/wishlist_cubit.dart';
 import 'package:api_app/presentation/widgets/custom_widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CartCubit()),
-        BlocProvider(create: (_) => FavoritesCubit()),
+        BlocProvider(create: (_) => WishlistCubit()),
       ],
       child: MaterialApp.router(
         scaffoldMessengerKey: scaffoldMessengerKey,

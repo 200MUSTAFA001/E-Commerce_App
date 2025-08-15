@@ -18,9 +18,10 @@ class SearchCubit extends Cubit<SearchState> {
     List<Product> searchList = [];
     if (searchFieldIsEmpty == false) {
       searchList = await productsSearchRepo.getSearchedProductsList(product);
-      emit(SearchLoaded(searchList: searchList));
+      emit(SearchLoaded(
+          searchList: searchList, searchListLength: searchList.length));
     } else {
-      emit(SearchListEmpty());
+      emit(SearchListEmpty(searchList: const [], searchListLength: 0));
     }
 
     return searchList;

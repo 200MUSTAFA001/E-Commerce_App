@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/favorites_cubit.dart';
+import 'package:api_app/logic/cubit/wishlist_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _ProductCardState extends State<ProductCard> {
   Widget build(BuildContext context) {
     //
     final isFavorite =
-        context.read<FavoritesCubit>().isProductExist(widget.product.id);
+        context.read<WishlistCubit>().isProductExist(widget.product.id);
     final isInCart = context.read<CartCubit>().isProductExist(widget.product);
     final randomBool = widget.product.title.length >= randomInt;
     //
@@ -64,13 +64,13 @@ class _ProductCardState extends State<ProductCard> {
                                 if (!isFavorite) {
                                   setState(() {
                                     context
-                                        .read<FavoritesCubit>()
+                                        .read<WishlistCubit>()
                                         .addProduct(widget.product);
                                   });
                                 } else {
                                   setState(() {
                                     context
-                                        .read<FavoritesCubit>()
+                                        .read<WishlistCubit>()
                                         .removeProduct(widget.product);
                                   });
                                 }

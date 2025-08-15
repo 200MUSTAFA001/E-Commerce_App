@@ -2,9 +2,9 @@ import 'package:api_app/data/repository/products_repo.dart';
 import 'package:api_app/data/services/web_services.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
-import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
 import 'package:api_app/presentation/screens/home_page.dart';
 import 'package:api_app/presentation/screens/settings_page.dart';
+import 'package:api_app/presentation/screens/wishlist/wishlist_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
       child: const HomePage(),
     ),
     const CartPage(),
-    const FavoritesPage(),
+    const WishlistPage(),
     const SettingsPage(),
   ];
 
@@ -65,6 +65,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: IndexedStack(
         index: currentIndex,
         children: bottomNavigationBarPages,

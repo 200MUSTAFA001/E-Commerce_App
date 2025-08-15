@@ -19,6 +19,7 @@ class CartPage extends StatelessWidget {
               : const EmptyCartScreen();
         } else {
           return const SizedBox();
+          // return const EmptyCartScreen();
         }
       },
     );

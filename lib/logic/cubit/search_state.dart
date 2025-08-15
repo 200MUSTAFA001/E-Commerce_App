@@ -5,10 +5,16 @@ abstract class SearchState {}
 
 class SearchInitial extends SearchState {}
 
-class SearchListEmpty extends SearchState {}
+class SearchListEmpty extends SearchState {
+  final List<Product> searchList;
+  final int searchListLength;
+
+  SearchListEmpty({required this.searchList, required this.searchListLength});
+}
 
 class SearchLoaded extends SearchState {
   final List<Product> searchList;
+  final int searchListLength;
 
-  SearchLoaded({required this.searchList});
+  SearchLoaded({required this.searchList, required this.searchListLength});
 }

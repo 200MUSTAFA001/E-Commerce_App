@@ -1,5 +1,5 @@
 import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/logic/cubit/favorites_cubit.dart';
+import 'package:api_app/logic/cubit/wishlist_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,16 +17,16 @@ class _FavoriteIconState extends State<FavoriteIcon> {
   @override
   Widget build(BuildContext context) {
     final isFavorite =
-        context.read<FavoritesCubit>().isProductExist(widget.product.id);
+        context.read<WishlistCubit>().isProductExist(widget.product.id);
     return IconButton(
       onPressed: () {
         if (isFavorite == false) {
           setState(() {
-            context.read<FavoritesCubit>().addProduct(widget.product);
+            context.read<WishlistCubit>().addProduct(widget.product);
           });
         } else {
           setState(() {
-            context.read<FavoritesCubit>().removeProduct(widget.product);
+            context.read<WishlistCubit>().removeProduct(widget.product);
           });
         }
       },

@@ -64,7 +64,7 @@ class CustomDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
             ),
             onTap: () {
-              context.push(AppRouter.favoritesPage);
+              context.push(AppRouter.wishlistPage);
             },
           ),
         ],

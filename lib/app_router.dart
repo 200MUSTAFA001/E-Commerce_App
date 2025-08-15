@@ -1,13 +1,13 @@
 import 'package:api_app/logic/cubit/search_cubit.dart';
 import 'package:api_app/presentation/screens/all_categories_page.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
-import 'package:api_app/presentation/screens/favorites/favorites_page.dart';
 import 'package:api_app/presentation/screens/main_page.dart';
 import 'package:api_app/presentation/screens/product_page/product_details_page.dart';
 import 'package:api_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
 import 'package:api_app/presentation/screens/products_by_category_page.dart';
 import 'package:api_app/presentation/screens/products_on_sale_page.dart';
-import 'package:api_app/presentation/screens/search_page.dart';
+import 'package:api_app/presentation/screens/search/search_page.dart';
+import 'package:api_app/presentation/screens/wishlist/wishlist_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,7 +23,7 @@ class AppRouter {
   static const String productsOnSalePage = "/productsOnSalePage";
   static const String productsByCategoryPage = "/productsByCategoryPage";
   static const String cartPage = "/cartPage";
-  static const String favoritesPage = "/favoritesPage";
+  static const String wishlistPage = "/wishlistPage";
   static const String productImageInteractiveViewer =
       "/productImageInteractiveViewer";
   static const String searchPage = "/searchPage";
@@ -65,8 +65,8 @@ class AppRouter {
           }),
       GoRoute(path: cartPage, builder: (context, state) => const CartPage()),
       GoRoute(
-          path: favoritesPage,
-          builder: (context, state) => const FavoritesPage()),
+          path: wishlistPage,
+          builder: (context, state) => const WishlistPage()),
       GoRoute(
           path: productImageInteractiveViewer,
           builder: (context, state) {

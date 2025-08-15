@@ -11,8 +11,6 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-# Temporary files
-tempFiles/
 
 # IntelliJ related
 *.iml
