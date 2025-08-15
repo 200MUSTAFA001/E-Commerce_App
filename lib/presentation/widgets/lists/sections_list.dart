@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../../../data/models/section_item_model.dart';
 
 class SectionsList extends StatefulWidget {

@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:skeletonizer/skeletonizer.dart';
 
+// Project imports:
 import '../cards/shimmer_card.dart';
 
 class ShimmerList extends StatelessWidget {

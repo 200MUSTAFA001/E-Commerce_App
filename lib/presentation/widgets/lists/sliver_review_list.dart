@@ -1,6 +1,8 @@
-import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:api_app/extensions.dart';
 import '../../../data/models/products_model.dart';
 import '../cards/review_card.dart';
 

@@ -1,8 +1,10 @@
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/data/repository/products_repo.dart';
+// Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+// Project imports:
+import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/data/repository/products_repo.dart';
 import '../../data/services/web_services.dart';
 
 part 'products_state.dart';

@@ -1,16 +1,21 @@
+// Dart imports:
 import 'dart:math';
 
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/wishlist_cubit.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
+// Project imports:
+import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/extensions.dart';
+import 'package:api_app/logic/cubit/wishlist_cubit.dart';
 import '../../../app_router.dart';
 import '../../../logic/cubit/cart_cubit.dart';
 

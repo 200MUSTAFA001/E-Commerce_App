@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../../../data/models/products_model.dart';
 import '../../widgets/lists/products_by_category_list.dart';
 

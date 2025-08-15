@@ -1,6 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductImageInteractiveViewer extends StatelessWidget {
   const ProductImageInteractiveViewer({super.key, required this.productImage});

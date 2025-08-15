@@ -1,11 +1,15 @@
-import 'package:api_app/app_router.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/products_cubit.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+// Project imports:
+import 'package:api_app/app_router.dart';
+import 'package:api_app/extensions.dart';
+import 'package:api_app/logic/cubit/products_cubit.dart';
 import '../widgets/cards/welcome_user_tile.dart';
 import '../widgets/custom_buttons/show_more_home_page_button.dart';
 import '../widgets/custom_widgets/category_bar.dart';

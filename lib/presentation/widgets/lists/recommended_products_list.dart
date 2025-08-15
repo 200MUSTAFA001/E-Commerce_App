@@ -1,8 +1,12 @@
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Project imports:
+import 'package:api_app/extensions.dart';
+import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
 import '../../../logic/cubit/products_cubit.dart';
 import '../cards/product_card.dart';
 

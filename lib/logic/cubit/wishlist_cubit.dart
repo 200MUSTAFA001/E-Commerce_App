@@ -1,6 +1,11 @@
-import 'package:api_app/data/models/products_model.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+
+// Project imports:
+import 'package:api_app/data/models/products_model.dart';
 
 part 'wishlist_state.dart';
 

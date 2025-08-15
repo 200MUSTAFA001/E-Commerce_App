@@ -1,6 +1,9 @@
-import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:api_app/extensions.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({

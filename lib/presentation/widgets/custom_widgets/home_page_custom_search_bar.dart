@@ -1,8 +1,12 @@
-import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:go_router/go_router.dart';
 
+// Project imports:
+import 'package:api_app/extensions.dart';
 import '../../../app_router.dart';
 
 class HomePageCustomSearchBar extends StatelessWidget {

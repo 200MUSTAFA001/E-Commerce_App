@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:math';
 
-import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:api_app/extensions.dart';
 
 class CartAddedButton extends StatelessWidget {
   const CartAddedButton({super.key, required this.onPressed});

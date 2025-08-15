@@ -1,8 +1,12 @@
-import 'package:api_app/data/models/products_model.dart';
-import 'package:dartx/dartx.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:dartx/dartx.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
+// Project imports:
+import 'package:api_app/data/models/products_model.dart';
 import '../../data/models/cart_item_model.dart';
 
 part 'cart_state.dart';

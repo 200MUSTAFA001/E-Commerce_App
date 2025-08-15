@@ -1,6 +1,11 @@
-import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
+import 'package:api_app/extensions.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard(

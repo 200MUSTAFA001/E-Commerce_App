@@ -1,7 +1,12 @@
-import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
 import 'package:typewritertext/typewritertext.dart';
+
+// Project imports:
+import 'package:api_app/extensions.dart';
 
 class WelcomeUserTile extends StatelessWidget {
   const WelcomeUserTile({super.key});

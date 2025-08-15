@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 
 class CustomNavigationBar extends StatelessWidget {

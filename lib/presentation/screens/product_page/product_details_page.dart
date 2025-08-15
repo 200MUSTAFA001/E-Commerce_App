@@ -1,11 +1,14 @@
+// Dart imports:
 import 'dart:math';
 
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/cards/product_card.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/extensions.dart';
+import 'package:api_app/presentation/widgets/cards/product_card.dart';
 import '../../widgets/custom_buttons/product_details_page_cart_button.dart';
 import '../../widgets/custom_widgets/custom_rating_bar.dart';
 import '../../widgets/custom_widgets/details_page_counter.dart';
