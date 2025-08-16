@@ -1,9 +1,8 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:api_app/extensions.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
@@ -29,7 +28,7 @@ class CustomSearchBar extends StatelessWidget {
             width: context.width * 0.9,
             child: SearchBar(
               onChanged: onChanged,
-              autoFocus: true,
+              // autoFocus: true,
               padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 14)),
               controller: controller,
               leading: const Icon(CupertinoIcons.search),

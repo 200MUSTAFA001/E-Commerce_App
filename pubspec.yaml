@@ -28,7 +28,8 @@ dependencies:
   go_router: ^16.1.0
   slide_countdown: ^2.0.2
   typewritertext: ^3.0.9
-  import_sorter: ^4.6.0
+  modal_bottom_sheet: ^3.0.0
+#  import_sorter: ^4.6.0 => for initialization ( flutter pub run import_sorter:main )
 
 dev_dependencies:
   flutter_test:

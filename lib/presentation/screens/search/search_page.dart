@@ -4,9 +4,9 @@ import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/search_cubit.dart';
 import 'package:api_app/presentation/screens/search/empty_search_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../data/models/debouncer_model.dart';
 import '../../widgets/custom_widgets/custom_search_bar.dart';
@@ -64,12 +64,17 @@ class _SearchPageState extends State<SearchPage> {
                     return const Text("Total results: $searchListLength");
                   }
                 }),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.sort),
-                )
+                Row(
+                  children: [
+                    Text("Sort"),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(CupertinoIcons.sort_down),
+                    ),
+                  ],
+                ),
               ],
-            ).onlyPadding(left: 10),
+            ).onlyPadding(left: 10, right: 10),
           ),
           BlocBuilder<SearchCubit, SearchState>(
             builder: (context, state) {
