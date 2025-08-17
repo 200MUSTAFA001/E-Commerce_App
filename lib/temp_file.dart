@@ -1,98 +1,31 @@
-// class MyCategoriesBySectionsScreen extends StatelessWidget {
-//   const MyCategoriesBySectionsScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(),
-//       body: SizedBox(
-//         width: context.width * 1,
-//         height: context.height * 1,
-//         child: Row(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             SizedBox(
-//               width: context.width * 0.2,
-//               height: context.height * 1,
-//               child: ListView.builder(
-//                   itemCount: 10,
-//                   itemBuilder: (context, index) => Icon(Icons.icecream_sharp)
-//                       .onlyPadding(right: 0, left: 0, top: 0, bottom: 20)),
-//             ),
-//             Expanded(
-//               child: GridView.builder(
-//                 padding: EdgeInsets.only(left: 6, right: 6),
-//                 itemCount: electronics.length,
-//                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 2,
-//                   childAspectRatio: 4 / 6,
-//                   mainAxisSpacing: 0,
-//                   crossAxisSpacing: 12,
-//                 ),
-//                 itemBuilder: (context, index) => SizedBox(
-//                   child: Column(
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                     children: [
-//                       SizedBox(
-//                         width: context.width * 0.4,
-//                         height: context.height * 0.2,
-//                         child: ClipRRect(
-//                           borderRadius: BorderRadius.circular(8),
-//                           child: Image.asset(
-//                             electronics[index].categoryImage,
-//                             fit: BoxFit.fill,
-//                           ),
-//                         ),
-//                       ),
-//                       Text(
-//                         electronics[index].categoryName,
-//                         style: TextStyle(fontSize: 18),
-//                         overflow: TextOverflow.ellipsis,
-//                         maxLines: 2,
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
 
-//
-//
-//
-//
-//
-// import 'package:flutter/material.dart';
+void main() {
+  runApp(const MaterialApp(
+    home: Temp(),
+  ));
+}
 
-// void main() {
-//   runApp(const MaterialApp(
-//     home: SD(),
-//   ));
-// }
+class Temp extends StatefulWidget {
+  const Temp({super.key});
 
-// class Temp extends StatelessWidget {
-//   const Temp({super.key, required this.image});
-//
-//   final String image;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(),
-//         body: SizedBox(
-//       width: double.infinity,
-//       height: double.infinity,
-//       child: InteractiveViewer(
-//           child: Hero(tag: "00", child: Image.network(image))),
-//     ),);
-//   }
-// }
+  @override
+  State<Temp> createState() => _TempState();
+}
+
+class _TempState extends State<Temp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(),
+      ),
+    );
+  }
+}
 
 // class ProductOnSaleCard extends StatelessWidget {
 //   const ProductOnSaleCard({

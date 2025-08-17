@@ -24,15 +24,19 @@ class SearchCubit extends Cubit<SearchState> {
     //
     if (searchFieldIsEmpty == false) {
       searchList = await productsSearchRepo.getSearchedProductsList(product);
+      //
+      final searchListSorted =
+          searchList.sortedBy((product) => product.title).toList();
+      //
       emit(SearchLoaded(
-          searchList: searchList, searchListLength: searchList.length));
+          searchList: searchListSorted, searchListLength: searchList.length));
     } else {
       emit(SearchListEmpty(searchList: const [], searchListLength: 0));
     }
   }
 
-  void sortSearchList(List<Product> products, SortType sortType) {
-    List<Product> sortedList = List<Product>.from(products);
+  void sortSearchList(List<Product> searchList, SortType sortType) {
+    List<Product> sortedList = List<Product>.from(searchList);
 
     switch (sortType) {
       case SortType.titleAsc:
