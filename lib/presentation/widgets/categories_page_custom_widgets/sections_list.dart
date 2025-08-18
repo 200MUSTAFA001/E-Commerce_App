@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import '../../../data/models/section_item_model.dart';
+import '../../../../data/models/section_item_model.dart';
 
 class SectionsList extends StatefulWidget {
   const SectionsList({super.key, required this.selectedIndex});

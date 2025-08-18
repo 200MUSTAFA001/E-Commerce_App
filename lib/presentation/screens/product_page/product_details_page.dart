@@ -1,20 +1,20 @@
 // Dart imports:
 import 'dart:math';
 
+// Project imports:
+import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/extensions.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/cards/product_card.dart';
-import '../../widgets/custom_buttons/product_details_page_cart_button.dart';
-import '../../widgets/custom_widgets/custom_rating_bar.dart';
-import '../../widgets/custom_widgets/details_page_counter.dart';
-import '../../widgets/custom_widgets/favorite_icon.dart';
-import '../../widgets/custom_widgets/product_images.dart';
-import '../../widgets/lists/sliver_review_list.dart';
+import '../../widgets/custom_widgets/product_card.dart';
+import '../../widgets/home_page_custom_widgets/reviews_list.dart';
+import '../../widgets/product_details_page_custom_widgets/cart_button.dart';
+import '../../widgets/product_details_page_custom_widgets/custom_counter.dart';
+import '../../widgets/product_details_page_custom_widgets/favorite_icon.dart';
+import '../../widgets/product_details_page_custom_widgets/product_images.dart';
+import '../../widgets/product_details_page_custom_widgets/rating_bar.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   ProductDetailsPage({super.key, required this.product});
@@ -75,8 +75,8 @@ class ProductDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomRatingBar(rating: product.rating),
-                    DetailsPageCounter(
+                    RatingBar(rating: product.rating),
+                    CustomCounter(
                       quantity: (quantity) {
                         productPriceOnQuantity.value = quantity;
                       },
@@ -196,7 +196,7 @@ class ProductDetailsPage extends StatelessWidget {
               ],
             ).onlyPadding(right: 10, left: 16, top: 20),
           ),
-          SliverReviewList(reviews: product.reviews),
+          ReviewsList(reviews: product.reviews),
           SliverToBoxAdapter(
             child: SizedBox(
               height: context.height * 0.15,

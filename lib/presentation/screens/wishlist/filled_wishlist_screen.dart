@@ -1,15 +1,13 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project imports:
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/wishlist_cubit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../data/models/products_model.dart';
-import '../../widgets/cards/product_card.dart';
+import '../../widgets/custom_widgets/product_card.dart';
 
 class FilledWishlistScreen extends StatelessWidget {
   const FilledWishlistScreen({super.key, required this.favoritesList});

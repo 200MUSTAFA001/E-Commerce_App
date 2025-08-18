@@ -1,13 +1,15 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:api_app/extensions.dart';
-import '../../../data/models/products_model.dart';
-import '../cards/review_card.dart';
+import '../../../../data/models/products_model.dart';
+import '../product_details_page_custom_widgets/review_card.dart';
 
-class SliverReviewList extends StatelessWidget {
-  const SliverReviewList({
+class ReviewsList extends StatelessWidget {
+  const ReviewsList({
     super.key,
     required this.reviews,
   });

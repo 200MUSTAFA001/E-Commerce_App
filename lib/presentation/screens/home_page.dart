@@ -1,24 +1,23 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 // Project imports:
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
-import '../widgets/cards/welcome_user_tile.dart';
-import '../widgets/custom_buttons/show_more_home_page_button.dart';
-import '../widgets/custom_widgets/category_bar.dart';
-import '../widgets/custom_widgets/custom_drawer.dart';
-import '../widgets/custom_widgets/offer_banner.dart';
-import '../widgets/lists/products_list.dart';
-import '../widgets/lists/recommended_products_list.dart';
-import '../widgets/lists/sale_cards_list.dart';
-import '../widgets/lists/sublist_products.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import '../widgets/custom_widgets/products_list.dart';
+import '../widgets/home_page_custom_widgets/category_bar.dart';
+import '../widgets/home_page_custom_widgets/custom_drawer.dart';
+import '../widgets/home_page_custom_widgets/offer_banner.dart';
+import '../widgets/home_page_custom_widgets/recommended_list.dart';
+import '../widgets/home_page_custom_widgets/sale_cards_list.dart';
+import '../widgets/home_page_custom_widgets/show_more_button.dart';
+import '../widgets/home_page_custom_widgets/sublist_list.dart';
+import '../widgets/home_page_custom_widgets/welcome_user_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +49,6 @@ class _HomePageState extends State<HomePage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            toolbarHeight: context.height * 0.1,
             pinned: true,
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -116,7 +114,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          const RecommendedProductsList(),
+          const RecommendedList(),
           const OfferBanner(
             bannerImage: "assets/cardpics/bagsCard.jpg",
             category: "womens-bags",

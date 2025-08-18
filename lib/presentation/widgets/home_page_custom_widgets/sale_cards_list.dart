@@ -1,4 +1,6 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,7 +10,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 // Project imports:
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
-import '../cards/sales_card.dart';
+import 'sales_card.dart';
 
 class SaleCardsList extends StatelessWidget {
   SaleCardsList({super.key});

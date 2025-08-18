@@ -1,6 +1,8 @@
 // Flutter imports:
+
 // Project imports:
 import 'package:api_app/extensions.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +39,7 @@ class CustomSearchBar extends StatelessWidget {
                     onPressed: onPressed, icon: Icon(Icons.highlight_off))
               ],
               onChanged: onChanged,
-              autoFocus: true,
+              // autoFocus: true,
               padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 14)),
               controller: controller,
               leading: const Icon(CupertinoIcons.search),

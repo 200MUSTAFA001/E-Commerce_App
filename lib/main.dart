@@ -1,18 +1,17 @@
 // Dart imports:
 import 'dart:async';
 
+// Project imports:
+import 'package:api_app/logic/cubit/cart_cubit.dart';
+import 'package:api_app/logic/cubit/wishlist_cubit.dart';
 // Flutter imports:
+import 'package:api_app/presentation/widgets/custom_widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
-// Project imports:
-import 'package:api_app/logic/cubit/cart_cubit.dart';
-import 'package:api_app/logic/cubit/wishlist_cubit.dart';
-import 'package:api_app/presentation/widgets/custom_widgets/custom_snack_bar.dart';
 import 'app_router.dart';
 
 Future<void> main() async {

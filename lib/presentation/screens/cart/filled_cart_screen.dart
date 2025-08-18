@@ -1,15 +1,14 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project imports:
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/cart_cubit.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../data/models/cart_item_model.dart';
-import '../../widgets/cards/cart_product_card.dart';
-import '../../widgets/custom_widgets/checkout_bar.dart';
+import '../../widgets/cart_custom_widgets/cart_product_card.dart';
+import '../../widgets/cart_custom_widgets/checkout_bar.dart';
 
 class FilledCartScreen extends StatelessWidget {
   const FilledCartScreen({

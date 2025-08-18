@@ -1,14 +1,13 @@
 // Flutter imports:
+// Project imports:
+import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/lists/products_by_category_list.dart';
-import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
 import '../../logic/cubit/products_cubit.dart';
+import '../widgets/custom_widgets/products_by_category_list.dart';
+import '../widgets/custom_widgets/shimmer_list.dart';
 
 class ProductsOnSalePage extends StatefulWidget {
   const ProductsOnSalePage({super.key, required this.categories});

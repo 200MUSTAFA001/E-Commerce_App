@@ -4,12 +4,11 @@ import 'dart:math';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class CustomRatingBar extends StatelessWidget {
-  const CustomRatingBar({
+class RatingBar extends StatelessWidget {
+  const RatingBar({
     super.key,
     required this.rating,
   });

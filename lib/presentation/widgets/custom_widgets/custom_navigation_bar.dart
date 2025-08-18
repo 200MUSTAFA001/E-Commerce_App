@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 
 class CustomNavigationBar extends StatelessWidget {
-  const CustomNavigationBar(
-      {super.key,
-      required this.currentIndex,
-      required this.onTap,
-      required this.bottomNavigationBarItems});
+  const CustomNavigationBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+    required this.bottomNavigationBarItems,
+  });
 
   final int currentIndex;
   final void Function(int) onTap;

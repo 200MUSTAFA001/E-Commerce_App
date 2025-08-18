@@ -1,12 +1,14 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:api_app/extensions.dart';
 
-class DetailsPageCounter extends StatefulWidget {
-  DetailsPageCounter({
+class CustomCounter extends StatefulWidget {
+  CustomCounter({
     super.key,
     required this.quantity,
     required this.productQuantity,
@@ -17,10 +19,10 @@ class DetailsPageCounter extends StatefulWidget {
   final void Function(int productQuantity) quantity;
 
   @override
-  State<DetailsPageCounter> createState() => _DetailsPageCounterState();
+  State<CustomCounter> createState() => _CustomCounterState();
 }
 
-class _DetailsPageCounterState extends State<DetailsPageCounter> {
+class _CustomCounterState extends State<CustomCounter> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(

@@ -1,11 +1,11 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:api_app/app_router.dart';
 // Project imports:
 import 'package:api_app/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+// Package imports:
+import 'package:google_fonts/google_fonts.dart';
 
 class EmptyWishlistScreen extends StatelessWidget {
   const EmptyWishlistScreen({
@@ -43,7 +43,9 @@ class EmptyWishlistScreen extends StatelessWidget {
                   height: 30,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(AppRouter.allCategoriesPage);
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(context.width * 0.8, context.height * 0.08),
                     backgroundColor: Colors.green,

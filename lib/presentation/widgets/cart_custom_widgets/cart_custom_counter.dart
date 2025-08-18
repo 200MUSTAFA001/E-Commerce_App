@@ -1,12 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-class CartPageCounter extends StatelessWidget {
+class CartCustomCounter extends StatelessWidget {
   final int productQuantity;
   final void Function() onIncrement;
   final void Function() onDecrement;
 
-  const CartPageCounter({
+  const CartCustomCounter({
     super.key,
     required this.productQuantity,
     required this.onIncrement,

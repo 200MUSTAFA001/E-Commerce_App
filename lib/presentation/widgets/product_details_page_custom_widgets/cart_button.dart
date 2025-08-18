@@ -1,16 +1,17 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 // Project imports:
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
-import '../../../data/models/products_model.dart';
-import '../../../logic/cubit/cart_cubit.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../data/models/products_model.dart';
+import '../../../../logic/cubit/cart_cubit.dart';
 import '../custom_widgets/custom_snack_bar.dart';
 import 'add_to_cart_button.dart';
 import 'cart_added_button.dart';

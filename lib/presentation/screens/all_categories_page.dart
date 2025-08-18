@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 // Project imports:
 import '../../app_router.dart';
 import '../../data/models/category_item_model.dart';
-import '../widgets/lists/sections_list.dart';
+import '../widgets/categories_page_custom_widgets/sections_list.dart';
 
 class AllCategoriesPage extends StatefulWidget {
   const AllCategoriesPage({super.key});

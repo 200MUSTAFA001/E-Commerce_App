@@ -1,31 +1,30 @@
 // Flutter imports:
+// Project imports:
+import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/lists/shimmer_list.dart';
-import '../../../logic/cubit/products_cubit.dart';
-import '../cards/product_card.dart';
+import '../../../../logic/cubit/products_cubit.dart';
+import '../custom_widgets/product_card.dart';
+import '../custom_widgets/shimmer_list.dart';
 
-class SublistProducts extends StatelessWidget {
-  const SublistProducts({super.key});
+class RecommendedList extends StatelessWidget {
+  const RecommendedList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
         if (state is SeveralListsForHomePageLoaded) {
-          final sublistProducts = state.sublistProducts;
+          final recommendedProducts = state.recommendedProducts;
           return SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
                 const Text(
-                  "Hot Selling Footwear",
+                  "Recommended for you",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ).onlyPadding(left: 16, top: 10),
                 SizedBox(
@@ -33,9 +32,9 @@ class SublistProducts extends StatelessWidget {
                   width: context.height * 1,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: sublistProducts.length,
+                    itemCount: recommendedProducts.length,
                     itemBuilder: (context, index) => ProductCard(
-                      product: sublistProducts[index],
+                      product: recommendedProducts[index],
                     ),
                   ),
                 ),

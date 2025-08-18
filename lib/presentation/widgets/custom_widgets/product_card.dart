@@ -16,8 +16,8 @@ import 'package:slide_countdown/slide_countdown.dart';
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/wishlist_cubit.dart';
-import '../../../app_router.dart';
-import '../../../logic/cubit/cart_cubit.dart';
+import '../../../../app_router.dart';
+import '../../../../logic/cubit/cart_cubit.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
