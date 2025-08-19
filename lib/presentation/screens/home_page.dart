@@ -62,7 +62,17 @@ class _HomePageState extends State<HomePage> {
                   icon: const Icon(CupertinoIcons.search, size: 28),
                 ),
               ),
-              const SizedBox(width: 6)
+              IconButton(
+                onPressed: () {
+                  context.push(AppRouter.cartPage);
+                },
+                icon: const Icon(
+                  CupertinoIcons.bag,
+                  color: Colors.deepOrangeAccent,
+                  size: 28,
+                ),
+              ),
+              const SizedBox(width: 10)
             ],
           ),
           const WelcomeUserTile(),
@@ -82,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        context.push(AppRouter.allCategoriesPage);
+                        context.push(AppRouter.categoriesPage);
                       },
                       child: const Text(
                         "See All",

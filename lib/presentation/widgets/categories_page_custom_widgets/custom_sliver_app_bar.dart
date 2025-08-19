@@ -3,6 +3,7 @@ import 'package:api_app/presentation/widgets/categories_page_custom_widgets/prod
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../app_router.dart';
 
@@ -12,11 +13,13 @@ class CustomSliverAppBar extends StatefulWidget {
     required this.controller,
     required this.onChanged,
     required this.isClicked,
+    required this.categoryTitle,
   });
 
   bool isClicked;
   final TextEditingController controller;
   final void Function(String) onChanged;
+  final String categoryTitle;
 
   @override
   State<CustomSliverAppBar> createState() => _CustomSliverAppBarState();
@@ -31,6 +34,10 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           elevation: 0,
           pinned: true,
           toolbarHeight: context.height * 0.1,
+          title: Text(
+            widget.categoryTitle,
+            style: GoogleFonts.oswald(fontSize: 22, letterSpacing: 1),
+          ),
           actions: [
             IconButton(
                 onPressed: () {

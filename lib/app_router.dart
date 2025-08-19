@@ -1,10 +1,11 @@
 // Package imports:
 // Project imports:
+import 'package:api_app/data/models/category_item_model.dart';
 import 'package:api_app/data/repository/products_repo.dart';
 import 'package:api_app/data/services/web_services.dart';
 import 'package:api_app/logic/cubit/search_cubit.dart';
-import 'package:api_app/presentation/screens/all_categories_page.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
+import 'package:api_app/presentation/screens/categories_page.dart';
 import 'package:api_app/presentation/screens/main_page.dart';
 import 'package:api_app/presentation/screens/product_page/product_details_page.dart';
 import 'package:api_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
@@ -21,7 +22,7 @@ import 'logic/cubit/products_cubit.dart';
 class AppRouter {
   static const String homePage = "/";
   static const String productDetailsPage = "/productDetailsPage";
-  static const String allCategoriesPage = "/allCategoriesPage";
+  static const String categoriesPage = "/categoriesPage";
   static const String productsOnSalePage = "/productsOnSalePage";
   static const String productsByCategoryPage = "/productsByCategoryPage";
   static const String cartPage = "/cartPage";
@@ -42,8 +43,8 @@ class AppRouter {
             return ProductDetailsPage(product: product);
           }),
       GoRoute(
-          path: allCategoriesPage,
-          builder: (context, state) => const AllCategoriesPage()),
+          path: categoriesPage,
+          builder: (context, state) => const CategoriesPage()),
       GoRoute(
           path: productsOnSalePage,
           builder: (context, state) {
@@ -58,7 +59,7 @@ class AppRouter {
       GoRoute(
           path: productsByCategoryPage,
           builder: (context, state) {
-            final category = state.extra as String;
+            final category = state.extra as CategoryItem;
             return BlocProvider(
               create: (context) =>
                   ProductsCubit(ProductsRepo(GetProductsService())),

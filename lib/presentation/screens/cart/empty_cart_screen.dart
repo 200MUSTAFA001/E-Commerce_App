@@ -18,12 +18,13 @@ class EmptyCartScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+          SliverAppBar(
             title: Text("My cart"),
             centerTitle: true,
             pinned: true,
             elevation: 0,
             backgroundColor: Colors.transparent,
+            toolbarHeight: context.height * 0.1,
           ),
           SliverFillRemaining(
             hasScrollBody: false,

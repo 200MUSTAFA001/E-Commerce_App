@@ -1,13 +1,11 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:go_router/go_router.dart';
-
 // Project imports:
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:go_router/go_router.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -43,7 +41,7 @@ class CustomDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
             ),
             onTap: () {
-              context.push(AppRouter.allCategoriesPage);
+              context.push(AppRouter.categoriesPage);
             },
           ),
           ListTile(

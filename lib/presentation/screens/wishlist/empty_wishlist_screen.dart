@@ -44,7 +44,7 @@ class EmptyWishlistScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.push(AppRouter.allCategoriesPage);
+                    context.push(AppRouter.categoriesPage);
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(context.width * 0.8, context.height * 0.08),
