@@ -48,10 +48,15 @@ class _SectionsListState extends State<SectionsList> {
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: Column(
                 children: [
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor:
-                        isSelected ? Colors.blue.shade100 : Colors.transparent,
+                  Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: isSelected
+                          ? Colors.blue.shade100
+                          : Colors.transparent,
+                    ),
                     child: Icon(
                       sections[index].categoryIcon,
                       color: isSelected ? Colors.blue : Colors.grey,

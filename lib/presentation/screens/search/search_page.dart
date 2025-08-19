@@ -73,7 +73,9 @@ class _SearchPageState extends State<SearchPage> {
             onChanged: (value) {
               debouncer.run(() => search(value));
             },
-            onPressed: (/*Todo : to clear search bar */) {},
+            onPressed: () {
+              controller.clear();
+            },
           ),
           SliverToBoxAdapter(
             child: Row(

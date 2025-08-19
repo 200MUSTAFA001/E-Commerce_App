@@ -1,6 +1,5 @@
 // Flutter imports:
 
-// Project imports:
 import 'package:api_app/data/repository/products_repo.dart';
 import 'package:api_app/data/services/web_services.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';

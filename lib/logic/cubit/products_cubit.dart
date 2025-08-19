@@ -1,10 +1,10 @@
-// Package imports:
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
 // Project imports:
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/data/repository/products_repo.dart';
+import 'package:dartx/dartx.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../data/services/web_services.dart';
 
 part 'products_state.dart';
@@ -14,20 +14,20 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   final ProductsRepo productsRepo;
 
-  Future<List<Product>> getProductsByCategory(String category) async {
-    final List<Product> products = [];
+  List<Product> originalList = [];
+
+  Future<void> getProductsByCategory(String category) async {
     await productsRepo.getProductsByCategory(category).then((products) async {
+      originalList = products;
       emit(ProductsLoaded(products));
     });
-    return products;
   }
 
-  Future<List<Product>> getSeveralListForHomePage(
+  Future<void> getSeveralListForHomePage(
     String category,
     String recommendedCategory,
     String sublistCategory,
   ) async {
-    final List<Product> products = [];
     await productsRepo.getProductsByCategory(category).then((products) async {
       //
       final recommendedProducts = await ProductsRepo(GetProductsService())
@@ -42,8 +42,24 @@ class ProductsCubit extends Cubit<ProductsState> {
         sublistProducts,
       ));
     });
-    //
-    return products;
+  }
+
+  Future<void> searchForProduct(
+      String productTitle, bool isSearchBarEmpty, String category) async {
+    final currentState = state;
+
+    if (isSearchBarEmpty == false && currentState is ProductsLoaded) {
+      final List<Product> products = List<Product>.from(currentState.products);
+
+      final searchedList = products
+          .where(
+              (product) => product.title.startsWith(productTitle.capitalize()))
+          .toList();
+
+      emit(ProductsLoaded(searchedList));
+    } else {
+      emit(ProductsLoaded(originalList));
+    }
   }
 
   Future<void> getProductsBySeveralCategories(List<String> categories) async {

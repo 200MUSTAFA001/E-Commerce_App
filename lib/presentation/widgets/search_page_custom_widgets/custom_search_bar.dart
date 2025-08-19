@@ -1,5 +1,3 @@
-// Flutter imports:
-
 // Project imports:
 import 'package:api_app/extensions.dart';
 // Flutter imports:
@@ -7,11 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
-  const CustomSearchBar(
-      {super.key,
-      required this.controller,
-      required this.onChanged,
-      required this.onPressed});
+  const CustomSearchBar({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+    required this.onPressed,
+  });
 
   final TextEditingController controller;
   final void Function(String) onChanged;
@@ -36,10 +35,11 @@ class CustomSearchBar extends StatelessWidget {
               },
               trailing: [
                 IconButton(
-                    onPressed: onPressed, icon: Icon(Icons.highlight_off))
+                  onPressed: onPressed,
+                  icon: const Icon(Icons.highlight_off),
+                ),
               ],
               onChanged: onChanged,
-              // autoFocus: true,
               padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 14)),
               controller: controller,
               leading: const Icon(CupertinoIcons.search),

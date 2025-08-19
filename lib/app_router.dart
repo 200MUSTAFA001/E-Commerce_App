@@ -1,8 +1,7 @@
 // Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 // Project imports:
+import 'package:api_app/data/repository/products_repo.dart';
+import 'package:api_app/data/services/web_services.dart';
 import 'package:api_app/logic/cubit/search_cubit.dart';
 import 'package:api_app/presentation/screens/all_categories_page.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
@@ -13,9 +12,10 @@ import 'package:api_app/presentation/screens/products_by_category_page.dart';
 import 'package:api_app/presentation/screens/products_on_sale_page.dart';
 import 'package:api_app/presentation/screens/search/search_page.dart';
 import 'package:api_app/presentation/screens/wishlist/wishlist_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import 'data/models/products_model.dart';
-import 'data/repository/products_repo.dart';
-import 'data/services/web_services.dart';
 import 'logic/cubit/products_cubit.dart';
 
 class AppRouter {

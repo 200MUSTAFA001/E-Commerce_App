@@ -1,17 +1,15 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:dartx/dartx.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project imports:
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/data/models/sort_type_enm.dart';
 import 'package:api_app/data/repository/search_repo.dart';
 import 'package:api_app/data/services/web_services.dart';
+// Package imports:
+import 'package:dartx/dartx.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'search_state.dart';
 
@@ -39,9 +37,7 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
-  void sortSearchList(/*List<Product> searchList, */ SortType sortType) {
-    // List<Product> sortedList = List<Product>.from(searchList);
-
+  void sortSearchList(SortType sortType) {
     final cubitState = state;
 
     if (cubitState is SearchLoaded) {
