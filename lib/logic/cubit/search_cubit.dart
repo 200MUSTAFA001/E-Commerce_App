@@ -16,19 +16,21 @@ part 'search_state.dart';
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchInitial());
 
+  List<Product> originalList = []; // Todo for filter default List
+
   Future<void> getSearchList(String product, bool searchFieldIsEmpty) async {
     final ProductsSearchService searchForProductService =
         ProductsSearchService();
     //
     final SearchRepo productsSearchRepo = SearchRepo(searchForProductService);
     //
-    List<Product> searchList = [];
-    //
     if (searchFieldIsEmpty == false) {
-      searchList = await productsSearchRepo.getSearchedProductsList(product);
+      final searchList =
+          await productsSearchRepo.getSearchedProductsList(product);
       //
       final searchListSorted =
           searchList.sortedBy((product) => product.title).toList();
+      originalList = searchListSorted;
       //
       emit(SearchLoaded(
           searchList: searchListSorted, searchListLength: searchList.length));

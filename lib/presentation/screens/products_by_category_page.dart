@@ -1,12 +1,10 @@
-// Flutter imports:
 // Project imports:
-import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/categories_page_custom_widgets/products_by_category_search_bar.dart';
+import '../widgets/categories_page_custom_widgets/custom_sliver_app_bar.dart';
 import '../widgets/custom_widgets/products_by_category_list.dart';
 import '../widgets/custom_widgets/shimmer_list.dart';
 
@@ -29,23 +27,21 @@ class _ProductsByCategoryPageState extends State<ProductsByCategoryPage> {
 
   final TextEditingController controller = TextEditingController();
 
+  final bool isClicked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            elevation: 0,
-            pinned: true,
-            toolbarHeight: context.height * 0.1,
-            title: ProductsByCategorySearchBar(
-              controller: controller,
-              onChanged: (value) {
-                BlocProvider.of<ProductsCubit>(context)
-                    .searchForProduct(value, value.isEmpty, widget.category);
-              },
-            ),
+          CustomSliverAppBar(
+            controller: controller,
+            onChanged: (value) {
+              BlocProvider.of<ProductsCubit>(context)
+                  .searchForProduct(value, value.isEmpty, widget.category);
+            },
+            isClicked: isClicked,
           ),
           BlocBuilder<ProductsCubit, ProductsState>(
             builder: (context, state) {
