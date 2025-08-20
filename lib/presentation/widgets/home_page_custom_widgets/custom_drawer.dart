@@ -4,8 +4,8 @@ import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// Package imports:
-import 'package:go_router/go_router.dart';
+
+import 'drawer_item.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -27,51 +27,82 @@ class CustomDrawer extends StatelessWidget {
             ),
             subtitle: const Text("+01-23456789"),
             trailing: const Icon(CupertinoIcons.forward),
+            onTap: () {},
           ),
           const SizedBox(
             height: 6,
           ),
-          ListTile(
-            leading: const Icon(
-              CupertinoIcons.square_grid_2x2,
-              size: 30,
-            ),
-            title: const Text(
-              'Shop by Categories',
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-            ),
-            onTap: () {
-              context.push(AppRouter.categoriesPage);
-            },
+          const DrawerItem(
+            itemIcon: CupertinoIcons.square_grid_2x2,
+            itemTitle: "Categories",
+            itemPageName: AppRouter.categoriesPage,
           ),
-          ListTile(
-            leading: const Icon(
-              CupertinoIcons.cart,
-              size: 30,
-            ),
-            title: const Text(
-              'Cart',
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-            ),
-            onTap: () {
-              context.push(AppRouter.cartPage);
-            },
+          const DrawerItem(
+            itemIcon: CupertinoIcons.heart,
+            itemTitle: "Wishlist",
+            itemPageName: AppRouter.wishlistPage,
           ),
-          ListTile(
-            leading: const Icon(
-              CupertinoIcons.heart,
-              size: 30,
-            ),
-            title: const Text(
-              'Favorites',
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-            ),
-            onTap: () {
-              context.push(AppRouter.wishlistPage);
-            },
+          const DrawerItem(
+            itemIcon: CupertinoIcons.cart,
+            itemTitle: "Cart",
+            itemPageName: AppRouter.cartPage,
+          ),
+          const DrawerItem(
+            itemIcon: CupertinoIcons.info,
+            itemTitle: "about us",
+            itemPageName: AppRouter.cartPage,
+          ),
+          const DrawerItem(
+            itemIcon: Icons.logout,
+            itemTitle: "logout",
+            itemPageName: AppRouter.cartPage,
           ),
         ],
       ).onlyPadding(top: 40),
     );
   }
 }
+
+/*
+
+ // ListTile(
+          //   leading: const Icon(
+          //     CupertinoIcons.square_grid_2x2,
+          //     size: 30,
+          //   ),
+          //   title: const Text(
+          //     'Shop by Categories',
+          //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          //   ),
+          //   onTap: () {
+          //     context.push(AppRouter.categoriesPage);
+          //   },
+          // ),
+          // ListTile(
+          //   leading: const Icon(
+          //     CupertinoIcons.cart,
+          //     size: 30,
+          //   ),
+          //   title: const Text(
+          //     'Cart',
+          //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          //   ),
+          //   onTap: () {
+          //     context.push(AppRouter.cartPage);
+          //   },
+          // ),
+          // ListTile(
+          //   leading: const Icon(
+          //     CupertinoIcons.heart,
+          //     size: 30,
+          //   ),
+          //   title: const Text(
+          //     'Favorites',
+          //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          //   ),
+          //   onTap: () {
+          //     context.push(AppRouter.wishlistPage);
+          //   },
+          // ),
+
+*/

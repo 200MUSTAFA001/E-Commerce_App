@@ -26,29 +26,20 @@ class FilledCartScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text("My cart"),
-            centerTitle: true,
+            title: const Text("My cart"),
             pinned: true,
             elevation: 0,
             backgroundColor: Colors.transparent,
             toolbarHeight: context.height * 0.1,
-          ),
-          SliverToBoxAdapter(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    context.read<CartCubit>().clearCart();
-                  },
-                  child: const Text(
-                    "Remove All",
-                    style: TextStyle(fontSize: 18, color: Colors.red),
-                  ),
-                ),
-              ],
-            ).onlyPadding(right: 10),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  context.read<CartCubit>().clearCart();
+                },
+                child: const Text("Clear", style: TextStyle(color: Colors.red)),
+              ),
+              const SizedBox(width: 10)
+            ],
           ),
           SliverPadding(
             padding:

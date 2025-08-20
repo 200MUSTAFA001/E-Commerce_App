@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
                     context.push(AppRouter.searchPage);
                   },
                   icon: const Icon(CupertinoIcons.search, size: 28),
+                  tooltip: "search",
                 ),
               ),
               IconButton(
@@ -71,6 +72,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.deepOrangeAccent,
                   size: 28,
                 ),
+                tooltip: "cart",
               ),
               const SizedBox(width: 10)
             ],

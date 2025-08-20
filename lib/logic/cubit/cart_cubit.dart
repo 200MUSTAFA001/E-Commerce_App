@@ -1,12 +1,12 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:dartx/dartx.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-
 // Project imports:
 import 'package:api_app/data/models/products_model.dart';
+import 'package:api_app/presentation/widgets/custom_widgets/product_card.dart';
+// Package imports:
+import 'package:dartx/dartx.dart';
+import 'package:flutter/material.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+
 import '../../data/models/cart_item_model.dart';
 
 part 'cart_state.dart';
@@ -49,10 +49,28 @@ class CartCubit extends HydratedCubit<CartState> {
     emit(CartLoaded(cartProducts: updatedList));
   }
 
-  String getProductsPrices() {
+  int cartLength() {
+    final cartProducts = (state as CartLoaded).cartProducts;
+    final cartLength =
+        cartProducts.map((product) => product.productQuantity).toList().sum();
+    return cartLength;
+  }
+
+  List<int> getProductsPrices() {
     final cartProducts = (state as CartLoaded).cartProducts;
     if (cartProducts.isNotEmpty) {
-      final productsPrices = cartProducts
+      final pricesBeforeDiscount = cartProducts
+          .map((product) {
+            final productsPrices = product.productQuantity *
+                priceBeforeDiscount(
+                    product.product.price, product.product.discountPercentage);
+            return productsPrices;
+          })
+          .toList()
+          .sum()
+          .toInt();
+      //
+      final pricesAfterDiscount = cartProducts
           .map((product) {
             final productsPrices =
                 product.productQuantity * product.product.price;
@@ -60,11 +78,14 @@ class CartCubit extends HydratedCubit<CartState> {
           })
           .toList()
           .sum()
-          .toStringAsFixed(2);
+          .toInt();
+      //
+      final totalDiscount =
+          (pricesBeforeDiscount - pricesAfterDiscount).toInt();
 
-      return productsPrices;
+      return [pricesBeforeDiscount, totalDiscount, pricesAfterDiscount];
     } else {
-      return "0";
+      return [];
     }
   }
 
