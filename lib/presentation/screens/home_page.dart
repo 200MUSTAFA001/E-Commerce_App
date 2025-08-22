@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../data/models/category_item_model.dart';
 import '../widgets/custom_widgets/products_list.dart';
 import '../widgets/home_page_custom_widgets/category_bar.dart';
 import '../widgets/home_page_custom_widgets/custom_drawer.dart';
@@ -127,14 +128,22 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           const RecommendedList(),
-          const OfferBanner(
+          OfferBanner(
             bannerImage: "assets/cardpics/bagsCard.jpg",
-            category: "womens-bags",
+            categoryItem: CategoryItem(
+              categoryName: "womens-bags",
+              categoryImage: "",
+              categoryTitle: "Women's bags",
+            ),
           ),
           const SublistProducts(),
-          const OfferBanner(
-            bannerImage: "assets/cardpics/watchsCard.jpg",
-            category: "mens-watches",
+          OfferBanner(
+            bannerImage: "assets/cardpics/watchesCard.jpg",
+            categoryItem: CategoryItem(
+              categoryName: "mens-watches",
+              categoryImage: "",
+              categoryTitle: "Watches",
+            ),
           ),
           SliverToBoxAdapter(
             child: SizedBox(
