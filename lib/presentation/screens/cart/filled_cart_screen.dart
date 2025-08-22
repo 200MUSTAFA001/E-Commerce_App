@@ -1,4 +1,3 @@
-// Flutter imports:
 // Project imports:
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/cart_cubit.dart';
@@ -14,16 +13,20 @@ class FilledCartScreen extends StatelessWidget {
   const FilledCartScreen({
     super.key,
     required this.cartProducts,
+    required this.controller,
   });
 
   final List<CartItem> cartProducts;
 
+  final ScrollController controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CheckoutBar(),
+      bottomNavigationBar: CheckoutBar(controller: controller),
       backgroundColor: Colors.white,
       body: CustomScrollView(
+        controller: controller,
         slivers: [
           SliverAppBar(
             title: const Text("My cart"),

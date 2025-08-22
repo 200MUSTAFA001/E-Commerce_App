@@ -66,7 +66,7 @@ class AppRouter {
               child: ProductsByCategoryPage(category: category),
             );
           }),
-      GoRoute(path: cartPage, builder: (context, state) => const CartPage()),
+      GoRoute(path: cartPage, builder: (context, state) => CartPage()),
       GoRoute(
           path: wishlistPage,
           builder: (context, state) => const WishlistPage()),
