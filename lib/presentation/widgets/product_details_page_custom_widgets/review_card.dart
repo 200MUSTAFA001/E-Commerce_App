@@ -1,71 +1,72 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({
     super.key,
     required this.reviewerName,
-    required this.reviewerEmail,
-    required this.reviewerRating,
     required this.reviewerComment,
+    required this.reviewerRate,
     required this.reviewerCommentDate,
   });
 
   final String reviewerName;
-  final String reviewerEmail;
-  final int reviewerRating;
   final String reviewerComment;
+  final int reviewerRate;
   final DateTime reviewerCommentDate;
 
   @override
   Widget build(BuildContext context) {
-    final day = DateFormat('EEEE').format(reviewerCommentDate);
-    final month = DateFormat('MMMM').format(reviewerCommentDate);
+    final month = DateFormat('MMM').format(reviewerCommentDate);
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 0,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              reviewerName,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            RatingBarIndicator(
-              itemBuilder: (_, index) => const Icon(
-                CupertinoIcons.star_fill,
-                color: Colors.orangeAccent,
-              ),
-              itemCount: 5,
-              rating: reviewerRating.toDouble(),
-              itemSize: 20,
-            ),
-          ],
+        RatingBarIndicator(
+          itemPadding: const EdgeInsets.only(right: 6),
+          itemBuilder: (_, __) => const Icon(FontAwesomeIcons.solidStar,
+              color: Colors.orangeAccent),
+          itemCount: 5,
+          rating: reviewerRate.toDouble(),
+          itemSize: 20,
         ),
-        Text(
-          reviewerEmail,
-          style: TextStyle(color: Colors.grey.shade600),
-        ),
-        const SizedBox(
-          height: 18,
-        ),
+        const SizedBox(height: 14),
         Text(
           reviewerComment,
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.grey.shade800,
+          style:
+              GoogleFonts.notoSans(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        const SizedBox(height: 6),
+        const Text(
+          "Shirt is exactly as shown on the above picture perfect fitting as expected value for money product must buy",
+          style: TextStyle(color: Colors.black87, fontSize: 16),
+        ),
+        const SizedBox(height: 14),
+        RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                  text: "$reviewerName, ",
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  )),
+              TextSpan(
+                text:
+                    "${reviewerCommentDate.day} $month ${reviewerCommentDate.year}",
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Text(
-          '$day, ${reviewerCommentDate.day} $month',
         ),
       ],
     );

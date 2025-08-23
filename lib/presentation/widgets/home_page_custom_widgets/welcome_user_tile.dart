@@ -1,12 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:google_fonts/google_fonts.dart';
-import 'package:typewritertext/typewritertext.dart';
-
 // Project imports:
 import 'package:api_app/extensions.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeUserTile extends StatelessWidget {
   const WelcomeUserTile({super.key});
@@ -23,12 +20,12 @@ class WelcomeUserTile extends StatelessWidget {
             letterSpacing: 1,
           ),
         ),
-        subtitle: TypeWriter.text(
+        subtitle: Text(
           "Let's start Shopping!",
-          duration: const Duration(milliseconds: 100),
-          style:
-              GoogleFonts.shareTech(fontSize: 18, fontWeight: FontWeight.w500),
-          repeat: true,
+          style: GoogleFonts.shareTech(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ).onlyPadding(bottom: 6),
     );

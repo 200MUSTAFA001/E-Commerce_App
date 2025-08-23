@@ -1,18 +1,21 @@
 // Dart imports:
+// Project imports:
 import 'dart:math';
 
-// Project imports:
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/extensions.dart';
+import 'package:api_app/presentation/widgets/product_details_page_custom_widgets/reviews_list.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/custom_widgets/product_card.dart';
-import '../../widgets/home_page_custom_widgets/reviews_list.dart';
+import '../../widgets/product_details_page_custom_widgets/bottom_sheet_rating_list.dart';
 import '../../widgets/product_details_page_custom_widgets/cart_button.dart';
 import '../../widgets/product_details_page_custom_widgets/custom_counter.dart';
 import '../../widgets/product_details_page_custom_widgets/favorite_icon.dart';
+import '../../widgets/product_details_page_custom_widgets/no_reviews_widget.dart';
 import '../../widgets/product_details_page_custom_widgets/product_images.dart';
 import '../../widgets/product_details_page_custom_widgets/rating_bar.dart';
 
@@ -26,6 +29,7 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       floatingActionButton: ValueListenableBuilder<int>(
         valueListenable: productPriceOnQuantity,
         builder: (context, value, _) => ProductDetailsPageCartButton(
@@ -61,21 +65,20 @@ class ProductDetailsPage extends StatelessWidget {
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 18,
+              spacing: 20,
               children: [
                 Text(
                   product.title,
-                  style: const TextStyle(
+                  style: GoogleFonts.notoSans(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    RatingBar(rating: product.rating),
+                    CustomRatingBar(rating: product.rating),
                     CustomCounter(
                       quantity: (quantity) {
                         productPriceOnQuantity.value = quantity;
@@ -84,6 +87,7 @@ class ProductDetailsPage extends StatelessWidget {
                     )
                   ],
                 ),
+                const SizedBox(),
                 RichText(
                   text: TextSpan(
                     children: [
@@ -141,62 +145,165 @@ class ProductDetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 4),
                 Text(
                   product.description,
-                  style: TextStyle(fontSize: 17, color: Colors.grey.shade600),
+                  style: GoogleFonts.notoSans(
+                      fontSize: 17, color: Colors.grey.shade600),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  "Shipping & Returns",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text:
-                            "${product.returnPolicy} and ${product.shippingInformation}  ",
-                        style: TextStyle(
-                            fontSize: 18, color: Colors.grey.shade700),
-                      ),
-                      TextSpan(
-                        text: "with ${product.warrantyInformation}",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey.shade700,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  "Reviews",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "( ${(product.rating).toStringAsFixed(1)} Ratings )",
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "${Random().nextInt(1000)} Reviews",
-                  style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
-                ),
               ],
-            ).onlyPadding(right: 10, left: 16, top: 20),
+            ).onlyPadding(right: 20, left: 20, top: 20),
           ),
-          ReviewsList(reviews: product.reviews),
+          SliverToBoxAdapter(
+            child: Card(
+              color: Colors.white,
+              elevation: 1,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 14,
+                children: [
+                  Text(
+                    "Shipping & Returns",
+                    style: GoogleFonts.notoSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text:
+                              "${product.returnPolicy} and ${product.shippingInformation}  ",
+                          style: GoogleFonts.notoSans(
+                              fontSize: 18, color: Colors.grey.shade700),
+                        ),
+                        TextSpan(
+                          text: "with ${product.warrantyInformation}",
+                          style: GoogleFonts.notoSans(
+                            fontSize: 18,
+                            color: Colors.grey.shade700,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ).onlyPadding(right: 12, left: 12, top: 6, bottom: 12),
+            ).onlyPadding(top: 14, bottom: 30),
+          ),
+          SliverToBoxAdapter(
+            child: Card(
+              color: Colors.white,
+              elevation: 1,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 26,
+                children: [
+                  Text(
+                    "Ratings & Reviews",
+                    style: GoogleFonts.notoSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ).onlyPadding(left: 14),
+                  ListTile(
+                    horizontalTitleGap: 12,
+                    leading: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: (product.rating).toStringAsFixed(1),
+                            style: GoogleFonts.notoSans(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "/5",
+                            style: GoogleFonts.notoSans(
+                              color: Colors.black54,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    title: Text(
+                      "Overall Rating",
+                      style: GoogleFonts.notoSans(
+                          fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                    subtitle: Text(
+                      "${Random().nextInt(1000)} Ratings",
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    trailing: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                        side: const BorderSide(
+                            width: 2, color: Colors.deepOrangeAccent),
+                      ),
+                      child: const Text(
+                        "Rate",
+                        style: TextStyle(
+                          color: Colors.deepOrangeAccent,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ).onlyPadding(top: 16, bottom: 20),
+          ),
+          product.reviews.isEmpty
+              ? const NoReviewsWidget()
+              : ReviewsList(
+                  reviews: product.reviews,
+                  reviewsCount: 1,
+                ),
+          SliverToBoxAdapter(
+            child: Card(
+              color: Colors.white,
+              elevation: 1,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
+              child: ListTile(
+                onTap: () {
+                  showModalBottomSheet(
+                    showDragHandle: true,
+                    backgroundColor: Colors.white,
+                    context: context,
+                    builder: (context) =>
+                        BottomSheetRatingList(reviews: product.reviews),
+                  );
+                },
+                leading: Text(
+                  "View All ${Random().nextInt(1000)} Reviews",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                ),
+                trailing: const Icon(
+                  CupertinoIcons.forward,
+                  color: Colors.deepOrangeAccent,
+                ),
+              ),
+            ),
+          ),
           SliverToBoxAdapter(
             child: SizedBox(
               height: context.height * 0.15,

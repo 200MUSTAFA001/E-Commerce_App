@@ -1,14 +1,13 @@
 // Dart imports:
 import 'dart:math';
 
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class RatingBar extends StatelessWidget {
-  const RatingBar({
+class CustomRatingBar extends StatelessWidget {
+  const CustomRatingBar({
     super.key,
     required this.rating,
   });
@@ -21,8 +20,9 @@ class RatingBar extends StatelessWidget {
       spacing: 10,
       children: [
         RatingBarIndicator(
+          itemPadding: const EdgeInsets.only(right: 4),
           itemBuilder: (_, index) => const Icon(
-            CupertinoIcons.star_fill,
+            FontAwesomeIcons.solidStar,
             color: Colors.orangeAccent,
           ),
           itemCount: 5,

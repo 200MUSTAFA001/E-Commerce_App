@@ -19,8 +19,7 @@ migrate_working_dir/
 .idea/
 
 # TempFile
-lib/temp_file.dart/
-lib/temp_homepage_search_bar.dart/
+lib/temp_file.dart
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
