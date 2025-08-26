@@ -1,27 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:google_fonts/google_fonts.dart';
-
 // Project imports:
 import 'package:api_app/extensions.dart';
-
-class SaleCardData {
-  final List<String> cardCategories;
-  final String cardName;
-  final String cardImage;
-  final Color buttonColor;
-  final Color cardNameColor;
-
-  SaleCardData({
-    required this.cardCategories,
-    required this.cardName,
-    required this.cardImage,
-    required this.buttonColor,
-    required this.cardNameColor,
-  });
-}
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:google_fonts/google_fonts.dart';
 
 class SaleCard extends StatelessWidget {
   const SaleCard({
@@ -75,9 +57,10 @@ class SaleCard extends StatelessWidget {
               child: const Text(
                 "Get Now",
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             )
           ],

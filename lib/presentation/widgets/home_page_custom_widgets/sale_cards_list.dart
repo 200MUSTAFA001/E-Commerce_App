@@ -1,22 +1,23 @@
 // Flutter imports:
 
+// Project imports:
+import 'package:api_app/app_router.dart';
+import 'package:api_app/extensions.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-// Project imports:
-import 'package:api_app/app_router.dart';
-import 'package:api_app/extensions.dart';
+import '../../../data/models/sale_card_model.dart';
 import 'sales_card.dart';
 
 class SaleCardsList extends StatelessWidget {
   SaleCardsList({super.key});
 
-  final List<SaleCardData> saleCards = [
-    SaleCardData(
+  final List<SaleCardModel> saleCards = [
+    SaleCardModel(
+      categoriesCollectionName: "Electronics",
       cardCategories: [
         "laptops",
         "mobile-accessories",
@@ -28,14 +29,16 @@ class SaleCardsList extends StatelessWidget {
       buttonColor: Colors.green.shade700,
       cardNameColor: Colors.white,
     ),
-    SaleCardData(
+    SaleCardModel(
+      categoriesCollectionName: "Kitchenware",
       cardCategories: ["kitchen-accessories"],
       cardName: "kitchenware Sale - Up to 50% Off",
       cardImage: "assets/cardpics/appliances.png",
       buttonColor: Colors.deepOrange.shade900,
       cardNameColor: Colors.white,
     ),
-    SaleCardData(
+    SaleCardModel(
+      categoriesCollectionName: "Fashion",
       cardCategories: [
         "mens-shirts",
         "mens-shoes",
@@ -50,7 +53,8 @@ class SaleCardsList extends StatelessWidget {
       buttonColor: Colors.orange.shade700,
       cardNameColor: Colors.blue.shade900,
     ),
-    SaleCardData(
+    SaleCardModel(
+      categoriesCollectionName: "Furniture",
       cardCategories: ["furniture", "home-decoration"],
       cardName: "Furniture Sale - Up to 30% Off",
       cardImage: "assets/cardpics/furniture2.png",
@@ -78,11 +82,23 @@ class SaleCardsList extends StatelessWidget {
                 buttonColor: saleCards[index].buttonColor,
                 cardNameColor: saleCards[index].cardNameColor,
                 onTap: () {
-                  final arguments = saleCards[index].cardCategories;
+                  final categoriesCollection = saleCards[index].cardCategories;
+                  final categoriesCollectionName =
+                      saleCards[index].categoriesCollectionName;
+                  final arguments = [
+                    {"categories": categoriesCollection},
+                    {"collectionName": categoriesCollectionName}
+                  ];
                   context.push(AppRouter.productsOnSalePage, extra: arguments);
                 },
                 elevatedButtonOnPressed: () {
-                  final arguments = saleCards[index].cardCategories;
+                  final categoriesCollection = saleCards[index].cardCategories;
+                  final categoriesCollectionName =
+                      saleCards[index].categoriesCollectionName;
+                  final arguments = [
+                    {"categories": categoriesCollection},
+                    {"collectionName": categoriesCollectionName}
+                  ];
                   context.push(AppRouter.productsOnSalePage, extra: arguments);
                 },
               ),

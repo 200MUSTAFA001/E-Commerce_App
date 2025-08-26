@@ -1,9 +1,9 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../logic/cubit/products_cubit.dart';
 import '../widgets/custom_widgets/products_by_category_list.dart';
@@ -12,7 +12,7 @@ import '../widgets/custom_widgets/shimmer_list.dart';
 class ProductsOnSalePage extends StatefulWidget {
   const ProductsOnSalePage({super.key, required this.categories});
 
-  final List<String> categories;
+  final List<Map<String, dynamic>> categories;
 
   @override
   State<ProductsOnSalePage> createState() => _ProductsOnSalePageState();
@@ -22,43 +22,39 @@ class _ProductsOnSalePageState extends State<ProductsOnSalePage> {
   @override
   void initState() {
     super.initState();
+    final categories = widget.categories.first["categories"] as List<String>;
     BlocProvider.of<ProductsCubit>(context)
-        .getProductsBySeveralCategories(widget.categories);
+        .getProductsBySeveralCategories(categories);
   }
 
   @override
   Widget build(BuildContext context) {
+    final categoriesCollectionName =
+        widget.categories.last["collectionName"] as String;
     return Scaffold(
-      body: BlocBuilder<ProductsCubit, ProductsState>(
-        builder: (context, state) {
-          if (state is ProductsLoaded) {
-            final products = state.products;
-            return CustomScrollView(
-              slivers: [
-                const SliverAppBar(elevation: 0),
-                ProductsGrid(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            title: Text(
+              categoriesCollectionName,
+              style: GoogleFonts.oswald(fontSize: 22, letterSpacing: 1),
+            ),
+          ),
+          BlocBuilder<ProductsCubit, ProductsState>(
+            builder: (context, state) {
+              if (state is ProductsLoaded) {
+                final products = state.products;
+                return ProductsGrid(
                   products: products,
                   itemCount: products.length,
-                ),
-              ],
-            ).onlyPadding(right: 2);
-          } else if (state is ProductsLoading) {
-            return const Center(
-              child: CustomScrollView(
-                slivers: [
-                  SliverAppBar(),
-                  ShimmerList(cardsCount: 8),
-                ],
-              ),
-            );
-          } else {
-            return const Center(
-                child: Icon(
-              Icons.error_outline,
-              size: 200,
-            ));
-          }
-        },
+                );
+              } else {
+                return const ShimmerList(cardsCount: 8);
+              }
+            },
+          ),
+        ],
       ),
     );
   }
