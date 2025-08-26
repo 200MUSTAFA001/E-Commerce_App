@@ -40,7 +40,11 @@ class AppRouter {
           path: productDetailsPage,
           builder: (context, state) {
             final product = state.extra as Product;
-            return ProductDetailsPage(product: product);
+            return BlocProvider(
+              create: (context) =>
+                  ProductsCubit(ProductsRepo(GetProductsService())),
+              child: ProductDetailsPage(product: product),
+            );
           }),
       GoRoute(
           path: categoriesPage,
@@ -48,7 +52,7 @@ class AppRouter {
       GoRoute(
           path: productsOnSalePage,
           builder: (context, state) {
-            final categories = state.extra as List<String>;
+            final categories = state.extra as List<Map<String, dynamic>>;
 
             return BlocProvider(
               create: (context) =>

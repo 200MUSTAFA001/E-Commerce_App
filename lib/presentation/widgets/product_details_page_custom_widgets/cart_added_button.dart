@@ -1,11 +1,10 @@
 // Dart imports:
 import 'dart:math';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:api_app/extensions.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 
 class CartAddedButton extends StatelessWidget {
   const CartAddedButton({super.key, required this.onPressed});
@@ -25,8 +24,6 @@ class CartAddedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
           spacing: 16,
           children: [
             const Icon(
@@ -34,27 +31,29 @@ class CartAddedButton extends StatelessWidget {
               size: 30,
               color: Colors.white,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Added to the Cart",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Added to the Cart",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                Text(
-                  "added by ${Random().nextInt(1000)} users",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.white,
+                  Text(
+                    "added by ${Random().nextInt(1000)} users",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),

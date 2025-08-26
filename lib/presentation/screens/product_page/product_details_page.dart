@@ -4,10 +4,12 @@ import 'dart:math';
 
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/extensions.dart';
+import 'package:api_app/logic/cubit/products_cubit.dart';
 import 'package:api_app/presentation/widgets/product_details_page_custom_widgets/reviews_list.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/custom_widgets/product_card.dart';
@@ -17,12 +19,25 @@ import '../../widgets/product_details_page_custom_widgets/custom_counter.dart';
 import '../../widgets/product_details_page_custom_widgets/favorite_icon.dart';
 import '../../widgets/product_details_page_custom_widgets/no_reviews_widget.dart';
 import '../../widgets/product_details_page_custom_widgets/product_images.dart';
+import '../../widgets/product_details_page_custom_widgets/product_page_sublist.dart';
 import '../../widgets/product_details_page_custom_widgets/rating_bar.dart';
 
-class ProductDetailsPage extends StatelessWidget {
-  ProductDetailsPage({super.key, required this.product});
+class ProductDetailsPage extends StatefulWidget {
+  const ProductDetailsPage({super.key, required this.product});
 
   final Product product;
+
+  @override
+  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+}
+
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  @override
+  void initState() {
+    super.initState();
+    final category = widget.product.category;
+    BlocProvider.of<ProductsCubit>(context).getProductsByCategory(category);
+  }
 
   final ValueNotifier<int> productPriceOnQuantity = ValueNotifier(1);
 
@@ -33,8 +48,8 @@ class ProductDetailsPage extends StatelessWidget {
       floatingActionButton: ValueListenableBuilder<int>(
         valueListenable: productPriceOnQuantity,
         builder: (context, value, _) => ProductDetailsPageCartButton(
-          product: product,
-          productPrice: (product.price * value).toStringAsFixed(2),
+          product: widget.product,
+          productPrice: (widget.product.price * value).toStringAsFixed(2),
           productQuantity: value,
         ),
       ),
@@ -44,6 +59,7 @@ class ProductDetailsPage extends StatelessWidget {
           SliverAppBar(
             elevation: 0,
             pinned: true,
+            backgroundColor: Colors.white,
             leading: IconButton(
                 style:
                     IconButton.styleFrom(backgroundColor: Colors.grey.shade300),
@@ -51,15 +67,16 @@ class ProductDetailsPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 icon: const Icon(CupertinoIcons.back)),
-            flexibleSpace: ProductImages(images: product.images),
+            flexibleSpace: ProductImages(images: widget.product.images),
             expandedHeight: context.height * 0.5,
             actions: [
               FavoriteIcon(
-                product: product,
+                product: widget.product,
               ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
               const SizedBox(
                 width: 16,
-              )
+              ),
             ],
           ),
           SliverToBoxAdapter(
@@ -68,7 +85,7 @@ class ProductDetailsPage extends StatelessWidget {
               spacing: 20,
               children: [
                 Text(
-                  product.title,
+                  widget.product.title,
                   style: GoogleFonts.notoSans(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
@@ -78,7 +95,7 @@ class ProductDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomRatingBar(rating: product.rating),
+                    CustomRatingBar(rating: widget.product.rating),
                     CustomCounter(
                       quantity: (quantity) {
                         productPriceOnQuantity.value = quantity;
@@ -92,7 +109,7 @@ class ProductDetailsPage extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: r"$" "${product.price}  ",
+                        text: r"$" "${widget.product.price}  ",
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -101,7 +118,7 @@ class ProductDetailsPage extends StatelessWidget {
                       ),
                       TextSpan(
                         text: r"$"
-                            "${priceBeforeDiscount(product.price, product.discountPercentage)}",
+                            "${priceBeforeDiscount(widget.product.price, widget.product.discountPercentage)}",
                         style: const TextStyle(
                           color: Colors.grey,
                           decoration: TextDecoration.lineThrough,
@@ -110,7 +127,7 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: "   ${product.discountPercentage}% OFF",
+                        text: "   ${widget.product.discountPercentage}% OFF",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w900,
@@ -133,9 +150,9 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: product.availabilityStatus,
+                        text: widget.product.availabilityStatus,
                         style: TextStyle(
-                          color: product.availabilityStatus == "In Stock"
+                          color: widget.product.availabilityStatus == "In Stock"
                               ? Colors.greenAccent.shade700
                               : Colors.red,
                           fontSize: 18,
@@ -147,7 +164,7 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  product.description,
+                  widget.product.description,
                   style: GoogleFonts.notoSans(
                       fontSize: 17, color: Colors.grey.shade600),
                 ),
@@ -177,12 +194,12 @@ class ProductDetailsPage extends StatelessWidget {
                       children: [
                         TextSpan(
                           text:
-                              "${product.returnPolicy} and ${product.shippingInformation}  ",
+                              "${widget.product.returnPolicy} and ${widget.product.shippingInformation}  ",
                           style: GoogleFonts.notoSans(
                               fontSize: 18, color: Colors.grey.shade700),
                         ),
                         TextSpan(
-                          text: "with ${product.warrantyInformation}",
+                          text: "with ${widget.product.warrantyInformation}",
                           style: GoogleFonts.notoSans(
                             fontSize: 18,
                             color: Colors.grey.shade700,
@@ -219,7 +236,7 @@ class ProductDetailsPage extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: (product.rating).toStringAsFixed(1),
+                            text: (widget.product.rating).toStringAsFixed(1),
                             style: GoogleFonts.notoSans(
                               color: Colors.black,
                               fontSize: 30,
@@ -267,10 +284,10 @@ class ProductDetailsPage extends StatelessWidget {
               ),
             ).onlyPadding(top: 16, bottom: 20),
           ),
-          product.reviews.isEmpty
+          widget.product.reviews.isEmpty
               ? const NoReviewsWidget()
               : ReviewsList(
-                  reviews: product.reviews,
+                  reviews: widget.product.reviews,
                   reviewsCount: 1,
                 ),
           SliverToBoxAdapter(
@@ -286,7 +303,7 @@ class ProductDetailsPage extends StatelessWidget {
                     backgroundColor: Colors.white,
                     context: context,
                     builder: (context) =>
-                        BottomSheetRatingList(reviews: product.reviews),
+                        BottomSheetRatingList(reviews: widget.product.reviews),
                   );
                 },
                 leading: Text(
@@ -304,6 +321,7 @@ class ProductDetailsPage extends StatelessWidget {
               ),
             ),
           ),
+          ProductPageSubList(product: widget.product),
           SliverToBoxAdapter(
             child: SizedBox(
               height: context.height * 0.15,
