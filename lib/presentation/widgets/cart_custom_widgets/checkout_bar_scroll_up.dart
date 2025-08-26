@@ -38,7 +38,6 @@ class CheckoutBarScrollUp extends StatelessWidget {
                 height: context.height * 0.24,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 5,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

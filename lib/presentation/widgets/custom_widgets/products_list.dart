@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../logic/cubit/products_cubit.dart';
 
-class ProductsList extends StatelessWidget {
-  const ProductsList({super.key});
+class HomePageProductsList extends StatelessWidget {
+  const HomePageProductsList({super.key});
 
   @override
   Widget build(BuildContext context) {

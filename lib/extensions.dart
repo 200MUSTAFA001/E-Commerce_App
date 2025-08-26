@@ -19,7 +19,7 @@ extension PaddingExtension on Widget {
     );
   }
 
-  Widget allPadding({required double padding}) {
+  Widget allPadding({double padding = 0}) {
     return Padding(
       padding: EdgeInsets.all(padding),
       child: this,

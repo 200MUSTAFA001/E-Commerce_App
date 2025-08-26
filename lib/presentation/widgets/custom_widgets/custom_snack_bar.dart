@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
 
-void showSnackBar(BuildContext context) {
+void showSnackBar(BuildContext context, String message, Widget icon) {
   scaffoldMessengerKey.currentState?.showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
@@ -14,14 +14,14 @@ void showSnackBar(BuildContext context) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      content: const Row(
+      content: Row(
         children: [
-          Icon(Icons.check_circle_outline, color: Colors.green, size: 28),
-          SizedBox(width: 12),
+          icon,
+          const SizedBox(width: 12),
           Expanded(
             child: Text(
-              "Product added",
-              style: TextStyle(
+              message,
+              style: const TextStyle(
                 color: Colors.black87,
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -35,6 +35,12 @@ void showSnackBar(BuildContext context) {
   );
 }
 
+// void showMaterialBanner(Widget content, List<Widget> actions) {
+//   final MaterialBanner materialBanner =
+//       MaterialBanner(content: content, actions: actions);
+//   scaffoldMessengerKey.currentState?.showMaterialBanner(materialBanner);
+// }
+//
 // void showSnackBar(String message, BuildContext context){
 // scaffoldMessengerKey.currentState?.showSnackBar(
 //   SnackBar(

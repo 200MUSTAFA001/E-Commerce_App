@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ).onlyPadding(right: 16, left: 16, top: 20, bottom: 10),
           ),
-          const ProductsList(),
+          const HomePageProductsList(),
           ShowMoreHomePageButton(
             onPressed: () {
               context.push(

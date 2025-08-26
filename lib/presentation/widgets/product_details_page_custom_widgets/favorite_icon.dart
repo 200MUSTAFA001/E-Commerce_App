@@ -1,13 +1,14 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 // Project imports:
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/logic/cubit/wishlist_cubit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Package imports:
+
+import '../custom_widgets/custom_snack_bar.dart';
 
 class FavoriteIcon extends StatefulWidget {
   const FavoriteIcon({super.key, required this.product});
@@ -29,10 +30,28 @@ class _FavoriteIconState extends State<FavoriteIcon> {
           setState(() {
             context.read<WishlistCubit>().addProduct(widget.product);
           });
+          showSnackBar(
+            context,
+            "added to wishlist",
+            const Icon(
+              Icons.check_circle_outline,
+              color: Colors.green,
+              size: 28,
+            ),
+          );
         } else {
           setState(() {
             context.read<WishlistCubit>().removeProduct(widget.product);
           });
+          showSnackBar(
+            context,
+            "removed from wishlist",
+            const Icon(
+              Icons.highlight_remove_outlined,
+              color: Colors.red,
+              size: 28,
+            ),
+          );
         }
       },
       icon: isFavorite == true
@@ -45,7 +64,7 @@ class _FavoriteIconState extends State<FavoriteIcon> {
               CupertinoIcons.suit_heart,
               size: 32,
             ),
-      style: IconButton.styleFrom(backgroundColor: Colors.grey.shade300),
+      // style: IconButton.styleFrom(backgroundColor: Colors.grey.shade300),
     );
   }
 }

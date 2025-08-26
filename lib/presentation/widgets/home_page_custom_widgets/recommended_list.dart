@@ -21,15 +21,14 @@ class RecommendedList extends StatelessWidget {
           return SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
               children: [
                 const Text(
                   "Recommended for you",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ).onlyPadding(left: 16, top: 10),
                 SizedBox(
-                  height: context.width * 0.7,
-                  width: context.height * 1,
+                  height: context.height * 0.4,
+                  width: context.width * 1,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: recommendedProducts.length,
