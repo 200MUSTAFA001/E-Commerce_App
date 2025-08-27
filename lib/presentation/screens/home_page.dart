@@ -54,6 +54,11 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [
+              IconButton(
+                  onPressed: () {
+                    context.push(AppRouter.userAddressesPage);
+                  },
+                  icon: Icon(Icons.ac_unit)),
               Hero(
                 tag: "searchBarTag",
                 child: IconButton(

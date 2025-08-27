@@ -16,7 +16,7 @@ part 'search_state.dart';
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchInitial());
 
-  List<Product> originalList = []; // Todo for filter default List
+  List<Product> originalList = [];
 
   Future<void> getSearchList(String product, bool searchFieldIsEmpty) async {
     final ProductsSearchService searchForProductService =
