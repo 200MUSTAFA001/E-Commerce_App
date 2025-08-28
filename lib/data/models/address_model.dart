@@ -5,7 +5,7 @@ class AddressModel {
   final String streetDetails;
   final String landMark;
   final String state;
-  final String city_district;
+  final String cityDistrict;
   final String pinCode;
   final AddressType addressType;
   final bool defaultAddress;
@@ -17,7 +17,7 @@ class AddressModel {
     required this.streetDetails,
     required this.landMark,
     required this.state,
-    required this.city_district,
+    required this.cityDistrict,
     required this.pinCode,
     required this.addressType,
     this.defaultAddress = false,
@@ -30,7 +30,7 @@ class AddressModel {
         streetDetails: json["streetDetails"],
         landMark: json["landMark"],
         state: json["state"],
-        city_district: json["city_district"],
+        cityDistrict: json["city_district"],
         pinCode: json["pinCode"],
         addressType: AddressType.values
             .firstWhere((element) => element.name == json["addressType"]),
@@ -44,7 +44,7 @@ class AddressModel {
         "streetDetails": streetDetails,
         "landMark": landMark,
         "state": state,
-        "city_district": city_district,
+        "city_district": cityDistrict,
         "pinCode": pinCode,
         "addressType": addressType.name,
         "defaultAddress": defaultAddress,
@@ -57,7 +57,7 @@ class AddressModel {
     String? streetDetails,
     String? landMark,
     String? state,
-    String? city_district,
+    String? cityDistrict,
     String? pinCode,
     AddressType? addressType,
     bool? defaultAddress,
@@ -69,7 +69,7 @@ class AddressModel {
         streetDetails: streetDetails ?? this.streetDetails,
         landMark: landMark ?? this.landMark,
         state: state ?? this.state,
-        city_district: city_district ?? this.city_district,
+        cityDistrict: cityDistrict ?? this.cityDistrict,
         pinCode: pinCode ?? this.pinCode,
         addressType: addressType ?? this.addressType,
         defaultAddress: defaultAddress ?? this.defaultAddress,
