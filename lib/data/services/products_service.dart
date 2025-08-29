@@ -31,12 +31,3 @@ class ProductsSearchService {
     }
   }
 }
-
-/*
-order
-asc for ascending search
-desc for descending search
-//
-sortBy : price OR title OR 
-final sortByUrl = "https://dummyjson.com/products?sortBy=price&order=desc";
-*/

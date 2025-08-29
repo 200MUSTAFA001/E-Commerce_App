@@ -5,7 +5,7 @@ import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/services/web_services.dart';
+import '../../data/services/products_service.dart';
 
 part 'products_state.dart';
 
@@ -17,7 +17,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   List<Product> originalList = [];
 
   Future<void> getProductsByCategory(String category) async {
-    await productsRepo.getProductsByCategory(category).then((products) async {
+    await productsRepo.getProductsByCategory(category).then((products) {
       originalList = products;
       emit(ProductsLoaded(products));
     });

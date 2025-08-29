@@ -1,8 +1,9 @@
 // Package imports:
 // Project imports:
+import 'package:api_app/data/models/address_model.dart';
 import 'package:api_app/data/models/category_item_model.dart';
 import 'package:api_app/data/repository/products_repo.dart';
-import 'package:api_app/data/services/web_services.dart';
+import 'package:api_app/data/services/products_service.dart';
 import 'package:api_app/logic/cubit/address_cubit.dart';
 import 'package:api_app/logic/cubit/search_cubit.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
@@ -14,6 +15,7 @@ import 'package:api_app/presentation/screens/products_by_category_page.dart';
 import 'package:api_app/presentation/screens/products_on_sale_page.dart';
 import 'package:api_app/presentation/screens/search/search_page.dart';
 import 'package:api_app/presentation/screens/user_addresses/add_new_address_page.dart';
+import 'package:api_app/presentation/screens/user_addresses/edit_address_page.dart';
 import 'package:api_app/presentation/screens/user_addresses/user_addresses_page.dart';
 import 'package:api_app/presentation/screens/wishlist/wishlist_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -105,9 +107,20 @@ class AppRouter {
         path: addNewAddressPage,
         builder: (context, state) => BlocProvider(
           create: (context) => AddressCubit(),
-          child: AddNewAddressPage(),
+          child: const AddNewAddressPage(),
         ),
-      )
+      ),
+      GoRoute(
+        path: editAddressPage,
+        builder: (context, state) {
+          final address = state.extra as AddressModel;
+
+          return BlocProvider(
+            create: (context) => AddressCubit(),
+            child: EditAddressPage(address: address),
+          );
+        },
+      ),
     ],
   );
 }
