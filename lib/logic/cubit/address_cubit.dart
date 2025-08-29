@@ -8,9 +8,7 @@ class AddressCubit extends HydratedCubit<AddressState> {
   AddressCubit() : super(AddressInitial());
 
   void addAddress(AddressModel address) {
-    //
     final currentState = state;
-    //
     try {
       if (currentState is AddressLoaded) {
         //
@@ -19,10 +17,16 @@ class AddressCubit extends HydratedCubit<AddressState> {
         final addressesList =
             List<AddressModel>.from(currentState.userAddressesList);
 
-        final savedAddress = address.copyWith(addressID: newID);
-
-        addressesList.add(savedAddress);
-
+        if (address.defaultAddress == true) {
+          for (var address in addressesList) {
+            address.defaultAddress = false;
+          }
+          final savedAddress = address.copyWith(addressID: newID);
+          addressesList.add(savedAddress);
+        } else {
+          final savedAddress = address.copyWith(addressID: newID);
+          addressesList.add(savedAddress);
+        }
         emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
       } else {
         emit(AddressLoaded(
@@ -42,14 +46,58 @@ class AddressCubit extends HydratedCubit<AddressState> {
 
       addressesList.removeWhere((address) => address.addressID == addressID);
 
-      if (addressesList.isEmpty) {
-        emit(AddressEmpty());
-      } else {
-        emit(AddressLoaded(
-            userAddressesList: addressesList,
-            addressID: currentState.addressID));
-      }
+      emit(AddressLoaded(
+          userAddressesList: addressesList, addressID: currentState.addressID));
     }
+  }
+
+  void editAddress(int addressID, AddressModel modifiedAddress) {
+    final currentState = state;
+
+    if (currentState is AddressLoaded) {
+      final addressesList =
+          List<AddressModel>.from(currentState.userAddressesList);
+
+      // for removing
+      addressesList.removeWhere((address) => address.addressID == addressID);
+
+      // for adding new modified address
+      final newID = currentState.addressID + 1;
+
+      if (modifiedAddress.defaultAddress == true) {
+        for (var address in addressesList) {
+          address.defaultAddress = false;
+        }
+        final savedAddress = modifiedAddress.copyWith(addressID: newID);
+        addressesList.add(savedAddress);
+      } else {
+        final savedAddress = modifiedAddress.copyWith(addressID: newID);
+        addressesList.add(savedAddress);
+      }
+      //
+      emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
+      //
+    }
+  }
+
+  AddressModel? getDefaultAddress() {
+    final currentState = state;
+
+    AddressModel? defaultAddress;
+
+    if (currentState is AddressLoaded) {
+      final addressesList =
+          List<AddressModel>.from(currentState.userAddressesList);
+      final defaultAddressList = addressesList
+          .where((address) => address.defaultAddress == true)
+          .toList();
+
+      defaultAddress = defaultAddressList.first;
+
+      if (defaultAddressList.isNotEmpty) return defaultAddress;
+    }
+
+    return defaultAddress;
   }
 
   @override

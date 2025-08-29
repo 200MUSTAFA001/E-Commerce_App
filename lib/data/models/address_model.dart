@@ -8,7 +8,7 @@ class AddressModel {
   final String cityDistrict;
   final String pinCode;
   final AddressType addressType;
-  final bool defaultAddress;
+  bool defaultAddress;
 
   AddressModel({
     this.addressID,

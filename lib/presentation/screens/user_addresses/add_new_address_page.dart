@@ -1,11 +1,13 @@
-import 'dart:developer';
-
 import 'package:api_app/data/models/address_model.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../widgets/address_custom_widgets/addresses_type_list.dart';
+import '../../widgets/address_custom_widgets/custom_text_field.dart';
+import '../../widgets/address_custom_widgets/default_address_check_box.dart';
 
 class AddNewAddressPage extends StatefulWidget {
   const AddNewAddressPage({super.key});
@@ -72,11 +74,14 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                   selectedAddressType: (value) {
                     addressType = value;
                   },
+                  selectedAddress: addressType,
                 ),
-                DefaultAddressCheckBox(isDefaultAddressSelected: (value) {
-                  defaultAddress = value;
-                  if (addressType != null) log(addressType!.name);
-                }),
+                DefaultAddressCheckBox(
+                  isDefaultAddressSelected: (value) {
+                    defaultAddress = value;
+                  },
+                  defaultAddress: defaultAddress,
+                ),
               ],
             ).onlyPadding(left: 14, top: 12),
           ),
@@ -112,13 +117,12 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(0, context.height * 0.07),
                 backgroundColor: Colors.deepOrangeAccent,
-                foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14)),
               ),
               child: const Text(
                 "Save Address",
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ).allPadding(padding: 20),
           ),
@@ -149,164 +153,5 @@ bool isAddressFormFilled(
     return false;
   } else {
     return true;
-  }
-}
-
-class DefaultAddressCheckBox extends StatefulWidget {
-  const DefaultAddressCheckBox(
-      {super.key, required this.isDefaultAddressSelected});
-
-  final void Function(bool) isDefaultAddressSelected;
-
-  @override
-  State<DefaultAddressCheckBox> createState() => _DefaultAddressCheckBoxState();
-}
-
-class _DefaultAddressCheckBoxState extends State<DefaultAddressCheckBox> {
-  bool defaultAddress = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          checkColor: Colors.white,
-          activeColor: Colors.deepOrangeAccent,
-          value: defaultAddress,
-          onChanged: (value) {
-            setState(() {
-              defaultAddress = value!;
-              widget.isDefaultAddressSelected(value);
-            });
-          },
-        ),
-        const Text(
-          "Use as default address",
-          style: TextStyle(fontSize: 16),
-        ),
-      ],
-    ).onlyPadding(top: 18, bottom: 12);
-  }
-}
-
-class AddressesTypeList extends StatefulWidget {
-  const AddressesTypeList({super.key, required this.selectedAddressType});
-
-  final void Function(AddressType?) selectedAddressType;
-
-  @override
-  State<AddressesTypeList> createState() => _AddressesTypeListState();
-}
-
-class _AddressesTypeListState extends State<AddressesTypeList> {
-  AddressType? selectedAddress;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      spacing: 8,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CustomRadioItem(
-          value: AddressType.home,
-          groupValue: selectedAddress,
-          addressTypeTitle: "Home",
-          onChanged: (value) {
-            setState(() {
-              selectedAddress = value;
-              widget.selectedAddressType(value);
-            });
-          },
-        ),
-        CustomRadioItem(
-          value: AddressType.office,
-          groupValue: selectedAddress,
-          addressTypeTitle: "Office",
-          onChanged: (value) {
-            setState(() {
-              selectedAddress = value;
-              widget.selectedAddressType(value);
-            });
-          },
-        ),
-        CustomRadioItem(
-          value: AddressType.other,
-          groupValue: selectedAddress,
-          addressTypeTitle: "Other",
-          onChanged: (value) {
-            setState(() {
-              selectedAddress = value;
-              widget.selectedAddressType(value);
-            });
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class CustomRadioItem extends StatelessWidget {
-  const CustomRadioItem({
-    super.key,
-    required this.value,
-    required this.groupValue,
-    required this.addressTypeTitle,
-    required this.onChanged,
-  });
-
-  final AddressType value;
-  final AddressType? groupValue;
-  final String addressTypeTitle;
-  final void Function(AddressType?) onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Radio<AddressType>(
-          value: value,
-          groupValue: groupValue,
-          onChanged: onChanged,
-          activeColor: Colors.deepOrangeAccent,
-        ),
-        Text(
-          addressTypeTitle,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ],
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.controller,
-    required this.label,
-  });
-
-  final TextEditingController controller;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: TextField(
-        controller: controller,
-        onTapOutside: (PointerDownEvent event) {
-          FocusManager.instance.primaryFocus!.unfocus();
-        },
-        cursorColor: Colors.black,
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          label: Text(label),
-          labelStyle: const TextStyle(color: Colors.black),
-          border: OutlineInputBorder(
-              gapPadding: 0, borderRadius: BorderRadius.circular(15)),
-        ),
-      ).allPadding(padding: 14),
-    );
   }
 }
