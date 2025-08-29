@@ -18,6 +18,9 @@ migrate_working_dir/
 *.iws
 .idea/
 
+# .env
+.env
+
 # TempFile
 lib/temp_file.dart
 lib/todos.dart

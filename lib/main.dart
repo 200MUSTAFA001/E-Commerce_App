@@ -9,6 +9,7 @@ import 'package:api_app/presentation/widgets/custom_widgets/custom_snack_bar.dar
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -22,6 +23,7 @@ Future<void> main() async {
       (await getApplicationDocumentsDirectory()).path,
     ),
   );
+  await dotenv.load(fileName: ".env");
   runApp(MyApp());
 }
 
