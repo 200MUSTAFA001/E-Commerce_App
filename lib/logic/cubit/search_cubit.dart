@@ -4,7 +4,7 @@
 import 'package:api_app/data/models/products_model.dart';
 import 'package:api_app/data/models/sort_type_enm.dart';
 import 'package:api_app/data/repository/search_repo.dart';
-import 'package:api_app/data/services/web_services.dart';
+import 'package:api_app/data/services/products_service.dart';
 // Package imports:
 import 'package:dartx/dartx.dart';
 // Flutter imports:
