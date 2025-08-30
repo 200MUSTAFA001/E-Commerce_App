@@ -21,7 +21,8 @@ class AddressCubit extends HydratedCubit<AddressState> {
           for (var address in addressesList) {
             address.defaultAddress = false;
           }
-          final savedAddress = address.copyWith(addressID: newID);
+          final savedAddress =
+              address.copyWith(addressID: newID, defaultAddress: true);
           addressesList.add(savedAddress);
         } else {
           final savedAddress = address.copyWith(addressID: newID);
@@ -29,8 +30,9 @@ class AddressCubit extends HydratedCubit<AddressState> {
         }
         emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
       } else {
-        emit(AddressLoaded(
-            userAddressesList: [address.copyWith(addressID: 1)], addressID: 1));
+        emit(AddressLoaded(userAddressesList: [
+          address.copyWith(addressID: 1, defaultAddress: true)
+        ], addressID: 1));
       }
     } catch (e) {
       emit(AddressError());
@@ -78,6 +80,24 @@ class AddressCubit extends HydratedCubit<AddressState> {
       emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
       //
     }
+  }
+
+  bool isAddressListNotEmpty() {
+    if (state is AddressLoaded) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  List<AddressModel> getAddressesList() {
+    final currentState = state;
+    if (currentState is AddressLoaded) {
+      final addressesList =
+          List<AddressModel>.from(currentState.userAddressesList);
+      return addressesList;
+    }
+    return [];
   }
 
   AddressModel? getDefaultAddress() {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
+import '../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 
 class CheckoutBarScrollUp extends StatelessWidget {
   const CheckoutBarScrollUp({super.key});

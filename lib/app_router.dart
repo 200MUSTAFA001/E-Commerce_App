@@ -82,7 +82,13 @@ class AppRouter {
               child: ProductsByCategoryPage(category: category),
             );
           }),
-      GoRoute(path: cartPage, builder: (context, state) => CartPage()),
+      GoRoute(
+        path: cartPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AddressCubit(),
+          child: const CartPage(),
+        ),
+      ),
       GoRoute(
           path: wishlistPage,
           builder: (context, state) => const WishlistPage()),

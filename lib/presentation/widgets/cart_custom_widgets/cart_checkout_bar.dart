@@ -4,21 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 
-class CheckoutBarScrollDown extends StatelessWidget {
-  const CheckoutBarScrollDown({super.key});
+class CartCheckoutBar extends StatelessWidget {
+  const CartCheckoutBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         final pricesBeforeDiscount =
-            context.read<CartCubit>().getProductsPrices().first;
-        //
-        final deliveryFee = (pricesBeforeDiscount * 5 / 100).toInt();
-        //
-        final totalAmount =
-            (context.read<CartCubit>().getProductsPrices().last + deliveryFee);
-        //
+            context.read<CartCubit>().getProductsPrices().last;
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -30,7 +24,7 @@ class CheckoutBarScrollDown extends StatelessWidget {
                     style:
                         TextStyle(color: Colors.grey.shade600, fontSize: 16)),
                 Text(
-                  r"$" "$totalAmount",
+                  r"$" "$pricesBeforeDiscount",
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),

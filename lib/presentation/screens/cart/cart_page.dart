@@ -9,9 +9,7 @@ import 'empty_cart_screen.dart';
 import 'filled_cart_screen.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({super.key});
-
-  final ScrollController controller = ScrollController();
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +17,7 @@ class CartPage extends StatelessWidget {
       builder: (context, state) {
         if (state is CartLoaded) {
           final cartProducts = state.cartProducts;
-          return FilledCartScreen(
-            cartProducts: cartProducts,
-            controller: controller,
-          );
+          return FilledCartScreen(cartProducts: cartProducts);
         } else {
           return const EmptyCartScreen();
         }
