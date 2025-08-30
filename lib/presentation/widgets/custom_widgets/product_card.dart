@@ -182,7 +182,7 @@ class _ProductCardState extends State<ProductCard> {
             ],
           )
         ],
-      ).allPadding(padding: 10),
+      ).allPadding(10),
     );
   }
 }

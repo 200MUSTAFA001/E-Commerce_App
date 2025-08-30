@@ -1,10 +1,15 @@
 import 'package:api_app/data/models/address_model.dart';
+import 'package:api_app/data/models/debouncer_model.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/address_cubit.dart';
+import 'package:api_app/logic/cubit/address_service_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../../widgets/address_custom_widgets/address_search_bottom_sheet.dart';
 import '../../widgets/address_custom_widgets/addresses_type_list.dart';
 import '../../widgets/address_custom_widgets/custom_text_field.dart';
 import '../../widgets/address_custom_widgets/default_address_check_box.dart';
@@ -17,19 +22,45 @@ class AddNewAddressPage extends StatefulWidget {
 }
 
 class _AddNewAddressPageState extends State<AddNewAddressPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController mobileController = TextEditingController();
-  final TextEditingController streetController = TextEditingController();
-  final TextEditingController landmarkController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController cityDistrictController = TextEditingController();
-  final TextEditingController pinCodeController = TextEditingController();
+  final nameController = TextEditingController();
+  final mobileController = TextEditingController();
+  final streetController = TextEditingController();
+  final landmarkController = TextEditingController();
+  final stateController = TextEditingController();
+  final cityController = TextEditingController();
+  final postcodeController = TextEditingController();
+
+  final searchController = TextEditingController();
 
   AddressType? addressType;
 
   bool defaultAddress = false;
 
   AddressModel? userAddress;
+
+  final debouncer = Debouncer(duration: const Duration(milliseconds: 500));
+
+  void addressSearch(String address, bool isSearchBarEmpty) {
+    BlocProvider.of<AddressServiceCubit>(context)
+        .getSearchedAddressesList(address, isSearchBarEmpty);
+  }
+
+  bool isAddressFormFilled() {
+    if (nameController.text.isEmpty ||
+        mobileController.text.isEmpty ||
+        streetController.text.isEmpty ||
+        landmarkController.text.isEmpty ||
+        stateController.text.isEmpty ||
+        cityController.text.isEmpty ||
+        postcodeController.text.isEmpty ||
+        addressType == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  //
 
   @override
   void dispose() {
@@ -38,13 +69,16 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
     streetController.dispose();
     landmarkController.dispose();
     stateController.dispose();
-    cityDistrictController.dispose();
-    pinCodeController.dispose();
+    cityController.dispose();
+    postcodeController.dispose();
+    searchController.dispose();
+    debouncer.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<AddressServiceCubit>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
@@ -53,15 +87,41 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
             title: Text("Add New Address"),
             pinned: true,
           ),
+          SliverToBoxAdapter(
+            child: Card(
+              child: const Text(
+                "Contact Info",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ).allPadding(10),
+            ),
+          ),
           CustomTextField(controller: nameController, label: "Name"),
           CustomTextField(controller: mobileController, label: "Mobile Number"),
+          SliverToBoxAdapter(
+            child: Card(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Address Info",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showCustomSearchAddressBottomSheet(context, cubit);
+                    },
+                    child: const Icon(CupertinoIcons.search_circle, size: 30),
+                  )
+                ],
+              ).onlyPadding(left: 10, right: 16, top: 10, bottom: 10),
+            ),
+          ),
           CustomTextField(
               controller: streetController, label: "Flat No, Street Details"),
-          CustomTextField(controller: landmarkController, label: "Landmark"),
-          CustomTextField(controller: pinCodeController, label: "Pincode"),
+          CustomTextField(controller: cityController, label: "City"),
           CustomTextField(controller: stateController, label: "State"),
-          CustomTextField(
-              controller: cityDistrictController, label: "City / District"),
+          CustomTextField(controller: landmarkController, label: "Landmark"),
+          CustomTextField(controller: postcodeController, label: "Postcode"),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,16 +147,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
           ),
           SliverToBoxAdapter(
             child: ElevatedButton(
-              onPressed: isAddressFormFilled(
-                nameController,
-                mobileController,
-                streetController,
-                landmarkController,
-                stateController,
-                cityDistrictController,
-                pinCodeController,
-                addressType,
-              )
+              onPressed: isAddressFormFilled()
                   ? () {
                       userAddress = AddressModel(
                         name: nameController.text,
@@ -104,8 +155,8 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                         streetDetails: streetController.text,
                         landMark: landmarkController.text,
                         state: stateController.text,
-                        cityDistrict: cityDistrictController.text,
-                        pinCode: pinCodeController.text,
+                        cityDistrict: cityController.text,
+                        pinCode: postcodeController.text,
                         addressType: addressType!,
                       ).copyWith(defaultAddress: defaultAddress);
 
@@ -124,34 +175,39 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                 "Save Address",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            ).allPadding(padding: 20),
+            ).allPadding(20),
           ),
         ],
       ),
     );
   }
-}
 
-bool isAddressFormFilled(
-  TextEditingController nameController,
-  TextEditingController mobileController,
-  TextEditingController streetController,
-  TextEditingController landmarkController,
-  TextEditingController stateController,
-  TextEditingController cityController,
-  TextEditingController pinCodeController,
-  AddressType? addressType,
-) {
-  if (nameController.text.isEmpty ||
-      mobileController.text.isEmpty ||
-      streetController.text.isEmpty ||
-      landmarkController.text.isEmpty ||
-      stateController.text.isEmpty ||
-      cityController.text.isEmpty ||
-      pinCodeController.text.isEmpty ||
-      addressType == null) {
-    return false;
-  } else {
-    return true;
+  Future<dynamic> showCustomSearchAddressBottomSheet(
+      BuildContext context, AddressServiceCubit cubit) {
+    return showBarModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+      context: context,
+      builder: (context) {
+        return BlocProvider.value(
+          value: cubit,
+          child: AddressSearchBottomSheet(
+            searchController: searchController,
+            onChanged: (value) {
+              debouncer.run(() => addressSearch(value, value.isEmpty));
+            },
+            addressDetails: (address) {
+              streetController.text = address.displayName;
+              cityController.text = address.address.city ?? "";
+              stateController.text = address.address.state ?? "";
+              landmarkController.text = address.address.road ?? "";
+              postcodeController.text = address.address.postcode ?? "";
+            },
+          ),
+        );
+      },
+    );
   }
+//
 }

@@ -27,7 +27,7 @@ class OfferBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           child: Image.asset(
             bannerImage,
-          ).allPadding(padding: 8),
+          ).allPadding(8),
         ),
       ),
     );

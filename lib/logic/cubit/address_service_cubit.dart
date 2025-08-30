@@ -10,8 +10,13 @@ class AddressServiceCubit extends Cubit<AddressServiceState> {
 
   final AddressRepo addressRepo;
 
-  Future<void> getSearchedAddressesList(String addressName) async {
-    final addressesList = await addressRepo.getAddressByName(addressName);
-    emit(AddressServiceLoaded(addressesList: addressesList));
+  Future<void> getSearchedAddressesList(
+      String addressName, bool isSearchBarEmpty) async {
+    if (isSearchBarEmpty == false) {
+      final addressesList = await addressRepo.getAddressByName(addressName);
+      emit(AddressServiceLoaded(addressesList: addressesList));
+    } else {
+      emit(AddressServiceInitial());
+    }
   }
 }

@@ -35,7 +35,6 @@ class AddressCard extends StatelessWidget {
               addressItem.streetDetails,
               style: const TextStyle(fontSize: 16, color: Colors.black54),
             ),
-            Text("${addressItem.defaultAddress}"),
             const SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -19,13 +19,13 @@ class EditAddressPage extends StatefulWidget {
 }
 
 class _EditAddressPageState extends State<EditAddressPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController mobileController = TextEditingController();
-  final TextEditingController streetController = TextEditingController();
-  final TextEditingController landmarkController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController cityDistrictController = TextEditingController();
-  final TextEditingController pinCodeController = TextEditingController();
+  final nameController = TextEditingController();
+  final mobileController = TextEditingController();
+  final streetController = TextEditingController();
+  final landmarkController = TextEditingController();
+  final stateController = TextEditingController();
+  final cityController = TextEditingController();
+  final postcodeController = TextEditingController();
 
   AddressModel? userAddress;
 
@@ -41,8 +41,8 @@ class _EditAddressPageState extends State<EditAddressPage> {
     streetController.text = widget.address.streetDetails;
     landmarkController.text = widget.address.landMark;
     stateController.text = widget.address.state;
-    cityDistrictController.text = widget.address.cityDistrict;
-    pinCodeController.text = widget.address.pinCode;
+    cityController.text = widget.address.cityDistrict;
+    postcodeController.text = widget.address.pinCode;
     //
     addressType = widget.address.addressType;
     defaultAddress = widget.address.defaultAddress;
@@ -55,9 +55,24 @@ class _EditAddressPageState extends State<EditAddressPage> {
     streetController.dispose();
     landmarkController.dispose();
     stateController.dispose();
-    cityDistrictController.dispose();
-    pinCodeController.dispose();
+    cityController.dispose();
+    postcodeController.dispose();
     super.dispose();
+  }
+
+  bool isAddressFormFilled() {
+    if (nameController.text.isEmpty ||
+        mobileController.text.isEmpty ||
+        streetController.text.isEmpty ||
+        landmarkController.text.isEmpty ||
+        stateController.text.isEmpty ||
+        cityController.text.isEmpty ||
+        postcodeController.text.isEmpty ||
+        addressType == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @override
@@ -70,15 +85,30 @@ class _EditAddressPageState extends State<EditAddressPage> {
             title: Text("Add New Address"),
             pinned: true,
           ),
+          SliverToBoxAdapter(
+            child: Card(
+              child: const Text(
+                "Contact Info",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ).allPadding(10),
+            ),
+          ),
           CustomTextField(controller: nameController, label: "Name"),
           CustomTextField(controller: mobileController, label: "Mobile Number"),
+          SliverToBoxAdapter(
+            child: Card(
+              child: const Text(
+                "Address Info",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ).allPadding(10),
+            ),
+          ),
           CustomTextField(
               controller: streetController, label: "Flat No, Street Details"),
-          CustomTextField(controller: landmarkController, label: "Landmark"),
-          CustomTextField(controller: pinCodeController, label: "Pincode"),
+          CustomTextField(controller: cityController, label: "City"),
           CustomTextField(controller: stateController, label: "State"),
-          CustomTextField(
-              controller: cityDistrictController, label: "City / District"),
+          CustomTextField(controller: landmarkController, label: "Landmark"),
+          CustomTextField(controller: postcodeController, label: "Postcode"),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,16 +134,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
           ),
           SliverToBoxAdapter(
             child: ElevatedButton(
-              onPressed: isAddressFormFilled(
-                nameController,
-                mobileController,
-                streetController,
-                landmarkController,
-                stateController,
-                cityDistrictController,
-                pinCodeController,
-                widget.address.addressType,
-              )
+              onPressed: isAddressFormFilled()
                   ? () {
                       userAddress = AddressModel(
                         name: nameController.text,
@@ -121,8 +142,8 @@ class _EditAddressPageState extends State<EditAddressPage> {
                         streetDetails: streetController.text,
                         landMark: landmarkController.text,
                         state: stateController.text,
-                        cityDistrict: cityDistrictController.text,
-                        pinCode: pinCodeController.text,
+                        cityDistrict: cityController.text,
+                        pinCode: postcodeController.text,
                         addressType: addressType!,
                       ).copyWith(defaultAddress: defaultAddress);
 
@@ -143,34 +164,10 @@ class _EditAddressPageState extends State<EditAddressPage> {
                 "Save Address",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            ).allPadding(padding: 20),
+            ).allPadding(20),
           ),
         ],
       ),
     );
-  }
-}
-
-bool isAddressFormFilled(
-  TextEditingController nameController,
-  TextEditingController mobileController,
-  TextEditingController streetController,
-  TextEditingController landmarkController,
-  TextEditingController stateController,
-  TextEditingController cityController,
-  TextEditingController pinCodeController,
-  AddressType? addressType,
-) {
-  if (nameController.text.isEmpty ||
-      mobileController.text.isEmpty ||
-      streetController.text.isEmpty ||
-      landmarkController.text.isEmpty ||
-      stateController.text.isEmpty ||
-      cityController.text.isEmpty ||
-      pinCodeController.text.isEmpty ||
-      addressType == null) {
-    return false;
-  } else {
-    return true;
   }
 }

@@ -2,9 +2,12 @@
 // Project imports:
 import 'package:api_app/data/models/address_model.dart';
 import 'package:api_app/data/models/category_item_model.dart';
+import 'package:api_app/data/repository/address_repo.dart';
 import 'package:api_app/data/repository/products_repo.dart';
+import 'package:api_app/data/services/address_service.dart';
 import 'package:api_app/data/services/products_service.dart';
 import 'package:api_app/logic/cubit/address_cubit.dart';
+import 'package:api_app/logic/cubit/address_service_cubit.dart';
 import 'package:api_app/logic/cubit/search_cubit.dart';
 import 'package:api_app/presentation/screens/cart/cart_page.dart';
 import 'package:api_app/presentation/screens/categories_page.dart';
@@ -105,8 +108,14 @@ class AppRouter {
       ),
       GoRoute(
         path: addNewAddressPage,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AddressCubit(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  AddressServiceCubit(AddressRepo(AddressService())),
+            ),
+            BlocProvider(create: (context) => AddressCubit()),
+          ],
           child: const AddNewAddressPage(),
         ),
       ),
