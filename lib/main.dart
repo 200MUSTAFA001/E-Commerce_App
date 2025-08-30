@@ -2,8 +2,8 @@
 import 'dart:async';
 
 // Project imports:
-import 'package:api_app/logic/cubit/cart_cubit.dart';
-import 'package:api_app/logic/cubit/wishlist_cubit.dart';
+import 'package:api_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
+import 'package:api_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
 // Flutter imports:
 import 'package:api_app/presentation/widgets/custom_widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 // Project imports:
 import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/logic/cubit/wishlist_cubit.dart';
+import 'package:api_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:

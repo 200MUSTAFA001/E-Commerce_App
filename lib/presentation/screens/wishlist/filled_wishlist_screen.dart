@@ -1,6 +1,6 @@
 // Project imports:
 import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/wishlist_cubit.dart';
+import 'package:api_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:
@@ -10,9 +10,9 @@ import '../../../data/models/products_model.dart';
 import '../../widgets/custom_widgets/product_card.dart';
 
 class FilledWishlistScreen extends StatelessWidget {
-  const FilledWishlistScreen({super.key, required this.favoritesList});
+  const FilledWishlistScreen({super.key, required this.wishlist});
 
-  final List<Product> favoritesList;
+  final List<Product> wishlist;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class FilledWishlistScreen extends StatelessWidget {
           ],
         ),
         SliverGrid.builder(
-          itemCount: favoritesList.length,
+          itemCount: wishlist.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 4,
@@ -57,7 +57,7 @@ class FilledWishlistScreen extends StatelessWidget {
             childAspectRatio: 6 / 9,
           ),
           itemBuilder: (context, index) => ProductCard(
-            product: favoritesList[index],
+            product: wishlist[index],
           ),
         ),
         SliverToBoxAdapter(

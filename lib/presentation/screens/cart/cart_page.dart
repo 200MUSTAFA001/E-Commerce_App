@@ -1,6 +1,6 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/logic/cubit/cart_cubit.dart';
+import 'package:api_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,15 +19,12 @@ class CartPage extends StatelessWidget {
       builder: (context, state) {
         if (state is CartLoaded) {
           final cartProducts = state.cartProducts;
-          return cartProducts.isNotEmpty
-              ? FilledCartScreen(
-                  cartProducts: cartProducts,
-                  controller: controller,
-                )
-              : const EmptyCartScreen();
+          return FilledCartScreen(
+            cartProducts: cartProducts,
+            controller: controller,
+          );
         } else {
-          return const SizedBox();
-          // return const EmptyCartScreen();
+          return const EmptyCartScreen();
         }
       },
     );

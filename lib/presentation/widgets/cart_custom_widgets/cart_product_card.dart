@@ -11,7 +11,7 @@ import 'package:go_router/go_router.dart';
 // Project imports:
 import '../../../../app_router.dart';
 import '../../../../data/models/products_model.dart';
-import '../../../../logic/cubit/cart_cubit.dart';
+import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'cart_custom_counter.dart';
 
 class CartProductCard extends StatelessWidget {
@@ -22,7 +22,7 @@ class CartProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int productQuantity =
-        context.read<CartCubit>().getCartItem(product.id).productQuantity;
+        context.read<CartCubit>().getCartItem(product.id)?.productQuantity ?? 1;
     return Card(
       color: Colors.grey.shade100,
       elevation: 0,

@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../data/models/products_model.dart';
-import '../../../../logic/cubit/cart_cubit.dart';
+import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'add_to_cart_button.dart';
 import 'cart_added_button.dart';
 

@@ -1,6 +1,6 @@
 // Project imports:
 import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/cart_cubit.dart';
+import 'package:api_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,8 +45,7 @@ class FilledCartScreen extends StatelessWidget {
             ],
           ),
           SliverPadding(
-            padding:
-                const EdgeInsets.only(top: 0, bottom: 10, right: 10, left: 10),
+            padding: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
             sliver: SliverList.builder(
               itemCount: cartProducts.length,
               itemBuilder: (context, index) => CartProductCard(

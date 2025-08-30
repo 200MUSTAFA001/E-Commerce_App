@@ -2,7 +2,7 @@ import 'package:api_app/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../logic/cubit/cart_cubit.dart';
+import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 
 class CheckoutBarScrollDown extends StatelessWidget {
   const CheckoutBarScrollDown({super.key});
