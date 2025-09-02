@@ -28,6 +28,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
   final postcodeController = TextEditingController();
 
   AddressModel? userAddress;
+  int? addressID;
 
   AddressType? addressType;
   bool? defaultAddress;
@@ -46,6 +47,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
     //
     addressType = widget.address.addressType;
     defaultAddress = widget.address.defaultAddress;
+    addressID = widget.address.addressID;
   }
 
   @override
@@ -137,6 +139,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
               onPressed: isAddressFormFilled()
                   ? () {
                       userAddress = AddressModel(
+                        addressID: addressID,
                         name: nameController.text,
                         mobileNumber: mobileController.text,
                         streetDetails: streetController.text,

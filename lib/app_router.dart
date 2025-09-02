@@ -114,16 +114,19 @@ class AppRouter {
       ),
       GoRoute(
         path: addNewAddressPage,
-        builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) =>
-                  AddressServiceCubit(AddressRepo(AddressService())),
-            ),
-            BlocProvider(create: (context) => AddressCubit()),
-          ],
-          child: const AddNewAddressPage(),
-        ),
+        builder: (context, state) {
+          final cubit = state.extra as AddressCubit;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    AddressServiceCubit(AddressRepo(AddressService())),
+              ),
+              BlocProvider(create: (context) => AddressCubit()),
+            ],
+            child: AddNewAddressPage(cubit: cubit),
+          );
+        },
       ),
       GoRoute(
         path: editAddressPage,

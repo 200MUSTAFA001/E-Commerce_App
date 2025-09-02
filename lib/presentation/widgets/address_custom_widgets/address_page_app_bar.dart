@@ -1,4 +1,5 @@
 import 'package:api_app/extensions.dart';
+import 'package:api_app/logic/cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../app_router.dart';
 
 class AddressPageAppBar extends StatelessWidget {
-  const AddressPageAppBar({super.key});
+  const AddressPageAppBar({super.key, required this.cubit});
+
+  final AddressCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class AddressPageAppBar extends StatelessWidget {
       actions: [
         OutlinedButton(
           onPressed: () {
-            context.push(AppRouter.addNewAddressPage);
+            context.push(AppRouter.addNewAddressPage, extra: cubit);
           },
           style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -15,7 +15,9 @@ import '../../widgets/address_custom_widgets/custom_text_field.dart';
 import '../../widgets/address_custom_widgets/default_address_check_box.dart';
 
 class AddNewAddressPage extends StatefulWidget {
-  const AddNewAddressPage({super.key});
+  const AddNewAddressPage({super.key, required this.cubit});
+
+  final AddressCubit cubit;
 
   @override
   State<AddNewAddressPage> createState() => _AddNewAddressPageState();
@@ -160,8 +162,8 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                         addressType: addressType!,
                       ).copyWith(defaultAddress: defaultAddress);
 
-                      context.read<AddressCubit>().addAddress(userAddress!);
-
+                      // context.read<AddressCubit>().addAddress(userAddress!);
+                      widget.cubit.addAddress(userAddress!);
                       context.pop();
                     }
                   : null,

@@ -14,10 +14,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/custom_widgets/product_card.dart';
 import '../../widgets/product_details_page_custom_widgets/bottom_sheet_rating_list.dart';
-import '../../widgets/product_details_page_custom_widgets/cart_button.dart';
 import '../../widgets/product_details_page_custom_widgets/custom_counter.dart';
 import '../../widgets/product_details_page_custom_widgets/favorite_icon.dart';
 import '../../widgets/product_details_page_custom_widgets/no_reviews_widget.dart';
+import '../../widgets/product_details_page_custom_widgets/product_details_page_cart_button.dart';
 import '../../widgets/product_details_page_custom_widgets/product_images.dart';
 import '../../widgets/product_details_page_custom_widgets/product_page_sublist.dart';
 import '../../widgets/product_details_page_custom_widgets/rating_bar.dart';

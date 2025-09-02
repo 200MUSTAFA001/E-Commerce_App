@@ -3,7 +3,6 @@
 import 'package:api_app/app_router.dart';
 import 'package:api_app/extensions.dart';
 import 'package:api_app/logic/cubit/products_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +12,12 @@ import '../../data/models/category_item_model.dart';
 import '../widgets/custom_widgets/products_list.dart';
 import '../widgets/home_page_custom_widgets/category_bar.dart';
 import '../widgets/home_page_custom_widgets/custom_drawer.dart';
+import '../widgets/home_page_custom_widgets/home_page_app_bar.dart';
 import '../widgets/home_page_custom_widgets/offer_banner.dart';
 import '../widgets/home_page_custom_widgets/recommended_list.dart';
 import '../widgets/home_page_custom_widgets/sale_cards_list.dart';
 import '../widgets/home_page_custom_widgets/show_more_button.dart';
 import '../widgets/home_page_custom_widgets/sublist_list.dart';
-import '../widgets/home_page_custom_widgets/welcome_user_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,41 +48,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const CustomDrawer(),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            pinned: true,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    context.push(AppRouter.userAddressesPage);
-                  },
-                  icon: Icon(Icons.ac_unit)),
-              Hero(
-                tag: "searchBarTag",
-                child: IconButton(
-                  onPressed: () {
-                    context.push(AppRouter.searchPage);
-                  },
-                  icon: const Icon(CupertinoIcons.search, size: 28),
-                  tooltip: "search",
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.push(AppRouter.cartPage);
-                },
-                icon: const Icon(
-                  CupertinoIcons.bag,
-                  color: Colors.deepOrangeAccent,
-                  size: 28,
-                ),
-                tooltip: "cart",
-              ),
-              const SizedBox(width: 10)
-            ],
-          ),
-          const WelcomeUserTile(),
+          const HomePageAppBar(),
           SaleCardsList(),
           SliverToBoxAdapter(
             child: Column(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:api_app/data/models/address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -28,6 +30,7 @@ class AddressCubit extends HydratedCubit<AddressState> {
           final savedAddress = address.copyWith(addressID: newID);
           addressesList.add(savedAddress);
         }
+        log("${addressesList.map((v) => v.addressID).toList()}");
         emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
       } else {
         emit(AddressLoaded(userAddressesList: [
@@ -64,21 +67,59 @@ class AddressCubit extends HydratedCubit<AddressState> {
       addressesList.removeWhere((address) => address.addressID == addressID);
 
       // for adding new modified address
-      final newID = currentState.addressID + 1;
-
       if (modifiedAddress.defaultAddress == true) {
         for (var address in addressesList) {
           address.defaultAddress = false;
         }
-        final savedAddress = modifiedAddress.copyWith(addressID: newID);
+        final savedAddress = modifiedAddress;
         addressesList.add(savedAddress);
       } else {
-        final savedAddress = modifiedAddress.copyWith(addressID: newID);
+        final savedAddress = modifiedAddress;
         addressesList.add(savedAddress);
       }
       //
-      emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
+      emit(AddressLoaded(
+          userAddressesList: addressesList,
+          addressID: modifiedAddress.addressID!));
       //
+    }
+  }
+
+  void changeAddressID(int addressID, AddressModel modifiedAddress) {
+    final currentState = state;
+    if (currentState is AddressLoaded) {
+      final addressesList =
+          List<AddressModel>.from(currentState.userAddressesList);
+      final newID = currentState.addressID + 1;
+
+      final defaultAddress =
+          addressesList.firstWhere((address) => address.defaultAddress == true);
+
+      final defaultAddressUpdated =
+          defaultAddress.copyWith(defaultAddress: false, addressID: newID);
+
+      final modifiedAddressUpdated =
+          modifiedAddress.copyWith(addressID: addressID, defaultAddress: true);
+
+      addressesList.removeWhere((address) {
+        final tempBool = defaultAddress.addressID! == address.addressID! &&
+            defaultAddress.pinCode == address.pinCode;
+
+        return tempBool;
+      });
+      addressesList.removeWhere((address) {
+        final tempBool = modifiedAddress.addressID! == address.addressID! &&
+            modifiedAddress.pinCode == address.pinCode;
+
+        return tempBool;
+      });
+
+      addressesList.add(defaultAddressUpdated);
+      addressesList.add(modifiedAddressUpdated);
+
+      emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
+    } else {
+      emit(AddressEmpty());
     }
   }
 
