@@ -1,7 +1,7 @@
 // Flutter imports:
-import 'package:api_app/app_router.dart';
+import 'package:e_commerce_app/app_router.dart';
 // Project imports:
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // Package imports:

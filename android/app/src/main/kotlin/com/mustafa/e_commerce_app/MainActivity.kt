@@ -1,4 +1,4 @@
-package com.mustafa.api_app.api_app
+package com.mustafa.e_commerce_app
 
 import io.flutter.embedding.android.FlutterActivity
 

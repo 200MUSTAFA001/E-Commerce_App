@@ -1,26 +1,27 @@
 // Package imports:
 // Project imports:
-import 'package:api_app/data/models/address_model.dart';
-import 'package:api_app/data/models/category_item_model.dart';
-import 'package:api_app/data/repository/address_repo.dart';
-import 'package:api_app/data/repository/products_repo.dart';
-import 'package:api_app/data/services/address_service.dart';
-import 'package:api_app/data/services/products_service.dart';
-import 'package:api_app/logic/cubit/address_cubit.dart';
-import 'package:api_app/logic/cubit/address_service_cubit.dart';
-import 'package:api_app/logic/cubit/search_cubit.dart';
-import 'package:api_app/presentation/screens/cart/cart_page.dart';
-import 'package:api_app/presentation/screens/categories_page.dart';
-import 'package:api_app/presentation/screens/main_page.dart';
-import 'package:api_app/presentation/screens/product_page/product_details_page.dart';
-import 'package:api_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
-import 'package:api_app/presentation/screens/products_by_category_page.dart';
-import 'package:api_app/presentation/screens/products_on_sale_page.dart';
-import 'package:api_app/presentation/screens/search/search_page.dart';
-import 'package:api_app/presentation/screens/user_addresses/add_new_address_page.dart';
-import 'package:api_app/presentation/screens/user_addresses/edit_address_page.dart';
-import 'package:api_app/presentation/screens/user_addresses/user_addresses_page.dart';
-import 'package:api_app/presentation/screens/wishlist/wishlist_page.dart';
+import 'package:e_commerce_app/data/models/address_model.dart';
+import 'package:e_commerce_app/data/models/category_item_model.dart';
+import 'package:e_commerce_app/data/repository/address_repo.dart';
+import 'package:e_commerce_app/data/repository/products_repo.dart';
+import 'package:e_commerce_app/data/services/address_service.dart';
+import 'package:e_commerce_app/data/services/products_service.dart';
+import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
+import 'package:e_commerce_app/logic/cubit/address_service_cubit.dart';
+import 'package:e_commerce_app/logic/cubit/search_cubit.dart';
+import 'package:e_commerce_app/presentation/screens/cart/cart_page.dart';
+import 'package:e_commerce_app/presentation/screens/categories_page.dart';
+import 'package:e_commerce_app/presentation/screens/help_and_support_page.dart';
+import 'package:e_commerce_app/presentation/screens/main_page.dart';
+import 'package:e_commerce_app/presentation/screens/product_page/product_details_page.dart';
+import 'package:e_commerce_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
+import 'package:e_commerce_app/presentation/screens/products_by_category_page.dart';
+import 'package:e_commerce_app/presentation/screens/products_on_sale_page.dart';
+import 'package:e_commerce_app/presentation/screens/search/search_page.dart';
+import 'package:e_commerce_app/presentation/screens/user_addresses/add_new_address_page.dart';
+import 'package:e_commerce_app/presentation/screens/user_addresses/edit_address_page.dart';
+import 'package:e_commerce_app/presentation/screens/user_addresses/user_addresses_page.dart';
+import 'package:e_commerce_app/presentation/screens/wishlist/wishlist_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,6 +43,7 @@ class AppRouter {
   static const String userAddressesPage = "/userAddressesPage";
   static const String addNewAddressPage = "/addNewAddressPage";
   static const String editAddressPage = "/editAddressPage";
+  static const String helpAndSupportPage = "/helpAndSupportPage";
 
   //
   //
@@ -138,6 +140,10 @@ class AppRouter {
             child: EditAddressPage(address: address),
           );
         },
+      ),
+      GoRoute(
+        path: helpAndSupportPage,
+        builder: (context, state) => HelpAndSupportPage(),
       ),
     ],
   );

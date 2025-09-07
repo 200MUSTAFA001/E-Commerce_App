@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/categories_page_custom_widgets/categories_by_section.dart';

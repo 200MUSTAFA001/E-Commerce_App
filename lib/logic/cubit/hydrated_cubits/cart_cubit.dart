@@ -1,7 +1,7 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/presentation/widgets/custom_widgets/product_card.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/product_card.dart';
 // Package imports:
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

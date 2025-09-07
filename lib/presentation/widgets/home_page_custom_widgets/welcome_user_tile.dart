@@ -1,6 +1,6 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';

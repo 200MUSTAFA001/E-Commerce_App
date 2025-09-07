@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 
 class CustomCounter extends StatefulWidget {
   CustomCounter({

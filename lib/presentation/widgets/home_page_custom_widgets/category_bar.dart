@@ -1,16 +1,15 @@
 // Flutter imports:
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CategoryBar extends StatefulWidget {
   const CategoryBar({super.key, required this.onCategorySelected});
+  final void Function(String category) onCategorySelected;
 
   @override
   State<CategoryBar> createState() => _CategoryBarState();
-
-  final void Function(String category) onCategorySelected;
 }
 
 class _CategoryBarState extends State<CategoryBar> {
@@ -62,22 +61,20 @@ class _CategoryBarState extends State<CategoryBar> {
                 widget.onCategorySelected(selectedCategory);
               });
             },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: isSelected ? Colors.orange.shade700 : Colors.grey[200],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  icons[index],
-                  color: isSelected ? Colors.white : Colors.grey,
-                  size: 28,
-                ),
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color:
+                    isSelected ? Colors.orange.shade700 : Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(12),
               ),
-            ),
+              child: Icon(
+                icons[index],
+                color: isSelected ? Colors.white : Colors.grey,
+                size: 28,
+              ),
+            ).onlyPadding(right: 20),
           );
         },
       ),

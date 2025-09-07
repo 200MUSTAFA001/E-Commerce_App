@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:api_app/presentation/widgets/custom_widgets/shimmer_card.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/shimmer_card.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:skeletonizer/skeletonizer.dart';

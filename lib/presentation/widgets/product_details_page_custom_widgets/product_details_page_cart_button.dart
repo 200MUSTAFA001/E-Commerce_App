@@ -1,8 +1,8 @@
 // Flutter imports:
 
 // Project imports:
-import 'package:api_app/app_router.dart';
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/app_router.dart';
+import 'package:e_commerce_app/extensions.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

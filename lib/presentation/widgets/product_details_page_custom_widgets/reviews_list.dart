@@ -1,8 +1,8 @@
 // Flutter imports:
 
 // Project imports:
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/product_details_page_custom_widgets/review_card.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/presentation/widgets/product_details_page_custom_widgets/review_card.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 

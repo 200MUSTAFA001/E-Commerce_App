@@ -1,8 +1,8 @@
-import 'package:api_app/data/models/address_model.dart';
-import 'package:api_app/data/models/debouncer_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/address_cubit.dart';
-import 'package:api_app/logic/cubit/address_service_cubit.dart';
+import 'package:e_commerce_app/data/models/address_model.dart';
+import 'package:e_commerce_app/data/models/debouncer_model.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
+import 'package:e_commerce_app/logic/cubit/address_service_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

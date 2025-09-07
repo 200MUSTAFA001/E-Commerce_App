@@ -1,6 +1,6 @@
 // Project imports:
-import 'package:api_app/data/models/category_item_model.dart';
-import 'package:api_app/logic/cubit/products_cubit.dart';
+import 'package:e_commerce_app/data/models/category_item_model.dart';
+import 'package:e_commerce_app/logic/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';

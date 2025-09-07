@@ -2,9 +2,9 @@
 import 'dart:math';
 
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 // Flutter imports:

@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:api_app/data/models/sort_type_enm.dart';
+import 'package:e_commerce_app/data/models/sort_type_enm.dart';
 
 class SortOptionModel {
   final int index;

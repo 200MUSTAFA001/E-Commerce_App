@@ -1,5 +1,5 @@
-import 'package:api_app/extensions.dart';
-import 'package:api_app/presentation/widgets/categories_page_custom_widgets/products_by_category_search_bar.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/presentation/widgets/categories_page_custom_widgets/products_by_category_search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

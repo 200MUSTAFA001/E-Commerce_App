@@ -1,6 +1,6 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:hydrated_bloc/hydrated_bloc.dart';

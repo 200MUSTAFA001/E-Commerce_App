@@ -2,8 +2,8 @@
 import 'dart:convert';
 
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/data/services/products_service.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/data/services/products_service.dart';
 
 class SearchRepo {
   final ProductsSearchService searchForProductService;

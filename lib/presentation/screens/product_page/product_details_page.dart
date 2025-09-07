@@ -2,10 +2,10 @@
 // Project imports:
 import 'dart:math';
 
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/products_cubit.dart';
-import 'package:api_app/presentation/widgets/product_details_page_custom_widgets/reviews_list.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/products_cubit.dart';
+import 'package:e_commerce_app/presentation/widgets/product_details_page_custom_widgets/reviews_list.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

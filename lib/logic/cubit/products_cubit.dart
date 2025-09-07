@@ -1,6 +1,6 @@
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/data/repository/products_repo.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/data/repository/products_repo.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

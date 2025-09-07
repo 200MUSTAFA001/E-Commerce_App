@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard(

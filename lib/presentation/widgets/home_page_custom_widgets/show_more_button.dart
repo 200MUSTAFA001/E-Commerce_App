@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 
 class ShowMoreHomePageButton extends StatelessWidget {
   const ShowMoreHomePageButton({super.key, required this.onPressed});

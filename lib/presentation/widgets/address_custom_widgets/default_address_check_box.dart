@@ -1,4 +1,4 @@
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 
 class DefaultAddressCheckBox extends StatefulWidget {

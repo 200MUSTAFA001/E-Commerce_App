@@ -1,10 +1,10 @@
 // Flutter imports:
 
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
-import 'package:api_app/data/models/sort_type_enm.dart';
-import 'package:api_app/data/repository/search_repo.dart';
-import 'package:api_app/data/services/products_service.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/data/models/sort_type_enm.dart';
+import 'package:e_commerce_app/data/repository/search_repo.dart';
+import 'package:e_commerce_app/data/services/products_service.dart';
 // Package imports:
 import 'package:dartx/dartx.dart';
 // Flutter imports:

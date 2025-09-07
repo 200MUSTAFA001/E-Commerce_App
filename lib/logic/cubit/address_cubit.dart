@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:api_app/data/models/address_model.dart';
+import 'package:e_commerce_app/data/models/address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 

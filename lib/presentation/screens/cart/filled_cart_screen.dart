@@ -1,9 +1,9 @@
 // Project imports:
-import 'package:api_app/data/models/address_model.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/address_cubit.dart';
-import 'package:api_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
-import 'package:api_app/presentation/widgets/cart_custom_widgets/cart_checkout_bar.dart';
+import 'package:e_commerce_app/data/models/address_model.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
+import 'package:e_commerce_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
+import 'package:e_commerce_app/presentation/widgets/cart_custom_widgets/cart_checkout_bar.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';

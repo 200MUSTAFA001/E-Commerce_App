@@ -1,5 +1,5 @@
-import 'package:api_app/data/models/address_result_model.dart';
-import 'package:api_app/data/repository/address_repo.dart';
+import 'package:e_commerce_app/data/models/address_result_model.dart';
+import 'package:e_commerce_app/data/repository/address_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

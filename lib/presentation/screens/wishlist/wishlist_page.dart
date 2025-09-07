@@ -1,6 +1,6 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
+import 'package:e_commerce_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,5 +1,5 @@
-import 'package:api_app/presentation/widgets/custom_widgets/products_by_category_list.dart';
-import 'package:api_app/presentation/widgets/custom_widgets/shimmer_list.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/products_by_category_list.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/shimmer_list.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Package imports:

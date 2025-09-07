@@ -1,5 +1,5 @@
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/address_cubit.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';

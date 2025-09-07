@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:api_app/data/models/products_model.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
 import 'product_card.dart';
 
 class ProductsGrid extends StatelessWidget {

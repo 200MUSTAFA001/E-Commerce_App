@@ -1,15 +1,14 @@
-// Flutter imports:
 // Project imports:
-import 'package:api_app/app_router.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/products_cubit.dart';
+import 'package:e_commerce_app/app_router.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/models/category_item_model.dart';
-import '../widgets/custom_widgets/products_list.dart';
+import '../widgets/custom_widgets/home_page_products_list.dart';
 import '../widgets/home_page_custom_widgets/category_bar.dart';
 import '../widgets/home_page_custom_widgets/custom_drawer.dart';
 import '../widgets/home_page_custom_widgets/home_page_app_bar.dart';

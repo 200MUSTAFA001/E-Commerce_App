@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // Project imports:
-import 'package:api_app/app_router.dart';
+import 'package:e_commerce_app/app_router.dart';
 
 class ProductImages extends StatelessWidget {
   ProductImages({

@@ -1,8 +1,8 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/data/models/sort_type_enm.dart';
-import 'package:api_app/extensions.dart';
-import 'package:api_app/logic/cubit/search_cubit.dart';
+import 'package:e_commerce_app/data/models/sort_type_enm.dart';
+import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/search_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:

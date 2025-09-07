@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:api_app/data/models/address_result_model.dart';
-import 'package:api_app/data/services/address_service.dart';
+import 'package:e_commerce_app/data/models/address_result_model.dart';
+import 'package:e_commerce_app/data/services/address_service.dart';
 
 class AddressRepo {
   AddressRepo(this.addressService);
