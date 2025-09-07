@@ -1,7 +1,7 @@
 // Flutter imports:
 // Project imports:
-import 'package:api_app/app_router.dart';
-import 'package:api_app/extensions.dart';
+import 'package:e_commerce_app/app_router.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +53,11 @@ class CustomDrawer extends StatelessWidget {
             itemPageName: AppRouter.cartPage,
           ),
           const DrawerItem(
+            itemIcon: Icons.support_agent_rounded,
+            itemTitle: "Help & Support",
+            itemPageName: AppRouter.helpAndSupportPage,
+          ),
+          const DrawerItem(
             itemIcon: Icons.logout,
             itemTitle: "logout",
             itemPageName: AppRouter.cartPage,
@@ -62,47 +67,3 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 }
-
-/*
-
- // ListTile(
-          //   leading: const Icon(
-          //     CupertinoIcons.square_grid_2x2,
-          //     size: 30,
-          //   ),
-          //   title: const Text(
-          //     'Shop by Categories',
-          //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-          //   ),
-          //   onTap: () {
-          //     context.push(AppRouter.categoriesPage);
-          //   },
-          // ),
-          // ListTile(
-          //   leading: const Icon(
-          //     CupertinoIcons.cart,
-          //     size: 30,
-          //   ),
-          //   title: const Text(
-          //     'Cart',
-          //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-          //   ),
-          //   onTap: () {
-          //     context.push(AppRouter.cartPage);
-          //   },
-          // ),
-          // ListTile(
-          //   leading: const Icon(
-          //     CupertinoIcons.heart,
-          //     size: 30,
-          //   ),
-          //   title: const Text(
-          //     'Favorites',
-          //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-          //   ),
-          //   onTap: () {
-          //     context.push(AppRouter.wishlistPage);
-          //   },
-          // ),
-
-*/
