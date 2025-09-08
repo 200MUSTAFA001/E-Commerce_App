@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/extensions.dart';
-import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,13 +6,16 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../app_router.dart';
 
 class AddressPageAppBar extends StatelessWidget {
-  const AddressPageAppBar({super.key, required this.cubit});
-
-  final AddressCubit cubit;
+  const AddressPageAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      leading: BackButton(
+        onPressed: () {
+          context.pop();
+        },
+      ),
       toolbarHeight: context.height * 0.1,
       title: Text(
         "Addresses",
@@ -22,7 +24,7 @@ class AddressPageAppBar extends StatelessWidget {
       actions: [
         OutlinedButton(
           onPressed: () {
-            context.push(AppRouter.addNewAddressPage, extra: cubit);
+            context.push(AppRouter.addNewAddressPage);
           },
           style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -12,14 +12,13 @@ class UserAddressesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<AddressCubit>();
     return Scaffold(
       body: BlocBuilder<AddressCubit, AddressState>(
         builder: (context, state) {
           if (state is AddressLoaded) {
             return CustomScrollView(
               slivers: [
-                AddressPageAppBar(cubit: cubit),
+                const AddressPageAppBar(),
                 SliverToBoxAdapter(
                   child: Card(
                     child: const Text(
@@ -43,12 +42,10 @@ class UserAddressesPage extends StatelessWidget {
               ],
             );
           } else {
-            return CustomScrollView(
+            return const CustomScrollView(
               slivers: [
-                AddressPageAppBar(
-                  cubit: cubit,
-                ),
-                const SliverFillRemaining(
+                AddressPageAppBar(),
+                SliverFillRemaining(
                   child: Center(
                     child: Text("no data found"),
                   ),

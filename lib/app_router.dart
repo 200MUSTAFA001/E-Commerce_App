@@ -49,6 +49,40 @@ class AppRouter {
   //
   final GoRouter router = GoRouter(
     routes: [
+      ShellRoute(
+        builder: (context, state, child) => BlocProvider(
+          create: (_) => AddressCubit(),
+          child: child,
+        ),
+        routes: [
+          GoRoute(
+            path: cartPage,
+            builder: (context, state) => const CartPage(),
+          ),
+          GoRoute(
+            path: userAddressesPage,
+            builder: (context, state) => const UserAddressesPage(),
+          ),
+          GoRoute(
+            path: addNewAddressPage,
+            builder: (context, state) {
+              return BlocProvider(
+                create: (context) =>
+                    AddressServiceCubit(AddressRepo(AddressService())),
+                child: const AddNewAddressPage(),
+              );
+            },
+          ),
+          GoRoute(
+            path: editAddressPage,
+            builder: (context, state) {
+              final address = state.extra as AddressModel;
+
+              return EditAddressPage(address: address);
+            },
+          ),
+        ],
+      ),
       GoRoute(path: homePage, builder: (context, state) => const MainPage()),
       GoRoute(
           path: productDetailsPage,
@@ -85,13 +119,6 @@ class AppRouter {
             );
           }),
       GoRoute(
-        path: cartPage,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AddressCubit(),
-          child: const CartPage(),
-        ),
-      ),
-      GoRoute(
           path: wishlistPage,
           builder: (context, state) => const WishlistPage()),
       GoRoute(
@@ -108,42 +135,8 @@ class AppRouter {
         ),
       ),
       GoRoute(
-        path: userAddressesPage,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AddressCubit(),
-          child: const UserAddressesPage(),
-        ),
-      ),
-      GoRoute(
-        path: addNewAddressPage,
-        builder: (context, state) {
-          final cubit = state.extra as AddressCubit;
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) =>
-                    AddressServiceCubit(AddressRepo(AddressService())),
-              ),
-              BlocProvider(create: (context) => AddressCubit()),
-            ],
-            child: AddNewAddressPage(cubit: cubit),
-          );
-        },
-      ),
-      GoRoute(
-        path: editAddressPage,
-        builder: (context, state) {
-          final address = state.extra as AddressModel;
-
-          return BlocProvider(
-            create: (context) => AddressCubit(),
-            child: EditAddressPage(address: address),
-          );
-        },
-      ),
-      GoRoute(
         path: helpAndSupportPage,
-        builder: (context, state) => HelpAndSupportPage(),
+        builder: (context, state) => const HelpAndSupportPage(),
       ),
     ],
   );

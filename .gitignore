@@ -18,8 +18,6 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# .env
-.env
 
 # TempFile
 lib/temp_file.dart
@@ -27,6 +25,7 @@ lib/todos.dart
 assets/logo/banner1.png
 assets/logo/logo.png
 assets/logo/newLogo.png
+lib/api_key.dart
 lib/presentation/widgets/home_page_custom_widgets/home_page_app_bar.dart
 
 # The .vscode folder contains launch configuration and tasks you configure in

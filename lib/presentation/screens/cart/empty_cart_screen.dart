@@ -19,6 +19,11 @@ class EmptyCartScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            leading: BackButton(
+              onPressed: () {
+                context.pop();
+              },
+            ),
             title: const Text("My cart"),
             centerTitle: true,
             pinned: true,

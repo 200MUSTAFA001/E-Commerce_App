@@ -13,16 +13,10 @@ class DefaultAddressCard extends StatelessWidget {
     return BlocBuilder<AddressCubit, AddressState>(
       builder: (context, state) {
         if (state is AddressLoaded) {
-          final addressesList = state.userAddressesList;
-          final defaultAddressesList = addressesList
-              .where((address) => address.defaultAddress == true)
-              .toList();
+          final defaultAddress = state.defaultAddress;
           return SliverToBoxAdapter(
-            child: defaultAddressesList.isNotEmpty
-                ? AddressCard(addressItem: defaultAddressesList.first)
-                    .onlyPadding(bottom: 14)
-                : const SizedBox(),
-          );
+              child: AddressCard(addressItem: defaultAddress)
+                  .onlyPadding(bottom: 14));
         } else {
           return const SliverFillRemaining(
             child: SizedBox(),

@@ -18,10 +18,6 @@ class WishlistCubit extends HydratedCubit<WishlistState> {
       final isProductExistBool =
           storiedList.any((product) => product.id == productID);
 
-      // final productIDs = storiedList.map((product) => product.id).toList();
-      //
-      // final isProductExistBool = productIDs.contains(productID) ? true : false;
-
       return isProductExistBool;
     } else {
       return false;
@@ -43,9 +39,6 @@ class WishlistCubit extends HydratedCubit<WishlistState> {
     final currentState = state;
     if (currentState is WishlistLoaded) {
       final wishList = List<Product>.from(currentState.wishlist);
-      // final updatedList = storiedList
-      //     .where((product) => product.id != removedProduct.id)
-      //     .toList();
       wishList.removeWhere((product) => product.id == removedProduct.id);
 
       if (wishList.isNotEmpty) {

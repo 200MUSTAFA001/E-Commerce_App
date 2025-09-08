@@ -31,11 +31,16 @@ class AddressCubit extends HydratedCubit<AddressState> {
           addressesList.add(savedAddress);
         }
         log("${addressesList.map((v) => v.addressID).toList()}");
-        emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
+        final defaultAddress = addressesList
+            .firstWhere((address) => address.defaultAddress == true);
+        emit(AddressLoaded(
+            userAddressesList: addressesList,
+            addressID: newID,
+            defaultAddress: defaultAddress));
       } else {
         emit(AddressLoaded(userAddressesList: [
           address.copyWith(addressID: 1, defaultAddress: true)
-        ], addressID: 1));
+        ], addressID: 1, defaultAddress: address));
       }
     } catch (e) {
       emit(AddressError());
@@ -49,10 +54,26 @@ class AddressCubit extends HydratedCubit<AddressState> {
       final addressesList =
           List<AddressModel>.from(currentState.userAddressesList);
 
-      addressesList.removeWhere((address) => address.addressID == addressID);
+      final address = addressesList.firstWhere((a) => a.addressID == addressID);
 
-      emit(AddressLoaded(
-          userAddressesList: addressesList, addressID: currentState.addressID));
+      //
+      final defaultAddress =
+          addressesList.firstWhere((address) => address.defaultAddress == true);
+
+      if (address.defaultAddress == false) {
+        addressesList.removeWhere((address) => address.addressID == addressID);
+
+        if (addressesList.isEmpty) {
+          emit(AddressEmpty());
+        } else {
+          emit(AddressLoaded(
+              userAddressesList: addressesList,
+              addressID: currentState.addressID,
+              defaultAddress: defaultAddress));
+        }
+      } else {
+        // Todo : if the address is a default address removing logic
+      }
     }
   }
 
@@ -77,10 +98,14 @@ class AddressCubit extends HydratedCubit<AddressState> {
         final savedAddress = modifiedAddress;
         addressesList.add(savedAddress);
       }
+      final defaultAddress =
+          addressesList.firstWhere((address) => address.defaultAddress == true);
       //
       emit(AddressLoaded(
-          userAddressesList: addressesList,
-          addressID: modifiedAddress.addressID!));
+        userAddressesList: addressesList,
+        addressID: modifiedAddress.addressID!,
+        defaultAddress: defaultAddress,
+      ));
       //
     }
   }
@@ -117,7 +142,10 @@ class AddressCubit extends HydratedCubit<AddressState> {
       addressesList.add(defaultAddressUpdated);
       addressesList.add(modifiedAddressUpdated);
 
-      emit(AddressLoaded(userAddressesList: addressesList, addressID: newID));
+      emit(AddressLoaded(
+          userAddressesList: addressesList,
+          addressID: newID,
+          defaultAddress: modifiedAddressUpdated));
     } else {
       emit(AddressEmpty());
     }
@@ -131,36 +159,6 @@ class AddressCubit extends HydratedCubit<AddressState> {
     }
   }
 
-  List<AddressModel> getAddressesList() {
-    final currentState = state;
-    if (currentState is AddressLoaded) {
-      final addressesList =
-          List<AddressModel>.from(currentState.userAddressesList);
-      return addressesList;
-    }
-    return [];
-  }
-
-  AddressModel? getDefaultAddress() {
-    final currentState = state;
-
-    AddressModel? defaultAddress;
-
-    if (currentState is AddressLoaded) {
-      final addressesList =
-          List<AddressModel>.from(currentState.userAddressesList);
-      final defaultAddressList = addressesList
-          .where((address) => address.defaultAddress == true)
-          .toList();
-
-      defaultAddress = defaultAddressList.first;
-
-      if (defaultAddressList.isNotEmpty) return defaultAddress;
-    }
-
-    return defaultAddress;
-  }
-
   @override
   AddressState? fromJson(Map<String, dynamic> json) {
     try {
@@ -168,12 +166,15 @@ class AddressCubit extends HydratedCubit<AddressState> {
       final userAddressesList = jsonAddressesList
           .map((address) => AddressModel.fromJson(address))
           .toList();
+      final defaultAddress = userAddressesList
+          .firstWhere((address) => address.defaultAddress == true);
 
       if (userAddressesList.isEmpty) return AddressEmpty();
 
       return AddressLoaded(
         userAddressesList: userAddressesList,
         addressID: json["addressID"] as int? ?? 0,
+        defaultAddress: defaultAddress,
       );
     } catch (e) {
       return AddressError();

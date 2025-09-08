@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/extensions.dart';
 import 'package:dartx/dartx.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,16 +10,7 @@ import '../../../logic/cubit/address_cubit.dart';
 import 'bottom_sheet_address_card.dart';
 
 class CartAddressBottomSheet extends StatefulWidget {
-  const CartAddressBottomSheet({
-    super.key,
-    required this.addressesList,
-    required this.newDefaultAddress,
-    required this.cubit,
-  });
-
-  final List<AddressModel> addressesList;
-  final void Function(AddressModel) newDefaultAddress;
-  final AddressCubit cubit;
+  const CartAddressBottomSheet({super.key});
 
   @override
   State<CartAddressBottomSheet> createState() => _CartAddressBottomSheetState();
@@ -27,26 +18,17 @@ class CartAddressBottomSheet extends StatefulWidget {
 
 class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
   int? addressID;
-  List<AddressModel> sortedList = [];
-  AddressModel? defaultAddress;
   AddressModel? newDefaultAddress;
 
   @override
   void initState() {
     super.initState();
-    sortedList =
-        widget.addressesList.sortedBy((x) => x.defaultAddress ? 0 : 1).toList();
-    defaultAddress = widget.addressesList
-        .firstWhere((address) => address.defaultAddress == true);
-    addressID = defaultAddress!.addressID!;
-  }
-
-  void onChanged(int? value) {
-    setState(() {
-      addressID = value!;
-      newDefaultAddress =
-          sortedList.firstWhere((address) => address.addressID == value);
-    });
+    final cubit = context.read<AddressCubit>();
+    final state = cubit.state;
+    if (state is AddressLoaded) {
+      final defaultAddress = state.defaultAddress;
+      addressID = defaultAddress.addressID!;
+    }
   }
 
   @override
@@ -80,6 +62,20 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
           BlocBuilder<AddressCubit, AddressState>(
             builder: (context, state) {
               if (state is AddressLoaded) {
+                final addressesList = state.userAddressesList;
+                final sortedList = addressesList
+                    .sortedBy((x) => x.defaultAddress ? 0 : 1)
+                    .toList();
+                //
+                void onChanged(int? value) {
+                  setState(() {
+                    addressID = value!;
+                    newDefaultAddress = addressesList
+                        .firstWhere((address) => address.addressID == value);
+                  });
+                }
+
+                //
                 return SliverList.builder(
                   itemCount: sortedList.length,
                   itemBuilder: (context, index) {
@@ -106,31 +102,27 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      context.push(AppRouter.addNewAddressPage,
-                          extra: widget.cubit);
-                    },
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.add,
+                GestureDetector(
+                  onTap: () {
+                    context.push(AppRouter.addNewAddressPage);
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.deepOrangeAccent,
+                        size: 16,
+                      ),
+                      Text(
+                        "Add New Address",
+                        style: TextStyle(
                           color: Colors.deepOrangeAccent,
-                          size: 16,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                         ),
-                        Text(
-                          "Add New Address",
-                          style: TextStyle(
-                            color: Colors.deepOrangeAccent,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 ElevatedButton(
@@ -139,7 +131,6 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
                       context
                           .read<AddressCubit>()
                           .changeAddressID(addressID!, newDefaultAddress!);
-                      widget.newDefaultAddress(newDefaultAddress!);
                       context.pop();
                     } else {
                       context.pop();
