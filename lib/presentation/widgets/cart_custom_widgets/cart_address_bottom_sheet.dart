@@ -27,7 +27,7 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
     final state = cubit.state;
     if (state is AddressLoaded) {
       final defaultAddress = state.defaultAddress;
-      addressID = defaultAddress.addressID!;
+      if (defaultAddress != null) addressID = defaultAddress.addressID!;
     }
   }
 
@@ -62,7 +62,7 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
           BlocBuilder<AddressCubit, AddressState>(
             builder: (context, state) {
               if (state is AddressLoaded) {
-                final addressesList = state.userAddressesList;
+                final addressesList = state.addressesList;
                 final sortedList = addressesList
                     .sortedBy((x) => x.defaultAddress ? 0 : 1)
                     .toList();
@@ -85,7 +85,7 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
                       name: sortedList[index].name,
                       addressDetails: sortedList[index].streetDetails,
                       value: value,
-                      groupValue: addressID!,
+                      groupValue: addressID,
                       onChanged: onChanged,
                       onTap: () {
                         onChanged(value);

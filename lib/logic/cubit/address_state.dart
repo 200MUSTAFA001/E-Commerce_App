@@ -6,12 +6,12 @@ sealed class AddressState {}
 final class AddressInitial extends AddressState {}
 
 final class AddressLoaded extends AddressState {
-  final List<AddressModel> userAddressesList;
-  final AddressModel defaultAddress;
+  final List<AddressModel> addressesList;
+  final AddressModel? defaultAddress;
   final int addressID;
 
   AddressLoaded({
-    required this.userAddressesList,
+    required this.addressesList,
     required this.addressID,
     required this.defaultAddress,
   });

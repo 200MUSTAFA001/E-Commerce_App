@@ -15,11 +15,14 @@ class DefaultAddressCard extends StatelessWidget {
         if (state is AddressLoaded) {
           final defaultAddress = state.defaultAddress;
           return SliverToBoxAdapter(
-              child: AddressCard(addressItem: defaultAddress)
-                  .onlyPadding(bottom: 14));
+            child: defaultAddress != null
+                ? AddressCard(addressItem: defaultAddress)
+                    .onlyPadding(bottom: 14)
+                : const SizedBox.shrink(),
+          );
         } else {
           return const SliverFillRemaining(
-            child: SizedBox(),
+            child: SizedBox.shrink(),
           );
         }
       },

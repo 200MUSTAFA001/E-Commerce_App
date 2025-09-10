@@ -147,23 +147,26 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
           ),
           SliverToBoxAdapter(
             child: ElevatedButton(
-              onPressed: isAddressFormFilled()
-                  ? () {
-                      userAddress = AddressModel(
-                        name: nameController.text,
-                        mobileNumber: mobileController.text,
-                        streetDetails: streetController.text,
-                        landMark: landmarkController.text,
-                        state: stateController.text,
-                        cityDistrict: cityController.text,
-                        pinCode: postcodeController.text,
-                        addressType: addressType!,
-                      ).copyWith(defaultAddress: defaultAddress);
+              onPressed:
+                  // isAddressFormFilled()
+                  //     ?
+                  () {
+                userAddress = AddressModel(
+                  name: nameController.text,
+                  mobileNumber: mobileController.text,
+                  streetDetails: streetController.text,
+                  landMark: landmarkController.text,
+                  state: stateController.text,
+                  cityDistrict: cityController.text,
+                  pinCode: postcodeController.text,
+                  addressType: addressType!,
+                ).copyWith(defaultAddress: defaultAddress);
 
-                      context.read<AddressCubit>().addAddress(userAddress!);
-                      context.pop();
-                    }
-                  : null,
+                context.read<AddressCubit>().addAddress(userAddress!);
+                context.pop();
+              }
+              // : null
+              ,
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(0, context.height * 0.07),
                 backgroundColor: Colors.deepOrangeAccent,

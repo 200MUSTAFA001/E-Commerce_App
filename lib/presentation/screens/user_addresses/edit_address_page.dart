@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_app/extensions.dart';
 import 'package:e_commerce_app/presentation/widgets/address_custom_widgets/addresses_type_list.dart';
 import 'package:e_commerce_app/presentation/widgets/address_custom_widgets/default_address_check_box.dart';
@@ -83,8 +85,13 @@ class _EditAddressPageState extends State<EditAddressPage> {
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            title: Text("Add New Address"),
+          SliverAppBar(
+            // title: Text("Add New Address"),
+            title: ElevatedButton(
+                onPressed: () {
+                  log("${widget.address.addressID}");
+                },
+                child: const Text("data")),
             pinned: true,
           ),
           SliverToBoxAdapter(
@@ -149,6 +156,9 @@ class _EditAddressPageState extends State<EditAddressPage> {
                         pinCode: postcodeController.text,
                         addressType: addressType!,
                       ).copyWith(defaultAddress: defaultAddress);
+
+                      log("$addressID");
+                      log("${widget.address.addressID}");
 
                       context
                           .read<AddressCubit>()

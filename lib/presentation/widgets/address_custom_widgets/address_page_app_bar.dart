@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,6 +26,20 @@ class AddressPageAppBar extends StatelessWidget {
         style: GoogleFonts.oswald(letterSpacing: 1, fontSize: 26),
       ),
       actions: [
+        ElevatedButton(
+            onPressed: () {
+              final ss = context.read<AddressCubit>();
+              final state = ss.state;
+              if (state is AddressLoaded) {
+                log("${state.addressID}");
+                log("${state.defaultAddress}");
+                log("${state.addressesList}");
+                log("${state.addressesList.map((a) => a.addressID).toList()}");
+              } else {
+                log("empty state");
+              }
+            },
+            child: const Text("t")),
         OutlinedButton(
           onPressed: () {
             context.push(AppRouter.addNewAddressPage);

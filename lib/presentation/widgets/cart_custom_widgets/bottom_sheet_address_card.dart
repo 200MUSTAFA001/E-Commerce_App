@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/extensions.dart';
 import 'package:dartx/dartx.dart';
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 
 class BottomSheetAddressCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class BottomSheetAddressCard extends StatelessWidget {
   final String name;
   final String addressDetails;
   final int value;
-  final int groupValue;
+  final int? groupValue;
   final void Function(int?) onChanged;
   final void Function() onTap;
 

@@ -13,7 +13,7 @@ class OtherAddressesList extends StatelessWidget {
     return BlocBuilder<AddressCubit, AddressState>(
       builder: (context, state) {
         if (state is AddressLoaded) {
-          final addressesList = state.userAddressesList;
+          final addressesList = state.addressesList;
           final otherAddressesList = addressesList
               .where((address) => address.defaultAddress == false)
               .toList();
