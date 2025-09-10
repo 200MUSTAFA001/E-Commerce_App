@@ -11,6 +11,7 @@ import 'package:e_commerce_app/logic/cubit/address_service_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/search_cubit.dart';
 import 'package:e_commerce_app/presentation/screens/cart/cart_page.dart';
 import 'package:e_commerce_app/presentation/screens/categories_page.dart';
+import 'package:e_commerce_app/presentation/screens/error_page.dart';
 import 'package:e_commerce_app/presentation/screens/help_and_support_page.dart';
 import 'package:e_commerce_app/presentation/screens/main_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_details_page.dart';
@@ -22,6 +23,7 @@ import 'package:e_commerce_app/presentation/screens/user_addresses/add_new_addre
 import 'package:e_commerce_app/presentation/screens/user_addresses/edit_address_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/user_addresses_page.dart';
 import 'package:e_commerce_app/presentation/screens/wishlist/wishlist_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -138,6 +140,12 @@ class AppRouter {
         path: helpAndSupportPage,
         builder: (context, state) => const HelpAndSupportPage(),
       ),
+      GoRoute(
+          path: "/path",
+          builder: (c, s) {
+            final aa = s.extra as FlutterErrorDetails;
+            return ErrorScreen(errorDetails: aa);
+          })
     ],
   );
 }

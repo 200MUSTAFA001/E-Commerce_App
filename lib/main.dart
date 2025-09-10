@@ -4,6 +4,7 @@ import 'dart:async';
 // Project imports:
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
+import 'package:e_commerce_app/presentation/screens/error_page.dart';
 // Flutter imports:
 import 'package:e_commerce_app/presentation/widgets/custom_widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,10 @@ import 'package:path_provider/path_provider.dart';
 import 'app_router.dart';
 
 Future<void> main() async {
+  // FlutterError.onError = (errorDetails) {
+  //   FlutterError.dumpErrorToConsole(errorDetails);
+  // }; Todo : errors not related to the build or ui
+
   WidgetsFlutterBinding.ensureInitialized();
 
   HydratedBloc.storage = await HydratedStorage.build(
@@ -22,6 +27,9 @@ Future<void> main() async {
       (await getApplicationDocumentsDirectory()).path,
     ),
   );
+  ErrorWidget.builder =
+      (errorDetails) => ErrorScreen(errorDetails: errorDetails);
+
   runApp(MyApp());
 }
 

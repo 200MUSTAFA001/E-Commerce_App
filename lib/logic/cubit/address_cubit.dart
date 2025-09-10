@@ -48,7 +48,7 @@ class AddressCubit extends HydratedCubit<AddressState> {
     } catch (e) {
       emit(AddressError());
     }
-  } // DONE
+  }
 
   void removeAddress(int addressID) {
     final currentState = state;
@@ -74,7 +74,7 @@ class AddressCubit extends HydratedCubit<AddressState> {
         ));
       }
     }
-  } // DONE
+  }
 
   void editAddress(int addressID, AddressModel modifiedAddress) {
     final currentState = state;
@@ -109,7 +109,7 @@ class AddressCubit extends HydratedCubit<AddressState> {
         ));
       }
     }
-  } // DONE
+  }
 
   void changeAddressID(int addressID, AddressModel modifiedAddress) {
     final currentState = state;
@@ -128,18 +128,13 @@ class AddressCubit extends HydratedCubit<AddressState> {
         final modifiedAddressUpdated = modifiedAddress.copyWith(
             addressID: addressID, defaultAddress: true);
 
-        addressesList.removeWhere((address) {
-          final tempBool = defaultAddress.addressID! == address.addressID! &&
-              defaultAddress.pinCode == address.pinCode;
-
-          return tempBool;
-        });
-        addressesList.removeWhere((address) {
-          final tempBool = modifiedAddress.addressID! == address.addressID! &&
-              modifiedAddress.pinCode == address.pinCode;
-
-          return tempBool;
-        });
+        addressesList.removeWhere((address) =>
+            defaultAddress.addressID! == address.addressID! &&
+            defaultAddress.pinCode == address.pinCode);
+        //
+        addressesList.removeWhere((address) =>
+            modifiedAddress.addressID! == address.addressID! &&
+            modifiedAddress.pinCode == address.pinCode);
 
         addressesList.add(defaultAddressUpdated);
         addressesList.add(modifiedAddressUpdated);
