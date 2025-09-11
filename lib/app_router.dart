@@ -11,19 +11,19 @@ import 'package:e_commerce_app/logic/cubit/address_service_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/search_cubit.dart';
 import 'package:e_commerce_app/presentation/screens/cart/cart_page.dart';
 import 'package:e_commerce_app/presentation/screens/categories_page.dart';
-import 'package:e_commerce_app/presentation/screens/error_page.dart';
 import 'package:e_commerce_app/presentation/screens/help_and_support_page.dart';
 import 'package:e_commerce_app/presentation/screens/main_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_details_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
 import 'package:e_commerce_app/presentation/screens/products_by_category_page.dart';
 import 'package:e_commerce_app/presentation/screens/products_on_sale_page.dart';
+import 'package:e_commerce_app/presentation/screens/profile_page.dart';
 import 'package:e_commerce_app/presentation/screens/search/search_page.dart';
+import 'package:e_commerce_app/presentation/screens/settings_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/add_new_address_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/edit_address_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/user_addresses_page.dart';
 import 'package:e_commerce_app/presentation/screens/wishlist/wishlist_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,6 +46,8 @@ class AppRouter {
   static const String addNewAddressPage = "/addNewAddressPage";
   static const String editAddressPage = "/editAddressPage";
   static const String helpAndSupportPage = "/helpAndSupportPage";
+  static const String profilePage = "/profilePage";
+  static const String settingsPage = "/settingsPage";
 
   //
   //
@@ -141,11 +143,13 @@ class AppRouter {
         builder: (context, state) => const HelpAndSupportPage(),
       ),
       GoRoute(
-          path: "/path",
-          builder: (c, s) {
-            final aa = s.extra as FlutterErrorDetails;
-            return ErrorScreen(errorDetails: aa);
-          })
+        path: profilePage,
+        builder: (context, state) => const ProfilePage(),
+      ),
+      GoRoute(
+        path: settingsPage,
+        builder: (context, state) => const SettingsPage(),
+      ),
     ],
   );
 }

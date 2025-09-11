@@ -4,6 +4,7 @@ import 'package:e_commerce_app/app_router.dart';
 import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'drawer_item.dart';
 
@@ -20,14 +21,18 @@ class CustomDrawer extends StatelessWidget {
         spacing: 10,
         children: [
           ListTile(
-            leading: Image.asset("assets/mock_pics/user_pic.png"),
+            leading: Hero(
+                tag: "userImage",
+                child: Image.asset("assets/mock_pics/user_pic.png")),
             title: const Text(
               "Emy Adams",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
             ),
             subtitle: const Text("+01-23456789"),
             trailing: const Icon(CupertinoIcons.forward),
-            onTap: () {},
+            onTap: () {
+              context.push(AppRouter.profilePage);
+            },
           ),
           const SizedBox(
             height: 6,
