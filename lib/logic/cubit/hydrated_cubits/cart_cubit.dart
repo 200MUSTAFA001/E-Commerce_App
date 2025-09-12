@@ -1,9 +1,10 @@
 // Flutter imports:
 // Project imports:
-import 'package:e_commerce_app/data/models/products_model.dart';
-import 'package:e_commerce_app/presentation/widgets/custom_widgets/product_card.dart';
 // Package imports:
 import 'package:dartx/dartx.dart';
+import 'package:e_commerce_app/data/models/prices_details_model.dart';
+import 'package:e_commerce_app/data/models/products_model.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -87,12 +88,13 @@ class CartCubit extends HydratedCubit<CartState> {
     return 0;
   }
 
-  List<int> getProductsPrices() {
+  PricesDetailsModel? getProductsPrices() {
     final currentState = state;
 
     if (currentState is CartLoaded) {
       final cartProducts = List<CartItem>.from(currentState.cartProducts);
-      final pricesBeforeDiscount = cartProducts
+      //
+      final subtotal = cartProducts
           .map((product) {
             final productsPrices = product.productQuantity *
                 priceBeforeDiscount(
@@ -100,8 +102,7 @@ class CartCubit extends HydratedCubit<CartState> {
             return productsPrices;
           })
           .toList()
-          .sum()
-          .toInt();
+          .sum();
       //
       final pricesAfterDiscount = cartProducts
           .map((product) {
@@ -110,16 +111,22 @@ class CartCubit extends HydratedCubit<CartState> {
             return productsPrices;
           })
           .toList()
-          .sum()
-          .toInt();
+          .sum();
       //
-      final totalDiscount =
-          (pricesBeforeDiscount - pricesAfterDiscount).toInt();
+      final totalDiscount = (subtotal - pricesAfterDiscount);
 
-      return [pricesBeforeDiscount, totalDiscount, pricesAfterDiscount];
+      final shippingFee = (pricesAfterDiscount * 0.05);
+
+      final total = pricesAfterDiscount + shippingFee;
+
+      return PricesDetailsModel(
+        subtotal: subtotal.toDouble(),
+        shippingFee: shippingFee,
+        discounts: totalDiscount,
+        total: total,
+      );
     } else {
-      emit(CartEmpty());
-      return [];
+      return null;
     }
   }
 

@@ -1,3 +1,4 @@
+/*
 // Project imports:
 import 'package:e_commerce_app/extensions.dart';
 // Flutter imports:
@@ -94,7 +95,7 @@ class CheckoutBarScrollUp extends StatelessWidget {
                     ),
                   ],
                 ).onlyPadding(left: 30, right: 30),
-              ).onlyPadding(top: 0),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -159,13 +160,14 @@ class CustomRowText extends StatelessWidget {
       children: [
         Text(
           rowTitle,
-          style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
         ),
         Text(
           rowValue,
-          style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
+          style: TextStyle(fontSize: 18),
         ),
       ],
     );
   }
 }
+*/

@@ -5,14 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 
 class CartCheckoutBar extends StatelessWidget {
-  const CartCheckoutBar({super.key});
+  const CartCheckoutBar({super.key, required this.onPressed});
+
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        final pricesBeforeDiscount =
-            context.read<CartCubit>().getProductsPrices().last;
+        final subtotal =
+            context.read<CartCubit>().getProductsPrices()!.subtotal;
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -24,14 +26,14 @@ class CartCheckoutBar extends StatelessWidget {
                     style:
                         TextStyle(color: Colors.grey.shade600, fontSize: 16)),
                 Text(
-                  r"$" "$pricesBeforeDiscount",
+                  r"$" "$subtotal",
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: onPressed,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),

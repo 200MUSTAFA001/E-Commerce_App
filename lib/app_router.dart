@@ -1,6 +1,7 @@
 // Package imports:
 // Project imports:
 import 'package:e_commerce_app/data/models/address_model.dart';
+import 'package:e_commerce_app/data/models/cart_to_checkout_model.dart';
 import 'package:e_commerce_app/data/models/category_item_model.dart';
 import 'package:e_commerce_app/data/repository/address_repo.dart';
 import 'package:e_commerce_app/data/repository/products_repo.dart';
@@ -11,6 +12,7 @@ import 'package:e_commerce_app/logic/cubit/address_service_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/search_cubit.dart';
 import 'package:e_commerce_app/presentation/screens/cart/cart_page.dart';
 import 'package:e_commerce_app/presentation/screens/categories_page.dart';
+import 'package:e_commerce_app/presentation/screens/checkout_page.dart';
 import 'package:e_commerce_app/presentation/screens/help_and_support_page.dart';
 import 'package:e_commerce_app/presentation/screens/main_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_details_page.dart';
@@ -48,6 +50,7 @@ class AppRouter {
   static const String helpAndSupportPage = "/helpAndSupportPage";
   static const String profilePage = "/profilePage";
   static const String settingsPage = "/settingsPage";
+  static const String checkOutPage = "/checkOutPage";
 
   //
   //
@@ -149,6 +152,13 @@ class AppRouter {
       GoRoute(
         path: settingsPage,
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: checkOutPage,
+        builder: (context, state) {
+          final checkoutDetails = state.extra as CartToCheckoutModel;
+          return CheckoutPage(checkoutDetails: checkoutDetails);
+        },
       ),
     ],
   );

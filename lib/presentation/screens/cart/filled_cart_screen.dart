@@ -1,4 +1,7 @@
 // Project imports:
+import 'package:e_commerce_app/app_router.dart';
+import 'package:e_commerce_app/data/models/address_model.dart';
+import 'package:e_commerce_app/data/models/cart_to_checkout_model.dart';
 import 'package:e_commerce_app/extensions.dart';
 import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
@@ -31,10 +34,31 @@ class _FilledCartScreenState extends State<FilledCartScreen> {
         context.read<AddressCubit>().isAddressListNotEmpty();
   }
 
+  CartToCheckoutModel checkoutDetails() {
+    final pricesDetails = context.read<CartCubit>().getProductsPrices();
+    final addressCubitState = context.read<AddressCubit>().state;
+    late AddressModel shippingAddress;
+    if (addressCubitState is AddressLoaded) {
+      shippingAddress = addressCubitState.defaultAddress!;
+    }
+    return CartToCheckoutModel(
+      subtotal: pricesDetails!.subtotal,
+      discounts: pricesDetails.discounts,
+      shippingFee: pricesDetails.shippingFee,
+      total: pricesDetails.total,
+      shippingAddress: shippingAddress.streetDetails,
+      paymentMethod: "Credit / Debit Card",
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CartCheckoutBar(),
+      bottomNavigationBar: CartCheckoutBar(
+        onPressed: () {
+          context.push(AppRouter.checkOutPage, extra: checkoutDetails());
+        },
+      ),
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
