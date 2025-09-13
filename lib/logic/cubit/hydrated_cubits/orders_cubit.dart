@@ -1,0 +1,49 @@
+import 'dart:developer';
+
+import 'package:e_commerce_app/data/models/order_model.dart';
+import 'package:flutter/material.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+
+part 'orders_state.dart';
+
+class OrdersCubit extends HydratedCubit<OrdersState> {
+  OrdersCubit() : super(OrdersInitial());
+
+  void addOrder(OrderModel orderItem) {
+    final currentState = state;
+    if (currentState is OrdersLoaded) {
+      final ordersList = List<OrderModel>.from(currentState.ordersList);
+      ordersList.add(orderItem);
+      log(orderItem.orderID);
+      log("${ordersList.length}");
+      emit(OrdersLoaded(ordersList: ordersList));
+    }
+  }
+
+  @override
+  OrdersState? fromJson(Map<String, dynamic> json) {
+    final jsonOrdersList = json["ordersList"] as List;
+    final ordersList =
+        jsonOrdersList.map((order) => OrderModel.fromJson(order)).toList();
+
+    if (ordersList.isEmpty) {
+      return OrdersEmpty();
+    } else {
+      return OrdersLoaded(ordersList: ordersList);
+    }
+  }
+
+  @override
+  Map<String, dynamic>? toJson(OrdersState state) {
+    final currentState = state;
+    if (currentState is OrdersLoaded) {
+      final ordersList = List<OrderModel>.from(currentState.ordersList);
+      return {
+        "ordersList": ordersList.map((order) => order.toJson()).toList(),
+      };
+    } else {
+      final List<Map<String, dynamic>> emptyList = [];
+      return {"ordersList": emptyList};
+    }
+  }
+}
