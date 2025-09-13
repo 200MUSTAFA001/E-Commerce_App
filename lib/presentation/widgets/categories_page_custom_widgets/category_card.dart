@@ -1,11 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_svg/flutter_svg.dart';
-
 // Project imports:
 import 'package:e_commerce_app/extensions.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard(
@@ -39,7 +37,7 @@ class CategoryCard extends StatelessWidget {
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
               maxLines: 2,
-            ).onlyPadding(top: 10, bottom: 5),
+            ).paddingOnly(top: 10, bottom: 5),
           ],
         ),
       ),

@@ -36,6 +36,6 @@ class _DefaultAddressCheckBoxState extends State<DefaultAddressCheckBox> {
           style: TextStyle(fontSize: 16),
         ),
       ],
-    ).onlyPadding(top: 18, bottom: 12);
+    ).paddingOnly(top: 18, bottom: 12);
   }
 }

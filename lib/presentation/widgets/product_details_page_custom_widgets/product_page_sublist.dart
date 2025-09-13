@@ -27,7 +27,7 @@ class ProductPageSubList extends StatelessWidget {
                 const Text(
                   "You may like",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ).onlyPadding(left: 16, top: 30),
+                ).paddingOnly(left: 16, top: 30),
                 Card(
                   elevation: 1,
                   semanticContainer: false,

@@ -17,7 +17,7 @@ class AddressSearchBar extends StatelessWidget {
         controller: searchController,
         leading: const Icon(CupertinoIcons.search),
         onChanged: onChanged,
-      ).allPadding(12),
+      ).paddingAll(12),
     );
   }
 }

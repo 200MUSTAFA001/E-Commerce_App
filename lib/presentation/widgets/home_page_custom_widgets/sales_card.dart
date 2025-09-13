@@ -48,7 +48,7 @@ class SaleCard extends StatelessWidget {
               style: GoogleFonts.oswald(
                   fontSize: 22, color: cardNameColor, letterSpacing: 1),
               maxLines: 2,
-            ).onlyPadding(right: 150, left: 10),
+            ).paddingOnly(right: 150, left: 10),
             ElevatedButton(
               onPressed: elevatedButtonOnPressed,
               style: ElevatedButton.styleFrom(

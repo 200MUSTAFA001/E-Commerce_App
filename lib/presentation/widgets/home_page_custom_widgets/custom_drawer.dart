@@ -53,6 +53,11 @@ class CustomDrawer extends StatelessWidget {
             itemPageName: AppRouter.cartPage,
           ),
           const DrawerItem(
+            itemIcon: CupertinoIcons.cube_box,
+            itemTitle: "orders",
+            itemPageName: AppRouter.ordersPage,
+          ),
+          const DrawerItem(
             itemIcon: CupertinoIcons.info,
             itemTitle: "about us",
             itemPageName: AppRouter.cartPage,
@@ -68,7 +73,7 @@ class CustomDrawer extends StatelessWidget {
             itemPageName: AppRouter.cartPage,
           ),
         ],
-      ).onlyPadding(top: 40),
+      ).paddingOnly(top: 40),
     );
   }
 }

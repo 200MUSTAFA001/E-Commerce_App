@@ -46,7 +46,7 @@ class CustomSearchBar extends StatelessWidget {
               hintText: "What are Looking for ?",
               elevation: const WidgetStatePropertyAll(0),
               textInputAction: TextInputAction.search,
-            ).onlyPadding(right: 10, left: 10),
+            ).paddingOnly(right: 10, left: 10),
           ),
         ),
       ],

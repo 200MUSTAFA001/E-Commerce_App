@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../widgets/help_support_custom_widgets/help_and_support_item.dart';
+import '../../widgets/help_support_custom_widgets/help_and_support_item.dart';
 
 class HelpAndSupportPage extends StatelessWidget {
   const HelpAndSupportPage({super.key});
@@ -29,12 +29,12 @@ class HelpAndSupportPage extends StatelessWidget {
                   "Hi👋 How can i help ?",
                   style: GoogleFonts.firaSans(
                       fontSize: 30, fontWeight: FontWeight.w500),
-                ).onlyPadding(top: 12, bottom: 6),
+                ).paddingOnly(top: 12, bottom: 6),
                 const Text(
                   "Got any question about our service or your order? Just Our e-commerce superheroes are ready to assist and support you.",
                   style: TextStyle(fontSize: 18, color: Colors.black54),
                   textAlign: TextAlign.center,
-                ).onlyPadding(left: 40, right: 40)
+                ).paddingOnly(left: 40, right: 40)
               ],
             ),
           ),

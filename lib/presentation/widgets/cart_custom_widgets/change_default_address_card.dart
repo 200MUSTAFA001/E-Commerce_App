@@ -20,7 +20,7 @@ class ChangeDefaultAddressCard extends StatelessWidget {
             const Text(
               "Deliver to :",
               style: TextStyle(fontSize: 16),
-            ).onlyPadding(left: 6, top: 10, bottom: 6),
+            ).paddingOnly(left: 6, top: 10, bottom: 6),
             BlocBuilder<AddressCubit, AddressState>(
               builder: (context, state) {
                 if (state is AddressLoaded) {
@@ -91,7 +91,7 @@ class ChangeDefaultAddressCard extends StatelessWidget {
             )
           ],
         ),
-      ).onlyPadding(bottom: 10),
+      ).paddingOnly(bottom: 10),
     );
   }
 }

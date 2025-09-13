@@ -92,7 +92,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
               child: const Text(
                 "Contact Info",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ).allPadding(10),
+              ).paddingAll(10),
             ),
           ),
           CustomTextField(controller: nameController, label: "Name"),
@@ -113,7 +113,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                     child: const Icon(CupertinoIcons.search_circle, size: 30),
                   )
                 ],
-              ).onlyPadding(left: 10, right: 16, top: 10, bottom: 10),
+              ).paddingOnly(left: 10, right: 16, top: 10, bottom: 10),
             ),
           ),
           CustomTextField(
@@ -143,7 +143,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                   defaultAddress: defaultAddress,
                 ),
               ],
-            ).onlyPadding(left: 14, top: 12),
+            ).paddingOnly(left: 14, top: 12),
           ),
           SliverToBoxAdapter(
             child: ElevatedButton(
@@ -177,7 +177,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
                 "Save Address",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            ).allPadding(20),
+            ).paddingAll(20),
           ),
         ],
       ),

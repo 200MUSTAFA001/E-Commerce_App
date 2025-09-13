@@ -67,9 +67,9 @@ class _SectionsListState extends State<SectionsList> {
                 ),
               )
             ],
-          ).onlyPadding(right: 10),
+          ).paddingOnly(right: 10),
         );
       },
-    ).onlyPadding(right: 10, left: 10);
+    ).paddingOnly(right: 10, left: 10);
   }
 }

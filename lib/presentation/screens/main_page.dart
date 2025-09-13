@@ -5,7 +5,7 @@ import 'package:e_commerce_app/data/services/products_service.dart';
 import 'package:e_commerce_app/logic/cubit/products_cubit.dart';
 import 'package:e_commerce_app/presentation/screens/categories_page.dart';
 import 'package:e_commerce_app/presentation/screens/home_page.dart';
-import 'package:e_commerce_app/presentation/screens/settings_page.dart';
+import 'package:e_commerce_app/presentation/screens/others_pages/settings_page.dart';
 import 'package:e_commerce_app/presentation/screens/wishlist/wishlist_page.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
@@ -39,9 +39,7 @@ class _MainPageState extends State<MainPage> {
     BottomNavigationBarItem(
         icon: Icon(Icons.home_filled),
         label: "home",
-        activeIcon: Icon(
-          Icons.home_filled,
-        )),
+        activeIcon: Icon(Icons.home_filled)),
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.square_grid_2x2),
       label: "categories",
@@ -50,16 +48,12 @@ class _MainPageState extends State<MainPage> {
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.heart),
       label: "wishList",
-      activeIcon: Icon(
-        CupertinoIcons.heart_fill,
-      ),
+      activeIcon: Icon(CupertinoIcons.heart_fill),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
+      icon: Icon(Icons.settings_outlined),
       label: "settings",
-      activeIcon: Icon(
-        Icons.settings,
-      ),
+      activeIcon: Icon(Icons.settings),
     ),
   ];
 

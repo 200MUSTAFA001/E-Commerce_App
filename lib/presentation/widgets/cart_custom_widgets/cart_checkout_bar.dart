@@ -47,7 +47,7 @@ class CartCheckoutBar extends StatelessWidget {
               ),
             ),
           ],
-        ).onlyPadding(right: 10, left: 10, top: 5, bottom: 10);
+        ).paddingOnly(right: 10, left: 10, top: 5, bottom: 10);
       },
     );
   }

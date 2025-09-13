@@ -22,7 +22,7 @@ class ErrorScreen extends StatelessWidget {
                 scale: 2,
                 child: Lottie.asset("assets/error.json", repeat: false),
               ),
-            ).onlyPadding(bottom: 80),
+            ).paddingOnly(bottom: 80),
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -30,10 +30,10 @@ class ErrorScreen extends StatelessWidget {
                 const Text(
                   "Error Occurred!",
                   style: TextStyle(fontSize: 36, fontWeight: FontWeight.w500),
-                ).onlyPadding(left: 20),
+                ).paddingOnly(left: 20),
                 const Text("Something went wrong",
                         style: TextStyle(fontSize: 20, color: Colors.black54))
-                    .onlyPadding(left: 20, bottom: 50),
+                    .paddingOnly(left: 20, bottom: 50),
                 ElevatedButton(
                   onPressed: () {
                     context.go(AppRouter.homePage);
@@ -48,7 +48,7 @@ class ErrorScreen extends StatelessWidget {
                     "Back to Homepage",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                ).onlyPadding(left: 20, bottom: 10),
+                ).paddingOnly(left: 20, bottom: 10),
                 TextButton(
                   onPressed: () {
                     showDialog(
@@ -72,7 +72,7 @@ class ErrorScreen extends StatelessWidget {
                     "Error details",
                     style: TextStyle(color: Colors.black, fontSize: 18),
                   ),
-                ).onlyPadding(left: 20),
+                ).paddingOnly(left: 20),
               ],
             ),
           )

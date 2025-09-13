@@ -35,6 +35,6 @@ class BottomSheetRatingList extends StatelessWidget {
           reviewsCount: reviews.length,
         )
       ],
-    ).onlyPadding(right: 8, left: 8, bottom: 8);
+    ).paddingOnly(right: 8, left: 8, bottom: 8);
   }
 }

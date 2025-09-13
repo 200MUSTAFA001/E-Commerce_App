@@ -55,7 +55,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   : const SizedBox(),
             );
           }).toList(),
-        ).allPadding(16),
+        ).paddingAll(16),
       ),
     );
   }

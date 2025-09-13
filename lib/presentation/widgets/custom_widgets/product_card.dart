@@ -1,12 +1,12 @@
 // Dart imports:
 import 'dart:math';
 
+// Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 // Project imports:
 import 'package:e_commerce_app/data/models/products_model.dart';
 import 'package:e_commerce_app/extensions.dart';
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
-// Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -182,7 +182,7 @@ class _ProductCardState extends State<ProductCard> {
             ],
           )
         ],
-      ).allPadding(10),
+      ).paddingAll(10),
     );
   }
 }

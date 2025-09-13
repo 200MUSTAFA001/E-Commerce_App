@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 extension PaddingExtension on Widget {
-  Widget onlyPadding({
+  Widget paddingOnly({
     double right = 0,
     double left = 0,
     double top = 0,
@@ -19,7 +19,7 @@ extension PaddingExtension on Widget {
     );
   }
 
-  Widget allPadding(double padding) {
+  Widget paddingAll(double padding) {
     return Padding(
       padding: EdgeInsets.all(padding),
       child: this,

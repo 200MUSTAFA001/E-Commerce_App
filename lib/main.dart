@@ -4,7 +4,7 @@ import 'dart:async';
 // Project imports:
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/wishlist_cubit.dart';
-import 'package:e_commerce_app/presentation/screens/error_page.dart';
+import 'package:e_commerce_app/presentation/screens/others_pages/error_page.dart';
 // Flutter imports:
 import 'package:e_commerce_app/presentation/widgets/custom_widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';

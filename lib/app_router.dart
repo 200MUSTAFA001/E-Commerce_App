@@ -9,19 +9,21 @@ import 'package:e_commerce_app/data/services/address_service.dart';
 import 'package:e_commerce_app/data/services/products_service.dart';
 import 'package:e_commerce_app/logic/cubit/address_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/address_service_cubit.dart';
+import 'package:e_commerce_app/logic/cubit/hydrated_cubits/orders_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/search_cubit.dart';
 import 'package:e_commerce_app/presentation/screens/cart/cart_page.dart';
 import 'package:e_commerce_app/presentation/screens/categories_page.dart';
 import 'package:e_commerce_app/presentation/screens/checkout_page.dart';
-import 'package:e_commerce_app/presentation/screens/help_and_support_page.dart';
 import 'package:e_commerce_app/presentation/screens/main_page.dart';
+import 'package:e_commerce_app/presentation/screens/orders/orders_page.dart';
+import 'package:e_commerce_app/presentation/screens/others_pages/help_and_support_page.dart';
+import 'package:e_commerce_app/presentation/screens/others_pages/products_on_sale_page.dart';
+import 'package:e_commerce_app/presentation/screens/others_pages/settings_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_details_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
 import 'package:e_commerce_app/presentation/screens/products_by_category_page.dart';
-import 'package:e_commerce_app/presentation/screens/products_on_sale_page.dart';
 import 'package:e_commerce_app/presentation/screens/profile_page.dart';
 import 'package:e_commerce_app/presentation/screens/search/search_page.dart';
-import 'package:e_commerce_app/presentation/screens/settings_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/add_new_address_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/edit_address_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/user_addresses_page.dart';
@@ -51,6 +53,7 @@ class AppRouter {
   static const String profilePage = "/profilePage";
   static const String settingsPage = "/settingsPage";
   static const String checkOutPage = "/checkOutPage";
+  static const String ordersPage = "/ordersPage";
 
   //
   //
@@ -87,6 +90,25 @@ class AppRouter {
 
               return EditAddressPage(address: address);
             },
+          ),
+        ],
+      ),
+      ShellRoute(
+        builder: (context, state, child) => BlocProvider(
+          create: (_) => OrdersCubit(),
+          child: child,
+        ),
+        routes: [
+          GoRoute(
+            path: checkOutPage,
+            builder: (context, state) {
+              final checkoutDetails = state.extra as CartToCheckoutModel;
+              return CheckoutPage(checkoutDetails: checkoutDetails);
+            },
+          ),
+          GoRoute(
+            path: ordersPage,
+            builder: (context, state) => const OrdersPage(),
           ),
         ],
       ),
@@ -152,13 +174,6 @@ class AppRouter {
       GoRoute(
         path: settingsPage,
         builder: (context, state) => const SettingsPage(),
-      ),
-      GoRoute(
-        path: checkOutPage,
-        builder: (context, state) {
-          final checkoutDetails = state.extra as CartToCheckoutModel;
-          return CheckoutPage(checkoutDetails: checkoutDetails);
-        },
       ),
     ],
   );

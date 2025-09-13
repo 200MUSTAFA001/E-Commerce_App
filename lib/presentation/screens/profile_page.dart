@@ -70,7 +70,7 @@ class ProfilePage extends StatelessWidget {
                       context.push(AppRouter.helpAndSupportPage);
                     }),
               ],
-            ).onlyPadding(top: 14, right: 6, left: 6),
+            ).paddingOnly(top: 14, right: 6, left: 6),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -81,7 +81,7 @@ class ProfilePage extends StatelessWidget {
                   child: const Text(
                     "Sign Out",
                     style: TextStyle(fontSize: 16, color: Colors.red),
-                  )).onlyPadding(bottom: 20),
+                  )).paddingOnly(bottom: 20),
             ),
           ),
         ],

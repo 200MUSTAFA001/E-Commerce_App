@@ -1,8 +1,7 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:e_commerce_app/extensions.dart';
+import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({
@@ -49,6 +48,6 @@ class AddToCartButton extends StatelessWidget {
           ],
         ),
       ),
-    ).onlyPadding(right: 10, left: 10);
+    ).paddingOnly(right: 10, left: 10);
   }
 }

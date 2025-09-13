@@ -61,7 +61,7 @@ class AddressPageAppBar extends StatelessWidget {
               ),
             ],
           ),
-        ).onlyPadding(right: 10),
+        ).paddingOnly(right: 10),
       ],
     );
   }

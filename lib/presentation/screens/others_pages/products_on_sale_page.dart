@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../logic/cubit/products_cubit.dart';
-import '../widgets/custom_widgets/products_by_category_list.dart';
-import '../widgets/custom_widgets/shimmer_list.dart';
+import '../../../logic/cubit/products_cubit.dart';
+import '../../widgets/custom_widgets/products_by_category_list.dart';
+import '../../widgets/custom_widgets/shimmer_list.dart';
 
 class ProductsOnSalePage extends StatefulWidget {
   const ProductsOnSalePage({super.key, required this.categories});

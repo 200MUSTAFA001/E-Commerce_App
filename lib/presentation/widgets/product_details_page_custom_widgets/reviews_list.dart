@@ -27,7 +27,7 @@ class ReviewsList extends StatelessWidget {
         reviewerComment: reviews[index].comment,
         reviewerRate: reviews[index].rating,
         reviewerCommentDate: reviews[index].date,
-      ).onlyPadding(right: 20, left: 20, top: 10, bottom: 20),
+      ).paddingOnly(right: 20, left: 20, top: 10, bottom: 20),
     );
   }
 }

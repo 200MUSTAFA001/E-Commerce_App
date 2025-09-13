@@ -27,7 +27,7 @@ class WelcomeUserTile extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-      ).onlyPadding(bottom: 6),
+      ).paddingOnly(bottom: 6),
     );
   }
 }

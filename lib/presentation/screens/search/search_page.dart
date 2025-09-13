@@ -94,7 +94,7 @@ class _SearchPageState extends State<SearchPage> {
                   ],
                 ),
               ],
-            ).onlyPadding(left: 10, right: 10),
+            ).paddingOnly(left: 10, right: 10),
           ),
           const SearchList(),
         ],

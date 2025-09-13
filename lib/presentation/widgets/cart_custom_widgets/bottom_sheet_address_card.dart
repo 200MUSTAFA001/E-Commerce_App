@@ -68,7 +68,7 @@ class BottomSheetAddressCard extends StatelessWidget {
               style: const TextStyle(color: Colors.black54),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-            ).onlyPadding(right: 10),
+            ).paddingOnly(right: 10),
           ],
         ),
       ),

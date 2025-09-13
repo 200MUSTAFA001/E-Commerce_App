@@ -99,7 +99,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
               child: const Text(
                 "Contact Info",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ).allPadding(10),
+              ).paddingAll(10),
             ),
           ),
           CustomTextField(controller: nameController, label: "Name"),
@@ -109,7 +109,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
               child: const Text(
                 "Address Info",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ).allPadding(10),
+              ).paddingAll(10),
             ),
           ),
           CustomTextField(
@@ -139,7 +139,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
                   defaultAddress: defaultAddress!,
                 ),
               ],
-            ).onlyPadding(left: 14, top: 12),
+            ).paddingOnly(left: 14, top: 12),
           ),
           SliverToBoxAdapter(
             child: ElevatedButton(
@@ -177,7 +177,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
                 "Save Address",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            ).allPadding(20),
+            ).paddingAll(20),
           ),
         ],
       ),

@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 20),
               ],
-            ).onlyPadding(right: 16, left: 16, top: 20, bottom: 10),
+            ).paddingOnly(right: 16, left: 16, top: 20, bottom: 10),
           ),
           const HomePageProductsList(),
           ShowMoreHomePageButton(

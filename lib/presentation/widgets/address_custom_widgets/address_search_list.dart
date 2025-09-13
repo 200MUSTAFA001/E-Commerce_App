@@ -29,7 +29,7 @@ class AddressSearchList extends StatelessWidget {
                 addressesList[index].displayName,
                 style: GoogleFonts.openSans(
                     fontWeight: FontWeight.w500, fontSize: 16),
-              ).onlyPadding(right: 12, left: 12, bottom: 16, top: 16),
+              ).paddingOnly(right: 12, left: 12, bottom: 16, top: 16),
             ),
           );
         } else {

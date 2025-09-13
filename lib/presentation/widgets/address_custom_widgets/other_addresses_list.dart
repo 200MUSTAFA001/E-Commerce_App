@@ -21,7 +21,7 @@ class OtherAddressesList extends StatelessWidget {
             itemCount: otherAddressesList.length,
             itemBuilder: (context, index) => AddressCard(
               addressItem: otherAddressesList[index],
-            ).onlyPadding(bottom: 10),
+            ).paddingOnly(bottom: 10),
           );
         } else {
           return const SliverFillRemaining(

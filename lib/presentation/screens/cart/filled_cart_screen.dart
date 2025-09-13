@@ -48,6 +48,7 @@ class _FilledCartScreenState extends State<FilledCartScreen> {
       total: pricesDetails.total,
       shippingAddress: shippingAddress.streetDetails,
       paymentMethod: "Credit / Debit Card",
+      orderProducts: widget.cartProducts,
     );
   }
 

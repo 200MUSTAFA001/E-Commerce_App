@@ -58,6 +58,6 @@ class CartAddedButton extends StatelessWidget {
           ],
         ),
       ),
-    ).onlyPadding(right: 10, left: 10);
+    ).paddingOnly(right: 10, left: 10);
   }
 }

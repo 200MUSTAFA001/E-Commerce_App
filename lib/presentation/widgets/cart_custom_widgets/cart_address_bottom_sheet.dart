@@ -57,7 +57,7 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
                     },
                     icon: const Icon(Icons.clear))
               ],
-            ).onlyPadding(left: 16, right: 14, top: 14, bottom: 10),
+            ).paddingOnly(left: 16, right: 14, top: 14, bottom: 10),
           ),
           BlocBuilder<AddressCubit, AddressState>(
             builder: (context, state) {
@@ -90,7 +90,7 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
                       onTap: () {
                         onChanged(value);
                       },
-                    ).onlyPadding(right: 10, left: 10);
+                    ).paddingOnly(right: 10, left: 10);
                   },
                 );
               } else {
@@ -146,9 +146,9 @@ class _CartAddressBottomSheetState extends State<CartAddressBottomSheet> {
                     "Continue",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                ).onlyPadding(top: 12, bottom: 12, right: 8, left: 8)
+                ).paddingOnly(top: 12, bottom: 12, right: 8, left: 8)
               ],
-            ).onlyPadding(right: 16, left: 16, top: 10),
+            ).paddingOnly(right: 16, left: 16, top: 10),
           )
         ],
       ),

@@ -25,7 +25,7 @@ class UserAddressesPage extends StatelessWidget {
                       "Default Address",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                    ).allPadding(10),
+                    ).paddingAll(10),
                   ),
                 ),
                 const DefaultAddressCard(),
@@ -35,7 +35,7 @@ class UserAddressesPage extends StatelessWidget {
                       "Other Addresses",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                    ).allPadding(10),
+                    ).paddingAll(10),
                   ),
                 ),
                 const OtherAddressesList()

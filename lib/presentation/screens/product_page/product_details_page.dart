@@ -170,7 +170,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
                 const SizedBox(height: 10),
               ],
-            ).onlyPadding(right: 20, left: 20, top: 20),
+            ).paddingOnly(right: 20, left: 20, top: 20),
           ),
           SliverToBoxAdapter(
             child: Card(
@@ -210,8 +210,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                 ],
-              ).onlyPadding(right: 12, left: 12, top: 6, bottom: 12),
-            ).onlyPadding(top: 14, bottom: 30),
+              ).paddingOnly(right: 12, left: 12, top: 6, bottom: 12),
+            ).paddingOnly(top: 14, bottom: 30),
           ),
           SliverToBoxAdapter(
             child: Card(
@@ -229,7 +229,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
-                  ).onlyPadding(left: 14),
+                  ).paddingOnly(left: 14),
                   ListTile(
                     horizontalTitleGap: 12,
                     leading: RichText(
@@ -282,7 +282,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                 ],
               ),
-            ).onlyPadding(top: 16, bottom: 20),
+            ).paddingOnly(top: 16, bottom: 20),
           ),
           widget.product.reviews.isEmpty
               ? const NoReviewsWidget()
