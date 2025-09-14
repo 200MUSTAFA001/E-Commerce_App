@@ -1,8 +1,8 @@
 // Package imports:
 // Project imports:
 import 'package:e_commerce_app/data/models/address_model.dart';
-import 'package:e_commerce_app/data/models/cart_to_checkout_model.dart';
 import 'package:e_commerce_app/data/models/category_item_model.dart';
+import 'package:e_commerce_app/data/models/checkout_details_model.dart';
 import 'package:e_commerce_app/data/repository/address_repo.dart';
 import 'package:e_commerce_app/data/repository/products_repo.dart';
 import 'package:e_commerce_app/data/services/address_service.dart';
@@ -56,7 +56,6 @@ class AppRouter {
   static const String ordersPage = "/ordersPage";
 
   //
-  //
   final GoRouter router = GoRouter(
     routes: [
       ShellRoute(
@@ -102,7 +101,7 @@ class AppRouter {
           GoRoute(
             path: checkOutPage,
             builder: (context, state) {
-              final checkoutDetails = state.extra as CartToCheckoutModel;
+              final checkoutDetails = state.extra as CheckoutDetailsModel;
               return CheckoutPage(checkoutDetails: checkoutDetails);
             },
           ),

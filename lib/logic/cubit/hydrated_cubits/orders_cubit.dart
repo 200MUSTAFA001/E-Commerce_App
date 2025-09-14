@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:e_commerce_app/data/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -14,10 +12,14 @@ class OrdersCubit extends HydratedCubit<OrdersState> {
     if (currentState is OrdersLoaded) {
       final ordersList = List<OrderModel>.from(currentState.ordersList);
       ordersList.add(orderItem);
-      log(orderItem.orderID);
-      log("${ordersList.length}");
       emit(OrdersLoaded(ordersList: ordersList));
+    } else {
+      emit(OrdersLoaded(ordersList: [orderItem]));
     }
+  }
+
+  void clearOrders() {
+    emit(OrdersEmpty());
   }
 
   @override

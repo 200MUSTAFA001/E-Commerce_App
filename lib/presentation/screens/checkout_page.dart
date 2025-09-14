@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:e_commerce_app/app_router.dart';
-import 'package:e_commerce_app/data/models/cart_to_checkout_model.dart';
+import 'package:e_commerce_app/data/models/checkout_details_model.dart';
 import 'package:e_commerce_app/data/models/order_model.dart';
 import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/hydrated_cubits/cart_cubit.dart';
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/orders_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,13 +15,33 @@ import 'package:slide_to_act/slide_to_act.dart';
 
 import '../widgets/custom_widgets/checkout_dialog.dart';
 
-class CheckoutPage extends StatelessWidget {
-  CheckoutPage({super.key, required this.checkoutDetails});
+class CheckoutPage extends StatefulWidget {
+  const CheckoutPage({super.key, required this.checkoutDetails});
 
-  final CartToCheckoutModel checkoutDetails;
+  final CheckoutDetailsModel checkoutDetails;
+
+  @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
   final time = DateTime.now();
 
   OrderModel? orderItem;
+
+  @override
+  void initState() {
+    super.initState();
+    final orderID =
+        "${time.year}${time.month}${time.day}${time.hour}${Random().nextInt(5000)}";
+    orderItem = OrderModel(
+      orderID: orderID,
+      orderItems: widget.checkoutDetails.orderProducts,
+      shippingAddress: widget.checkoutDetails.shippingAddress,
+      orderState: OrderState.received,
+      orderReceivedDate: time,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +70,7 @@ class CheckoutPage extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 Text(
-                  "$date ${checkoutDetails.paymentMethod}",
+                  "$date ${widget.checkoutDetails.paymentMethod}",
                   style: const TextStyle(color: Colors.black54, fontSize: 16),
                 ),
                 const SizedBox(height: 20),
@@ -56,18 +79,18 @@ class CheckoutPage extends StatelessWidget {
                   children: [
                     CustomRowText(
                       rowTitle: "Subtotal Price",
-                      rowValue:
-                          r"$" "${checkoutDetails.subtotal.toStringAsFixed(1)}",
+                      rowValue: r"$"
+                          "${widget.checkoutDetails.subtotal.toStringAsFixed(1)}",
                     ),
                     CustomRowText(
                       rowTitle: "Discount",
                       rowValue: r"- $"
-                          "${checkoutDetails.discounts.toStringAsFixed(1)}",
+                          "${widget.checkoutDetails.discounts.toStringAsFixed(1)}",
                     ),
                     CustomRowText(
                       rowTitle: "Shipping fee",
                       rowValue: r"+ $"
-                          "${checkoutDetails.shippingFee.toStringAsFixed(1)}",
+                          "${widget.checkoutDetails.shippingFee.toStringAsFixed(1)}",
                     ),
                     const SizedBox(height: 6),
                     Row(
@@ -80,7 +103,8 @@ class CheckoutPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          r"$" "${checkoutDetails.total.toStringAsFixed(1)}",
+                          r"$"
+                          "${widget.checkoutDetails.total.toStringAsFixed(1)}",
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -97,7 +121,7 @@ class CheckoutPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  checkoutDetails.shippingAddress,
+                  widget.checkoutDetails.shippingAddress,
                   style: const TextStyle(fontSize: 18),
                   maxLines: 2,
                 ),
@@ -119,19 +143,13 @@ class CheckoutPage extends StatelessWidget {
                   outerColor: Colors.white,
                   innerColor: Colors.deepOrangeAccent,
                   onSubmit: () {
-                    // Todo : refactor
                     checkoutDialog(context);
-                    orderItem = OrderModel(
-                      orderID: date,
-                      orderItems: checkoutDetails.orderProducts,
-                      orderState: OrderState.received,
-                      orderReceivedDate: time,
-                    );
                     return Future.delayed(const Duration(milliseconds: 500),
                         () {
                       if (context.mounted) {
                         context.read<OrdersCubit>().addOrder(orderItem!);
-                        context.push(AppRouter.ordersPage);
+                        context.read<CartCubit>().clearCart();
+                        context.go(AppRouter.ordersPage);
                       }
                     });
                   },

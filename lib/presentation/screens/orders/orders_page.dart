@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:e_commerce_app/app_router.dart';
 import 'package:e_commerce_app/logic/cubit/hydrated_cubits/orders_cubit.dart';
 import 'package:e_commerce_app/presentation/screens/orders/empty_orders_screen.dart';
 import 'package:e_commerce_app/presentation/screens/orders/filled_orders_screen.dart';
@@ -10,28 +13,44 @@ class OrdersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            leading: BackButton(
-              onPressed: () {
-                context.pop();
+    return PopScope(
+      // to solve the hardware back button to go to home page instead of go back to checkout
+      canPop: false,
+      onPopInvokedWithResult: (_, __) {
+        context.go(AppRouter.homePage);
+      },
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              leading: BackButton(
+                onPressed: () {
+                  context.go(AppRouter.homePage);
+                },
+              ),
+              title: const Text("Orders"),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<OrdersCubit>().clear();
+                    log("message");
+                  },
+                  child: Text("data"),
+                ),
+              ],
+            ),
+            BlocBuilder<OrdersCubit, OrdersState>(
+              builder: (context, state) {
+                if (state is OrdersLoaded) {
+                  final ordersList = state.ordersList;
+                  return FilledOrdersScreen(ordersList: ordersList);
+                } else {
+                  return const EmptyOrdersScreen();
+                }
               },
             ),
-            title: const Text("Orders"),
-          ),
-          BlocBuilder<OrdersCubit, OrdersState>(
-            builder: (context, state) {
-              if (state is OrdersLoaded) {
-                final ordersList = state.ordersList;
-                return FilledOrdersScreen(ordersList: ordersList);
-              } else {
-                return const EmptyOrdersScreen();
-              }
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

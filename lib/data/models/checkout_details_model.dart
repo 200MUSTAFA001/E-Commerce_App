@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/data/models/cart_item_model.dart';
 
-class CartToCheckoutModel {
+class CheckoutDetailsModel {
   final double subtotal;
   final double discounts;
   final double shippingFee;
@@ -9,7 +9,7 @@ class CartToCheckoutModel {
   final String paymentMethod;
   final List<CartItem> orderProducts;
 
-  CartToCheckoutModel({
+  CheckoutDetailsModel({
     required this.subtotal,
     required this.discounts,
     required this.shippingFee,

@@ -5,6 +5,7 @@ class OrderModel {
   final List<CartItem> orderItems;
   final OrderState orderState;
   final DateTime orderReceivedDate;
+  final String shippingAddress;
   DateTime? orderCancelledDate;
   DateTime? orderDeliveredDate;
 
@@ -13,6 +14,7 @@ class OrderModel {
     required this.orderItems,
     required this.orderState,
     required this.orderReceivedDate,
+    required this.shippingAddress,
     this.orderCancelledDate,
     this.orderDeliveredDate,
   });
@@ -24,6 +26,7 @@ class OrderModel {
         orderState: OrderState.values
             .firstWhere((element) => element.name == json["orderState"]),
         orderReceivedDate: DateTime.parse(json["orderReceivedDate"]),
+        shippingAddress: json["shippingAddress"],
         orderCancelledDate: json["orderCancelledDate"] != null
             ? DateTime.parse(json["orderCancelledDate"])
             : null,
@@ -37,6 +40,7 @@ class OrderModel {
         "orderItems": orderItems.map((element) => element.toJson()).toList(),
         "orderState": orderState.name,
         "orderReceivedDate": orderReceivedDate.toIso8601String(),
+        "shippingAddress": shippingAddress,
         "orderCancelledDate": orderCancelledDate?.toIso8601String(),
         "orderDeliveredDate": orderDeliveredDate?.toIso8601String(),
       };
@@ -46,6 +50,7 @@ class OrderModel {
     List<CartItem>? orderItems,
     OrderState? orderState,
     DateTime? orderReceivedDate,
+    String? shippingAddress,
     DateTime? orderCancelledDate,
     DateTime? orderDeliveredDate,
   }) =>
@@ -54,6 +59,7 @@ class OrderModel {
         orderItems: orderItems ?? this.orderItems,
         orderState: orderState ?? this.orderState,
         orderReceivedDate: orderReceivedDate ?? this.orderReceivedDate,
+        shippingAddress: shippingAddress ?? this.shippingAddress,
         orderCancelledDate: orderCancelledDate ?? this.orderCancelledDate,
         orderDeliveredDate: orderDeliveredDate ?? this.orderDeliveredDate,
       );
