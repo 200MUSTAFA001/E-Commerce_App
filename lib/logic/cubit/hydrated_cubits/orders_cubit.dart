@@ -7,10 +7,10 @@ part 'orders_state.dart';
 class OrdersCubit extends HydratedCubit<OrdersState> {
   OrdersCubit() : super(OrdersInitial());
 
-  void addOrder(OrderModel orderItem) {
+  void addOrder(OrderItemModel orderItem) {
     final currentState = state;
     if (currentState is OrdersLoaded) {
-      final ordersList = List<OrderModel>.from(currentState.ordersList);
+      final ordersList = List<OrderItemModel>.from(currentState.ordersList);
       ordersList.add(orderItem);
       emit(OrdersLoaded(ordersList: ordersList));
     } else {
@@ -26,7 +26,7 @@ class OrdersCubit extends HydratedCubit<OrdersState> {
   OrdersState? fromJson(Map<String, dynamic> json) {
     final jsonOrdersList = json["ordersList"] as List;
     final ordersList =
-        jsonOrdersList.map((order) => OrderModel.fromJson(order)).toList();
+        jsonOrdersList.map((order) => OrderItemModel.fromJson(order)).toList();
 
     if (ordersList.isEmpty) {
       return OrdersEmpty();
@@ -39,7 +39,7 @@ class OrdersCubit extends HydratedCubit<OrdersState> {
   Map<String, dynamic>? toJson(OrdersState state) {
     final currentState = state;
     if (currentState is OrdersLoaded) {
-      final ordersList = List<OrderModel>.from(currentState.ordersList);
+      final ordersList = List<OrderItemModel>.from(currentState.ordersList);
       return {
         "ordersList": ordersList.map((order) => order.toJson()).toList(),
       };

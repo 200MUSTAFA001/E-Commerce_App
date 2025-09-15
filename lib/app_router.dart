@@ -3,6 +3,7 @@
 import 'package:e_commerce_app/data/models/address_model.dart';
 import 'package:e_commerce_app/data/models/category_item_model.dart';
 import 'package:e_commerce_app/data/models/checkout_details_model.dart';
+import 'package:e_commerce_app/data/models/order_model.dart';
 import 'package:e_commerce_app/data/repository/address_repo.dart';
 import 'package:e_commerce_app/data/repository/products_repo.dart';
 import 'package:e_commerce_app/data/services/address_service.dart';
@@ -15,6 +16,7 @@ import 'package:e_commerce_app/presentation/screens/cart/cart_page.dart';
 import 'package:e_commerce_app/presentation/screens/categories_page.dart';
 import 'package:e_commerce_app/presentation/screens/checkout_page.dart';
 import 'package:e_commerce_app/presentation/screens/main_page.dart';
+import 'package:e_commerce_app/presentation/screens/orders/order_details_page.dart';
 import 'package:e_commerce_app/presentation/screens/orders/orders_page.dart';
 import 'package:e_commerce_app/presentation/screens/others_pages/help_and_support_page.dart';
 import 'package:e_commerce_app/presentation/screens/others_pages/products_on_sale_page.dart';
@@ -54,6 +56,7 @@ class AppRouter {
   static const String settingsPage = "/settingsPage";
   static const String checkOutPage = "/checkOutPage";
   static const String ordersPage = "/ordersPage";
+  static const String orderDetailsPage = "/orderDetailsPage";
 
   //
   final GoRouter router = GoRouter(
@@ -108,6 +111,13 @@ class AppRouter {
           GoRoute(
             path: ordersPage,
             builder: (context, state) => const OrdersPage(),
+          ),
+          GoRoute(
+            path: orderDetailsPage,
+            builder: (context, state) {
+              final orderItem = state.extra as OrderItemModel;
+              return OrderDetailsPage(orderItem: orderItem);
+            },
           ),
         ],
       ),

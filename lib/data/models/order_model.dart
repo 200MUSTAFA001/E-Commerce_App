@@ -1,6 +1,6 @@
 import 'cart_item_model.dart';
 
-class OrderModel {
+class OrderItemModel {
   final String orderID;
   final List<CartItem> orderItems;
   final OrderState orderState;
@@ -9,7 +9,7 @@ class OrderModel {
   DateTime? orderCancelledDate;
   DateTime? orderDeliveredDate;
 
-  OrderModel({
+  OrderItemModel({
     required this.orderID,
     required this.orderItems,
     required this.orderState,
@@ -19,7 +19,7 @@ class OrderModel {
     this.orderDeliveredDate,
   });
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
+  factory OrderItemModel.fromJson(Map<String, dynamic> json) => OrderItemModel(
         orderID: json["orderID"],
         orderItems: List<CartItem>.from(
             json["orderItems"].map((element) => CartItem.fromJson(element))),
@@ -45,7 +45,7 @@ class OrderModel {
         "orderDeliveredDate": orderDeliveredDate?.toIso8601String(),
       };
 
-  OrderModel copyWith({
+  OrderItemModel copyWith({
     String? orderID,
     List<CartItem>? orderItems,
     OrderState? orderState,
@@ -54,7 +54,7 @@ class OrderModel {
     DateTime? orderCancelledDate,
     DateTime? orderDeliveredDate,
   }) =>
-      OrderModel(
+      OrderItemModel(
         orderID: orderID ?? this.orderID,
         orderItems: orderItems ?? this.orderItems,
         orderState: orderState ?? this.orderState,

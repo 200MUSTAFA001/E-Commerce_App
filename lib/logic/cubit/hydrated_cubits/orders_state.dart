@@ -6,7 +6,7 @@ sealed class OrdersState {}
 final class OrdersInitial extends OrdersState {}
 
 final class OrdersLoaded extends OrdersState {
-  final List<OrderModel> ordersList;
+  final List<OrderItemModel> ordersList;
 
   OrdersLoaded({required this.ordersList});
 }

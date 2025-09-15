@@ -20,9 +20,13 @@ class OrdersPage extends StatelessWidget {
         context.go(AppRouter.homePage);
       },
       child: Scaffold(
+        backgroundColor: Colors.grey.shade50,
         body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
+              pinned: true,
+              backgroundColor: Colors.grey.shade50,
               leading: BackButton(
                 onPressed: () {
                   context.go(AppRouter.homePage);

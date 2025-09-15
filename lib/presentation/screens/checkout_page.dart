@@ -27,14 +27,14 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   final time = DateTime.now();
 
-  OrderModel? orderItem;
+  OrderItemModel? orderItem;
 
   @override
   void initState() {
     super.initState();
     final orderID =
         "${time.year}${time.month}${time.day}${time.hour}${Random().nextInt(5000)}";
-    orderItem = OrderModel(
+    orderItem = OrderItemModel(
       orderID: orderID,
       orderItems: widget.checkoutDetails.orderProducts,
       shippingAddress: widget.checkoutDetails.shippingAddress,
