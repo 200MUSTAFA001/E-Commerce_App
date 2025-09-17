@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartx/dartx.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app_router.dart';
 import '../../../data/models/order_model.dart';
-import 'order_options.dart';
+import 'order_options_buttons.dart';
 
 class OrderItemCard extends StatelessWidget {
   const OrderItemCard({super.key, required this.orderItem});
@@ -43,8 +45,18 @@ class OrderItemCard extends StatelessWidget {
               trailing: const Icon(Icons.arrow_forward_ios_outlined),
             ),
             ListTile(
-              leading:
-                  Image.network(orderItem.orderItems.first.product.thumbnail),
+              leading: Transform.scale(
+                scale: 1.5,
+                child: CachedNetworkImage(
+                  imageUrl: orderItem.orderItems.first.product.thumbnail,
+                  progressIndicatorBuilder: (_, __, ___) =>
+                      const CupertinoActivityIndicator(
+                    color: Colors.deepOrangeAccent,
+                    radius: 18,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              ),
               title: Text(
                 ordersProductsName.removeSurrounding(prefix: "[", suffix: "]"),
                 maxLines: 2,
@@ -53,9 +65,8 @@ class OrderItemCard extends StatelessWidget {
               subtitle: Text("Items: ${orderItem.orderItems.length}"),
             ),
             const SizedBox(height: 20),
-            OrderOptions(
+            OrderOptionsButtons(
               orderState: orderItem.orderState,
-              context: context,
               orderItem: orderItem,
             ),
           ],

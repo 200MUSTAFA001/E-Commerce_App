@@ -49,6 +49,7 @@ class Product {
   final double rating;
   final int stock;
   final List<String> tags;
+  final String? brand;
   final String sku;
   final int weight;
   final Dimensions dimensions;
@@ -72,6 +73,7 @@ class Product {
     required this.rating,
     required this.stock,
     required this.tags,
+    this.brand,
     required this.sku,
     required this.weight,
     required this.dimensions,
@@ -96,6 +98,7 @@ class Product {
     double? rating,
     int? stock,
     List<String>? tags,
+    String? brand,
     String? sku,
     int? weight,
     Dimensions? dimensions,
@@ -119,6 +122,7 @@ class Product {
         rating: rating ?? this.rating,
         stock: stock ?? this.stock,
         tags: tags ?? this.tags,
+        brand: brand ?? this.brand,
         sku: sku ?? this.sku,
         weight: weight ?? this.weight,
         dimensions: dimensions ?? this.dimensions,
@@ -143,6 +147,7 @@ class Product {
         rating: json["rating"]?.toDouble(),
         stock: json["stock"],
         tags: List<String>.from(json["tags"].map((x) => x)),
+        brand: json["brand"] ?? "Unknown",
         sku: json["sku"],
         weight: json["weight"],
         dimensions: Dimensions.fromJson(json["dimensions"]),
@@ -168,6 +173,7 @@ class Product {
         "rating": rating,
         "stock": stock,
         "tags": List<dynamic>.from(tags.map((x) => x)),
+        "brand": brand,
         "sku": sku,
         "weight": weight,
         "dimensions": dimensions.toJson(),

@@ -30,6 +30,7 @@ import 'package:e_commerce_app/presentation/screens/user_addresses/add_new_addre
 import 'package:e_commerce_app/presentation/screens/user_addresses/edit_address_page.dart';
 import 'package:e_commerce_app/presentation/screens/user_addresses/user_addresses_page.dart';
 import 'package:e_commerce_app/presentation/screens/wishlist/wishlist_page.dart';
+import 'package:e_commerce_app/presentation/screens/you_may_like_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -57,6 +58,7 @@ class AppRouter {
   static const String checkOutPage = "/checkOutPage";
   static const String ordersPage = "/ordersPage";
   static const String orderDetailsPage = "/orderDetailsPage";
+  static const String youMayLikePage = "/youMayLikePage";
 
   //
   final GoRouter router = GoRouter(
@@ -116,7 +118,11 @@ class AppRouter {
             path: orderDetailsPage,
             builder: (context, state) {
               final orderItem = state.extra as OrderItemModel;
-              return OrderDetailsPage(orderItem: orderItem);
+              return BlocProvider(
+                create: (context) =>
+                    ProductsCubit(ProductsRepo(GetProductsService())),
+                child: OrderDetailsPage(orderItem: orderItem),
+              );
             },
           ),
         ],
@@ -183,6 +189,13 @@ class AppRouter {
       GoRoute(
         path: settingsPage,
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: youMayLikePage,
+        builder: (context, state) {
+          final products = state.extra as List<Product>;
+          return YouMayLikePage(products: products);
+        },
       ),
     ],
   );
