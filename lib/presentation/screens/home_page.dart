@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       drawer: const CustomDrawer(),
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           const HomePageAppBar(),
           SaleCardsList(),

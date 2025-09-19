@@ -40,7 +40,7 @@ class OrdersPage extends StatelessWidget {
                     context.read<OrdersCubit>().clear();
                     log("message");
                   },
-                  child: Text("data"),
+                  child: const Text("data"),
                 ),
               ],
             ),

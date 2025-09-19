@@ -1,7 +1,10 @@
 import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/logic/cubit/hydrated_cubits/orders_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/order_model.dart';
+import 'cancel_order_dialog.dart';
 import 'order_item_card.dart';
 
 class OrderOptions extends StatelessWidget {
@@ -11,11 +14,12 @@ class OrderOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<OrdersCubit>(context);
     return SliverToBoxAdapter(
       child: Column(
         children: [
           orderItem.orderState == OrderState.cancelled
-              ? const SizedBox()
+              ? const SizedBox.shrink()
               : Card(
                   elevation: 0,
                   color: Colors.white,
@@ -38,7 +42,14 @@ class OrderOptions extends StatelessWidget {
                   color: Colors.white,
                   child: ListTile(
                     onTap: () {
-                      /*Todo : canceling order logic*/
+                      showDialog(
+                        context: context,
+                        builder: (context) => BlocProvider.value(
+                          value: cubit,
+                          child: CancelOrderDialog(
+                              cubit: cubit, orderItem: orderItem),
+                        ),
+                      );
                     },
                     leading: CircleAvatar(
                       backgroundColor: Colors.red.shade50,
@@ -52,10 +63,10 @@ class OrderOptions extends StatelessWidget {
                     trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   ),
                 ).paddingAll(8)
-              : const SizedBox(),
+              : const SizedBox.shrink(),
           orderItem.orderState == OrderState.delivered
               ? const SizedBox(/*Todo: exchange and return options*/)
-              : const SizedBox(),
+              : const SizedBox.shrink(),
         ],
       ),
     );

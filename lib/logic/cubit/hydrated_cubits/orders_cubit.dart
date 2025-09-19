@@ -18,6 +18,19 @@ class OrdersCubit extends HydratedCubit<OrdersState> {
     }
   }
 
+  void cancelOrder(OrderItemModel orderItem) {
+    final currentState = state;
+    if (currentState is OrdersLoaded) {
+      final ordersList = List<OrderItemModel>.from(currentState.ordersList);
+      ordersList.removeWhere((order) => order.orderID == orderItem.orderID);
+      final cancelDate = DateTime.now();
+      final canceledOrder = orderItem.copyWith(
+          orderCancelledDate: cancelDate, orderState: OrderState.cancelled);
+      ordersList.add(canceledOrder);
+      emit(OrdersLoaded(ordersList: ordersList));
+    }
+  }
+
   void clearOrders() {
     emit(OrdersEmpty());
   }
