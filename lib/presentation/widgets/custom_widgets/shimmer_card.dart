@@ -1,25 +1,21 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:e_commerce_app/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ShimmerCard extends StatelessWidget {
-  const ShimmerCard({
-    super.key,
-  });
+  const ShimmerCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
+    return Skeletonizer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
             height: context.height * 0.2,
-            width: double.infinity,
+            width: context.width * 0.5,
             child: GridTile(
               header: Container(
                 alignment: Alignment.topLeft,
@@ -49,7 +45,7 @@ class ShimmerCard extends StatelessWidget {
             ],
           )
         ],
-      ),
+      ).paddingAll(10),
     );
   }
 }

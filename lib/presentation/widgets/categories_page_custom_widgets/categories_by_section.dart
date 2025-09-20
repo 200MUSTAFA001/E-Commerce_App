@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -202,7 +203,7 @@ class CategoriesBySection extends StatelessWidget {
                       categoriesListBySection(selectedIndex)[index]
                           .categoryImage,
                       fit: BoxFit.fill,
-                      width: double.infinity,
+                      width: context.width * 1,
                     ),
                   ),
                 ),

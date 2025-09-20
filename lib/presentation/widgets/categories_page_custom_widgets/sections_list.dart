@@ -31,45 +31,50 @@ class _SectionsListState extends State<SectionsList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: sections.length,
-      itemBuilder: (context, index) {
-        bool isSelected = selectedIndex == index;
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              selectedIndex = index;
-              widget.selectedIndex(index);
-            });
-          },
-          child: Column(
-            children: [
-              Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: isSelected ? Colors.blue.shade100 : Colors.transparent,
+    return SizedBox(
+      width: context.width * 1,
+      height: context.height * 0.12,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: sections.length,
+        itemBuilder: (context, index) {
+          bool isSelected = selectedIndex == index;
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedIndex = index;
+                widget.selectedIndex(index);
+              });
+            },
+            child: Column(
+              spacing: 5,
+              children: [
+                Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color:
+                        isSelected ? Colors.blue.shade100 : Colors.transparent,
+                  ),
+                  child: Icon(
+                    sections[index].categoryIcon,
+                    color: isSelected ? Colors.blue : Colors.grey,
+                  ),
                 ),
-                child: Icon(
-                  sections[index].categoryIcon,
-                  color: isSelected ? Colors.blue : Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                sections[index].categoryLabel,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: isSelected ? Colors.blue : Colors.black,
-                ),
-              )
-            ],
-          ).paddingOnly(right: 10),
-        );
-      },
-    ).paddingOnly(right: 10, left: 10);
+                Text(
+                  sections[index].categoryLabel,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isSelected ? Colors.blue : Colors.black,
+                  ),
+                )
+              ],
+            ).paddingOnly(right: 10),
+          );
+        },
+      ).paddingOnly(right: 10, left: 10),
+    ).paddingOnly(top: 100);
   }
 }

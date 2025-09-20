@@ -74,7 +74,7 @@ class _CategoryBarState extends State<CategoryBar> {
                 color: isSelected ? Colors.white : Colors.grey,
                 size: 28,
               ),
-            ).paddingOnly(right: 20),
+            ).paddingOnly(right: 16),
           );
         },
       ),

@@ -12,7 +12,7 @@ class ShowMoreHomePageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Align(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
@@ -25,7 +25,7 @@ class ShowMoreHomePageButton extends StatelessWidget {
             ),
           ),
         ),
-      ).paddingOnly(left: 10, bottom: 24),
+      ).paddingOnly(bottom: 24, right: 10, top: 10),
     );
   }
 }

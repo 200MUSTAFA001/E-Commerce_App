@@ -1,28 +1,21 @@
-// Project imports:
+import 'package:e_commerce_app/extensions.dart';
 import 'package:e_commerce_app/presentation/widgets/custom_widgets/shimmer_card.dart';
 import 'package:flutter/material.dart';
-// Package imports:
-import 'package:skeletonizer/skeletonizer.dart';
 
 class ShimmerList extends StatelessWidget {
-  const ShimmerList({
-    super.key,
-    required this.cardsCount,
-  });
-  final int cardsCount;
+  const ShimmerList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Skeletonizer.sliver(
-      child: SliverGrid.builder(
-        itemCount: cardsCount,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 0,
-          childAspectRatio: 6 / 9,
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: context.height * 0.4,
+        width: context.width * 0.9,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (context, index) => const ShimmerCard(),
         ),
-        itemBuilder: (context, index) => const ShimmerCard(),
       ),
     );
   }

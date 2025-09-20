@@ -1,11 +1,11 @@
 import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/products_model.dart';
 import '../../../logic/cubit/products_cubit.dart';
 import '../custom_widgets/product_card.dart';
-import '../custom_widgets/shimmer_list.dart';
 
 class ProductPageSubList extends StatelessWidget {
   const ProductPageSubList({super.key, required this.product});
@@ -47,7 +47,7 @@ class ProductPageSubList extends StatelessWidget {
             ),
           );
         } else {
-          return const ShimmerList(cardsCount: 4);
+          return const ShimmerList();
         }
       },
     );

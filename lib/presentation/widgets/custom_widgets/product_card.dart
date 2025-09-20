@@ -52,7 +52,7 @@ class _ProductCardState extends State<ProductCard> {
         children: [
           SizedBox(
             height: context.height * 0.2,
-            width: context.width * 0.5,
+            width: context.width * 0.45,
             child: GridTile(
               header: Container(
                 alignment: Alignment.topLeft,

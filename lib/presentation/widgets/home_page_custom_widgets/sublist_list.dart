@@ -1,13 +1,13 @@
 // Flutter imports:
 // Project imports:
 import 'package:e_commerce_app/extensions.dart';
+import 'package:e_commerce_app/presentation/widgets/custom_widgets/shimmer_list.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../logic/cubit/products_cubit.dart';
 import '../custom_widgets/product_card.dart';
-import '../custom_widgets/shimmer_list.dart';
 
 class SublistProducts extends StatelessWidget {
   const SublistProducts({super.key});
@@ -42,9 +42,7 @@ class SublistProducts extends StatelessWidget {
             ),
           );
         } else {
-          return const ShimmerList(
-            cardsCount: 4,
-          );
+          return const ShimmerList();
         }
       },
     );

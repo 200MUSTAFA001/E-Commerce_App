@@ -86,14 +86,18 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 20),
               ],
-            ).paddingOnly(right: 16, left: 16, top: 20, bottom: 10),
+            ).paddingOnly(right: 10, left: 10, top: 20, bottom: 10),
           ),
           const HomePageProductsList(),
           ShowMoreHomePageButton(
             onPressed: () {
               context.push(
                 AppRouter.productsByCategoryPage,
-                extra: selectedCategory,
+                extra: CategoryItem(
+                  categoryName: selectedCategory,
+                  categoryImage: "",
+                  categoryTitle: selectedCategory,
+                ),
               );
             },
           ),

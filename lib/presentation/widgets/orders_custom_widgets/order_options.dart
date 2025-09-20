@@ -1,9 +1,9 @@
 import 'package:e_commerce_app/extensions.dart';
-import 'package:e_commerce_app/logic/cubit/hydrated_cubits/orders_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/order_model.dart';
+import '../../../logic/cubit/hydrated_cubits/orders_cubit.dart';
 import 'cancel_order_dialog.dart';
 import 'order_item_card.dart';
 

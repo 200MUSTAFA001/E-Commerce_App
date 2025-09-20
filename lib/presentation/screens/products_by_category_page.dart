@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/categories_page_custom_widgets/custom_sliver_app_bar.dart';
 import '../widgets/custom_widgets/products_by_category_list.dart';
-import '../widgets/custom_widgets/shimmer_list.dart';
+import '../widgets/custom_widgets/shimmer_grid.dart';
 
 class ProductsByCategoryPage extends StatefulWidget {
   const ProductsByCategoryPage({super.key, required this.category});
@@ -54,7 +54,7 @@ class _ProductsByCategoryPageState extends State<ProductsByCategoryPage> {
                   itemCount: products.length,
                 );
               } else {
-                return const ShimmerList(cardsCount: 8);
+                return const ShimmerGrid(cardsCount: 8);
               }
             },
           ),

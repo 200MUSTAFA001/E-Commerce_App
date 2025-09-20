@@ -1,20 +1,15 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+// Project imports:
+import 'package:e_commerce_app/app_router.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-// Project imports:
-import 'package:e_commerce_app/app_router.dart';
-
 class ProductImages extends StatelessWidget {
-  ProductImages({
-    super.key,
-    required this.images,
-  });
+  ProductImages({super.key, required this.images});
 
   final List<String> images;
 

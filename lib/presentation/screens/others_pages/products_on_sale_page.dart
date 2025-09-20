@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../logic/cubit/products_cubit.dart';
 import '../../widgets/custom_widgets/products_by_category_list.dart';
-import '../../widgets/custom_widgets/shimmer_list.dart';
+import '../../widgets/custom_widgets/shimmer_grid.dart';
 
 class ProductsOnSalePage extends StatefulWidget {
   const ProductsOnSalePage({super.key, required this.categories});
@@ -50,7 +50,7 @@ class _ProductsOnSalePageState extends State<ProductsOnSalePage> {
                   itemCount: products.length,
                 );
               } else {
-                return const ShimmerList(cardsCount: 8);
+                return const ShimmerGrid(cardsCount: 8);
               }
             },
           ),

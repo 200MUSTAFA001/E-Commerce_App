@@ -1,3 +1,4 @@
+import 'package:dartx/dartx.dart';
 import 'package:e_commerce_app/extensions.dart';
 import 'package:e_commerce_app/presentation/widgets/categories_page_custom_widgets/products_by_category_search_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,7 +36,9 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           pinned: true,
           toolbarHeight: context.height * 0.1,
           title: Text(
-            widget.categoryTitle,
+            widget.categoryTitle == "mens-shirts"
+                ? "Shirts"
+                : widget.categoryTitle.capitalize(),
             style: GoogleFonts.oswald(fontSize: 22, letterSpacing: 1),
           ),
           actions: [

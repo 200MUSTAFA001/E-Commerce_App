@@ -21,20 +21,25 @@ class _CategoriesPageState extends State<CategoriesPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            pinned: true,
             title: const Text("Categories"),
             toolbarHeight: context.height * 0.1,
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              width: context.width * 1,
-              height: context.height * 0.12,
-              child: SectionsList(selectedIndex: (value) {
+            expandedHeight: context.height * 0.2,
+            flexibleSpace: FlexibleSpaceBar(
+              background: SectionsList(selectedIndex: (value) {
                 setState(() {
                   selectedIndex = value;
                 });
               }),
             ),
           ),
+          // SliverToBoxAdapter(
+          //   child: SectionsList(selectedIndex: (value) {
+          //     setState(() {
+          //       selectedIndex = value;
+          //     });
+          //   }),
+          // ),
           CategoriesBySection(selectedIndex: selectedIndex),
           SliverToBoxAdapter(
             child: SizedBox(

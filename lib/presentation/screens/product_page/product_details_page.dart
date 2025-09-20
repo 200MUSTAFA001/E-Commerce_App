@@ -1,4 +1,3 @@
-// Dart imports:
 // Project imports:
 import 'dart:math';
 
@@ -73,7 +72,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               FavoriteIcon(
                 product: widget.product,
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+              IconButton(
+                  onPressed: () {
+                    /*Todo : share product logic using deep linking*/
+                  },
+                  icon: const Icon(Icons.share)),
               const SizedBox(
                 width: 16,
               ),
