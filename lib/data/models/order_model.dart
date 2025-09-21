@@ -8,6 +8,7 @@ class OrderItemModel {
   final String shippingAddress;
   DateTime? orderCancelledDate;
   DateTime? orderDeliveredDate;
+  // Todo : add checkout details attribute
 
   OrderItemModel({
     required this.orderID,

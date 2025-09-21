@@ -21,6 +21,7 @@ import 'package:e_commerce_app/presentation/screens/orders/orders_page.dart';
 import 'package:e_commerce_app/presentation/screens/others_pages/help_and_support_page.dart';
 import 'package:e_commerce_app/presentation/screens/others_pages/products_on_sale_page.dart';
 import 'package:e_commerce_app/presentation/screens/others_pages/settings_page.dart';
+import 'package:e_commerce_app/presentation/screens/payment_method_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_details_page.dart';
 import 'package:e_commerce_app/presentation/screens/product_page/product_image_Interactive_viewer.dart';
 import 'package:e_commerce_app/presentation/screens/products_by_category_page.dart';
@@ -59,6 +60,7 @@ class AppRouter {
   static const String ordersPage = "/ordersPage";
   static const String orderDetailsPage = "/orderDetailsPage";
   static const String youMayLikePage = "/youMayLikePage";
+  static const String paymentMethodPage = "/paymentMethodPage";
 
   //
   final GoRouter router = GoRouter(
@@ -197,6 +199,12 @@ class AppRouter {
           return YouMayLikePage(products: products);
         },
       ),
+      GoRoute(
+          path: paymentMethodPage,
+          builder: (context, state) {
+            final checkoutDetails = state.extra as CheckoutDetailsModel;
+            return PaymentMethodPage(checkoutDetails: checkoutDetails);
+          })
     ],
   );
 }

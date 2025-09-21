@@ -47,7 +47,7 @@ class _FilledCartScreenState extends State<FilledCartScreen> {
       shippingFee: pricesDetails.shippingFee,
       total: pricesDetails.total,
       shippingAddress: shippingAddress.streetDetails,
-      paymentMethod: "Credit / Debit Card",
+      paymentMethod: "",
       orderProducts: widget.cartProducts,
     );
   }
@@ -57,7 +57,7 @@ class _FilledCartScreenState extends State<FilledCartScreen> {
     return Scaffold(
       bottomNavigationBar: CartCheckoutBar(
         onPressed: () {
-          context.push(AppRouter.checkOutPage, extra: checkoutDetails());
+          context.push(AppRouter.paymentMethodPage, extra: checkoutDetails());
         },
       ),
       backgroundColor: Colors.white,

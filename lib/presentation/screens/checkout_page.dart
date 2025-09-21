@@ -70,7 +70,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 Text(
-                  "$date ${widget.checkoutDetails.paymentMethod}",
+                  "$date * ${widget.checkoutDetails.paymentMethod}",
                   style: const TextStyle(color: Colors.black54, fontSize: 16),
                 ),
                 const SizedBox(height: 20),

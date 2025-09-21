@@ -13,16 +13,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../../../app_router.dart';
 import '../../../logic/cubit/hydrated_cubits/cart_cubit.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({
-    super.key,
-    required this.product,
-  });
+  const ProductCard({super.key, required this.product});
 
   final Product product;
 
@@ -31,15 +27,15 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  final randomInt = Random().nextInt(22);
+  final randomBool = Random().nextBool();
 
   @override
   Widget build(BuildContext context) {
     //
     final isFavorite =
         context.read<WishlistCubit>().isProductExist(widget.product.id);
+    //
     final isInCart = context.read<CartCubit>().isProductExist(widget.product);
-    final randomBool = widget.product.title.length >= randomInt;
     //
     return GestureDetector(
       onTap: () {
@@ -60,46 +56,48 @@ class _ProductCardState extends State<ProductCard> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    randomBool == true
+                    randomBool
                         ? IconButton(
                             onPressed: () {
-                              if (!isFavorite) {
-                                setState(() {
-                                  context
-                                      .read<WishlistCubit>()
-                                      .addProduct(widget.product);
-                                });
-                              } else {
-                                setState(() {
-                                  context
-                                      .read<WishlistCubit>()
-                                      .removeProduct(widget.product);
-                                });
-                              }
+                              setState(() {
+                                isFavorite
+                                    ? context
+                                        .read<WishlistCubit>()
+                                        .removeProduct(widget.product)
+                                    : context
+                                        .read<WishlistCubit>()
+                                        .addProduct(widget.product);
+                              });
                             },
                             icon: isFavoriteIcon(isFavorite),
                             style: IconButton.styleFrom(
                               backgroundColor: Colors.grey.shade200,
                             ),
                           )
-                        : const SlideCountdown(
-                            duration: Duration(hours: 12),
+                        : Container(
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: Colors.deepOrangeAccent,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: const Text(
+                              "Best Sellar",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
                           ),
                     IconButton(
                       onPressed: () {
-                        if (isInCart == false) {
-                          setState(() {
-                            context
-                                .read<CartCubit>()
-                                .addProduct(widget.product, 1);
-                          });
-                        } else {
-                          setState(() {
-                            context
-                                .read<CartCubit>()
-                                .removeProduct(widget.product);
-                          });
-                        }
+                        setState(() {
+                          isInCart
+                              ? context
+                                  .read<CartCubit>()
+                                  .removeProduct(widget.product)
+                              : context
+                                  .read<CartCubit>()
+                                  .addProduct(widget.product, 1);
+                        });
                       },
                       icon: cartIcon(isInCart),
                     ),
@@ -111,7 +109,7 @@ class _ProductCardState extends State<ProductCard> {
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     const Center(
                   child: CupertinoActivityIndicator(
-                    color: Colors.orange,
+                    color: Colors.deepOrangeAccent,
                   ),
                 ),
                 errorWidget: (context, url, error) => const Center(
@@ -195,27 +193,23 @@ int priceBeforeDiscount(double price, double discount) {
 
 //
 Widget cartIcon(bool productExist) {
-  if (productExist) {
-    return const Icon(
-      FontAwesomeIcons.cartArrowDown,
-      color: Colors.deepOrangeAccent,
-    );
-  } else {
-    return const Icon(
-      FontAwesomeIcons.cartPlus,
-      color: Colors.black54,
-    );
-  }
+  return productExist
+      ? const Icon(
+          FontAwesomeIcons.cartArrowDown,
+          color: Colors.deepOrangeAccent,
+        )
+      : const Icon(
+          FontAwesomeIcons.cartPlus,
+          color: Colors.black54,
+        );
 }
 
 //
 Widget isFavoriteIcon(bool isFavorite) {
-  if (isFavorite) {
-    return const Icon(
-      CupertinoIcons.heart_fill,
-      color: Colors.red,
-    );
-  } else {
-    return const Icon(CupertinoIcons.suit_heart);
-  }
+  return isFavorite
+      ? const Icon(
+          CupertinoIcons.heart_fill,
+          color: Colors.red,
+        )
+      : const Icon(CupertinoIcons.suit_heart);
 }
