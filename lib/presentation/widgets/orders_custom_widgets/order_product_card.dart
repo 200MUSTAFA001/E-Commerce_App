@@ -18,61 +18,67 @@ class OrderProductCard extends StatelessWidget {
       onTap: () {
         context.push(AppRouter.productDetailsPage, extra: orderProduct.product);
       },
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox.square(
-            dimension: 100,
-            child: CachedNetworkImage(
-              imageUrl: orderProduct.product.thumbnail,
-              progressIndicatorBuilder: (_, __, ___) =>
-                  const CupertinoActivityIndicator(
-                color: Colors.deepOrangeAccent,
-                radius: 18,
+      child: Card(
+        margin: const EdgeInsets.all(8),
+        color: Colors.white,
+        elevation: 1,
+        shadowColor: Colors.deepOrangeAccent.shade100,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox.square(
+              dimension: 100,
+              child: CachedNetworkImage(
+                imageUrl: orderProduct.product.thumbnail,
+                progressIndicatorBuilder: (_, __, ___) =>
+                    const CupertinoActivityIndicator(
+                  color: Colors.deepOrangeAccent,
+                  radius: 18,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 10,
-              children: [
-                Text(
-                  "${orderProduct.product.brand}",
-                  style: const TextStyle(color: Colors.black54),
-                ),
-                Text(
-                  orderProduct.product.title,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w500),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  r"$"
-                  "${orderProduct.product.price.toInt()}",
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 10,
+                children: [
+                  Text(
+                    "${orderProduct.product.brand}",
+                    style: const TextStyle(color: Colors.black54),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    "${orderProduct.productQuantity} : Quantity",
+                  Text(
+                    orderProduct.product.title,
                     style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 16, fontWeight: FontWeight.w500),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "EGP ${orderProduct.product.price.toInt()}",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        "x${orderProduct.productQuantity}",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ).paddingOnly(right: 20)
+                ],
+              ),
             ),
-          ),
-        ],
-      ).paddingAll(18),
+          ],
+        ).paddingAll(10),
+      ),
     );
   }
 }

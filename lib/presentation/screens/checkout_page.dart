@@ -33,13 +33,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
   void initState() {
     super.initState();
     final orderID =
-        "${time.year}${time.month}${time.day}${time.hour}${Random().nextInt(5000)}";
+        "${time.year}${time.month}${time.day}${Random().nextInt(5000)}";
     orderItem = OrderItemModel(
       orderID: orderID,
-      orderItems: widget.checkoutDetails.orderProducts,
-      shippingAddress: widget.checkoutDetails.shippingAddress,
       orderState: OrderState.received,
       orderReceivedDate: time,
+      orderDetails: widget.checkoutDetails,
     );
   }
 
@@ -180,11 +179,11 @@ class CustomRowText extends StatelessWidget {
       children: [
         Text(
           rowTitle,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+          style: const TextStyle(fontSize: 18),
         ),
         Text(
           rowValue,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 17),
         ),
       ],
     );

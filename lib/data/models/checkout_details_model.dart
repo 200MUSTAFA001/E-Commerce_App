@@ -19,6 +19,28 @@ class CheckoutDetailsModel {
     required this.orderProducts,
   });
 
+  factory CheckoutDetailsModel.fromJson(Map<String, dynamic> json) =>
+      CheckoutDetailsModel(
+        subtotal: json["subtotal"]?.toDouble(),
+        discounts: json["discounts"]?.toDouble(),
+        shippingFee: json["shippingFee"]?.toDouble(),
+        total: json["total"]?.toDouble(),
+        shippingAddress: json["shippingAddress"],
+        paymentMethod: json["paymentMethod"],
+        orderProducts: List<CartItem>.from(
+            json["orderProducts"].map((v) => CartItem.fromJson(v))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "subtotal": subtotal,
+        "discounts": discounts,
+        "shippingFee": shippingFee,
+        "total": total,
+        "shippingAddress": shippingAddress,
+        "paymentMethod": paymentMethod,
+        "orderProducts": orderProducts.map((v) => v.toJson()).toList(),
+      };
+
   CheckoutDetailsModel copyWith({
     double? subtotal,
     double? discounts,

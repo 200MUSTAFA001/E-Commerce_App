@@ -16,7 +16,7 @@ class OrderItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ordersProductsName = orderItem.orderItems
+    final ordersProductsName = orderItem.orderDetails.orderProducts
         .map((product) => product.product.title)
         .toList()
         .toString();
@@ -48,7 +48,8 @@ class OrderItemCard extends StatelessWidget {
               leading: Transform.scale(
                 scale: 1.5,
                 child: CachedNetworkImage(
-                  imageUrl: orderItem.orderItems.first.product.thumbnail,
+                  imageUrl: orderItem
+                      .orderDetails.orderProducts.first.product.thumbnail,
                   progressIndicatorBuilder: (_, __, ___) =>
                       const CupertinoActivityIndicator(
                     color: Colors.deepOrangeAccent,
@@ -62,7 +63,8 @@ class OrderItemCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              subtitle: Text("Items: ${orderItem.orderItems.length}"),
+              subtitle:
+                  Text("Items: ${orderItem.orderDetails.orderProducts.length}"),
             ),
             const SizedBox(height: 20),
             OrderOptionsButtons(
